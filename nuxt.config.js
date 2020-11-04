@@ -1,3 +1,5 @@
+// import router from "router/index"
+
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
@@ -26,7 +28,9 @@ export default {
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
     // https://go.nuxtjs.dev/eslint
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    // With options
+    ['@nuxtjs/router', { /* module options */ }]
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
@@ -40,6 +44,15 @@ export default {
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {},
 
+  // router: {
+  //   extendRoutes(routes, resolve) {
+  //     routes.push({
+  //       name: 'custom',
+  //       path: '/custom',
+  //       component: resolve(__dirname, 'pages/blog.vue')
+  //     })
+  //   }
+  // },
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
   }

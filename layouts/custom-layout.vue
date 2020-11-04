@@ -1,20 +1,16 @@
 <template>
   <div>
-    <app-header />
+    <p class="alert alert-success text-center">
+      custom layout header
+    </p>
     <Nuxt />
-    <app-footer />
+    <p class="alert alert-success text-center">
+      custom layout footer
+    </p>
   </div>
 </template>
 <script>
-import AppHeader from '@/components/app-header'
-import AppFooter from '@/components/app-footer'
-
-export default {
-  component: {
-    AppHeader,
-    AppFooter
-  }
-}
+export default {}
 </script>
 <style>
 html {

@@ -22,6 +22,9 @@
         >
           GitHub
         </a>
+        <nuxt-link :to="{ name: 'posts' }" class="button--green">
+          Posts
+        </nuxt-link>
       </div>
     </div>
   </div>
