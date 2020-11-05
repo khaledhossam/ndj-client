@@ -23,7 +23,7 @@
           GitHub
         </a>
         <nuxt-link :to="{ name: 'posts' }" class="button--green">
-          Posts
+          categories
         </nuxt-link>
       </div>
     </div>
@@ -31,7 +31,28 @@
 </template>
 
 <script>
-export default {}
+export default {
+  mounted () {
+    const host = window.location.host
+    const baseDomain = host.substring(host.indexOf('.'))
+    const subDomain = host.split('.')[0]
+
+    let apiSubdomain = ''
+
+    switch (subDomain) {
+      case 'shop1-nuxt':
+        apiSubdomain = 'shop1'
+        break
+      case 'shop2-nuxt':
+        apiSubdomain = 'shop2'
+        break
+      default:
+        apiSubdomain = 'shop1'
+    }
+    this.$axios.setBaseURL(`http://${apiSubdomain}${baseDomain}/api/v1/`)
+  }
+}
+
 </script>
 
 <style>

@@ -16,7 +16,12 @@ export default {
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
+    '@/assets/css/style.css'
   ],
+
+  loading: {
+    // color: 'green',
+  },
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
@@ -42,7 +47,31 @@ export default {
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
+  axios: {
+    baseURL: 'http://jsonplaceholder.typicode.com/'
+    // baseURL: process.env.BASE_URL || 'http://localhost:3000'
+    // export default function({ $axios }) {
+    //   if (process.client) {
+    //     const host = window.location.hostname;
+    //     $axios.setBaseURL("http://" + host + ":8080");
+    //   }
+    // }
+    // baseURL: process.client
+    // baseURL: baseDomain
+    // reuseBrowserDomain: true
+  },
+
+  // publicRuntimeConfig: {
+  //   axios: {
+  //     browserBaseURL: process.env.BROWSER_BASE_URL
+  //   }
+  // },
+
+  // privateRuntimeConfig: {
+  //   axios: {
+  //     baseURL: process.env.BASE_URL
+  //   }
+  // },
 
   // router: {
   //   extendRoutes(routes, resolve) {

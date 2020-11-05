@@ -13,10 +13,12 @@
         <div class="text-center">
           <h4>
             <nuxt-link :to="{ name: 'post', params: { id: post.id, post: post }}">
-              {{ post.title }}
+              <span @click="updateSelectedPost(post)">
+                {{ post.name }}
+              </span>
             </nuxt-link>
           </h4>
-          <span>{{ post.body }}</span>
+          <!-- <span>{{ post.body }}</span> -->
         </div>
       </div>
     </div>
@@ -35,9 +37,9 @@ export default {
   //     })
   // },
   fetch ({ $axios, store }) {
-    return $axios.$get('http://jsonplaceholder.typicode.com/posts')
+    return $axios.$get('list-categories')
       .then((res) => {
-        store.commit('updatePosts', res)
+        store.commit('updatePosts', res.data)
       })
   },
   data () {
@@ -45,16 +47,20 @@ export default {
       // posts: this.store.state.posts
     }
   },
-  // mounted () {
-  //   this.loadPosts()
-  // },
+  mounted () {
+    // this.loadPosts()
+    // console.log('base url:', process.env.BROWSER_BASE_URL)
+  },
   methods: {
     loadPosts () {
       //* * call axios from module nuxt */
-      this.$axios.$get('http://jsonplaceholder.typicode.com/posts')
+      this.$axios.$get('/list-categories')
         .then((res) => {
           this.posts = res
         })
+    },
+    updateSelectedPost (post) {
+      this.$store.commit('selectedPost', post)
     }
   }
 }
