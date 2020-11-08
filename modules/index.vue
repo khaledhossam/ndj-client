@@ -27,14 +27,31 @@
         </nuxt-link>
       </div>
     </div>
+    <meta-tag :title="title" />
   </div>
 </template>
 
 <script>
+import MetaTag from '@/components/head-meta-tags'
+
 export default {
+  components: {
+    MetaTag
+  },
+  data () {
+    return {
+      title: 'home page'
+    }
+  },
+  // middleware (context) {
+  //   console.log('middleware here!')
+  // },
+  // middleware: ['hello'],
   mounted () {
+    console.log('route name', this.$nuxt.$route)
     const host = window.location.host
-    const baseDomain = host.substring(host.indexOf('.'))
+
+    const baseDomain = '.tawreedimdad.com' || host.substring(host.indexOf('.'))
     const subDomain = host.split('.')[0]
 
     let apiSubdomain = ''
@@ -51,6 +68,28 @@ export default {
     }
     this.$axios.setBaseURL(`http://${apiSubdomain}${baseDomain}/api/v1/`)
   }
+  // head: {
+  //   title: 'Home page',
+  //   meta: [
+  //     {
+  //       hid: 'description',
+  //       name: 'description',
+  //       content: 'Home page description'
+  //     }
+  //   ]
+  // }
+  // head () {
+  //   return {
+  //     title: this.title,
+  //     meta: [
+  //       {
+  //         hid: 'description', //* * to override desc global */
+  //         name: 'description',
+  //         content: 'Home page description'
+  //       }
+  //     ]
+  //   }
+  // }
 }
 
 </script>

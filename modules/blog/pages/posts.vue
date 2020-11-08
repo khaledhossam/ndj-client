@@ -6,27 +6,54 @@
         back
       </nuxt-link>
     </h1>
-
     <hr>
-    <div class="row container">
+    <div class="row container-fluid">
       <div v-for="post in $store.state.posts" :key="post.id" class="col-lg-3 post-grid">
-        <div class="text-center">
-          <h4>
-            <nuxt-link :to="{ name: 'post', params: { id: post.id, post: post }}">
-              <span @click="updateSelectedPost(post)">
-                {{ post.name }}
-              </span>
-            </nuxt-link>
-          </h4>
-          <!-- <span>{{ post.body }}</span> -->
-        </div>
+        <nuxt-link :to="{ name: 'post', params: { id: post.id, post: post }}">
+          <span @click="updateSelectedPost(post)">
+            {{ post.name }}
+          </span>
+        </nuxt-link>
       </div>
     </div>
+    <app-modal button-label="delete" :button-text-style="true" button-color="error">
+      <template slot-scope="{close}">
+        <v-card>
+          <v-card-title class="headline">
+            delete item?
+          </v-card-title>
+          <!-- <v-card-text>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</v-card-text> -->
+          <v-card-actions>
+            <v-spacer />
+            <v-btn
+              color="error"
+              text
+              :loading="loading"
+              @click="deletePost()"
+            >
+              delete
+            </v-btn>
+            <v-btn
+              color="green darken-1"
+              text
+              @click="close"
+              :disabled="loading"
+            >
+              close
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </template>
+    </app-modal>
   </div>
 </template>
 <script>
+import AppModal from '@/components/shared/app-modal'
 // import axios from 'axios'
 export default {
+  components: {
+    AppModal
+  },
   // asyncData ({ isDev, route, store, env, params, query, req, res, redirect, error })
   // asyncData ({ $axios }) {
   //   return $axios.$get('http://jsonplaceholder.typicode.com/posts')
@@ -44,7 +71,8 @@ export default {
   },
   data () {
     return {
-      // posts: this.store.state.posts
+      // posts: this.store.state.posts,
+      loading: false
     }
   },
   mounted () {
@@ -61,6 +89,12 @@ export default {
     },
     updateSelectedPost (post) {
       this.$store.commit('selectedPost', post)
+    },
+    deletePost (post) {
+      this.loading = true
+      // this.$axios.$delete(`/posts/${post.id}`).finally(() => {
+      //   this.loading = false
+      // })
     }
   }
 }
@@ -68,7 +102,8 @@ export default {
 <style scoped>
 .post-grid{
   border: 1px solid #ccc;
-  margin: 10px;
-  padding: 10px;
+  margin: 5px;
+  padding: 5px;
+  text-align: center;
 }
 </style>

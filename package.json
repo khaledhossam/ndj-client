@@ -3,20 +3,22 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
     "build": "nuxt build",
-    "start": "nuxt start",
+    "lint": "npm run lint:js",
+    "dev": "nuxt",
     "generate": "nuxt generate",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "lint": "npm run lint:js",
+    "start": "nuxt start",
     "test": "jest"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.12.2",
+    "@nuxtjs/vuetify": "^1.11.2",
     "bootstrap": "^4.5.2",
     "bootstrap-vue": "^2.17.3",
     "core-js": "^3.6.5",
-    "nuxt": "^2.14.6"
+    "nuxt": "^2.14.6",
+    "vuetify": "^2.2.11"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^3.1.0",
@@ -30,7 +32,10 @@
     "eslint-plugin-nuxt": "^1.0.0",
     "jest": "^26.5.0",
     "node-sass": "^5.0.0",
+    "sass": "^1.19.0",
     "sass-loader": "^10.0.5",
-    "vue-jest": "^3.0.4"
+    "vue-cli-plugin-vuetify": "~2.0.7",
+    "vue-jest": "^3.0.4",
+    "vuetify-loader": "^1.3.0"
   }
 }
