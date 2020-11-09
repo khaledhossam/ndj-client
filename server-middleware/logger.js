@@ -1,4 +1,4 @@
 export default (request, response, next) => {
-  // console.log('server middleware!', process.env.API_URL)
+  // console.log('server middleware!', request.headers.host)
   next()
 }

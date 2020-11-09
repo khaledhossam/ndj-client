@@ -1,6 +1,5 @@
-// import router from "router/index"
-
 export default {
+  target: 'server',
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     titleTemplate: '%s - NDJ',
@@ -55,7 +54,7 @@ export default {
   },
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
-    baseURL: 'http://shop1.tawreedimdad.com//api/v1/'
+    baseURL: ''
     // baseURL: process.env.BASE_URL || 'http://localhost:3000'
     // export default function({ $axios }) {
     //   if (process.client) {
@@ -85,15 +84,7 @@ export default {
   serverMiddleware: [
     {path: '/', handler: '~/server-middleware/logger.js'}
   ],
-  // router: {
-  //   extendRoutes(routes, resolve) {
-  //     routes.push({
-  //       name: 'custom',
-  //       path: '/custom',
-  //       component: resolve(__dirname, 'pages/blog.vue')
-  //     })
-  //   }
-  // },
+
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
   }

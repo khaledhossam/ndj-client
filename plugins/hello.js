@@ -1,3 +1,3 @@
 export default () => {
-  console.log('hello plugin nuxt!')
+  // console.log('hello plugin nuxt!')
 }

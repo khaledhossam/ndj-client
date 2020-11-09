@@ -13,8 +13,7 @@ export default {
   },
   actions: {
     nuxtServerInit ({ commit }, { req }) {
-      console.log('nuxt server init!', req.headers.host, process.env._AXIOS_BASE_URL_)
-      this.$axios.setBaseURL('http://shop1.tawreedimdad.com//api/v1/')
+      // console.log('nuxt server init!', req.headers.host, process.env._AXIOS_BASE_URL_)
     }
   }
 }

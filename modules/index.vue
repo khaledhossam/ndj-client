@@ -22,7 +22,7 @@
         >
           GitHub
         </a>
-        <nuxt-link :to="{ name: 'posts' }" class="button--green">
+        <nuxt-link :to="{ name: 'categories' }" class="button--green">
           categories
         </nuxt-link>
       </div>
@@ -42,54 +42,7 @@ export default {
     return {
       title: 'home page'
     }
-  },
-  // middleware (context) {
-  //   console.log('middleware here!')
-  // },
-  // middleware: ['hello'],
-  mounted () {
-    console.log('route name', this.$nuxt.$route)
-    const host = window.location.host
-
-    const baseDomain = '.tawreedimdad.com' || host.substring(host.indexOf('.'))
-    const subDomain = host.split('.')[0]
-
-    let apiSubdomain = ''
-
-    switch (subDomain) {
-      case 'shop1-nuxt':
-        apiSubdomain = 'shop1'
-        break
-      case 'shop2-nuxt':
-        apiSubdomain = 'shop2'
-        break
-      default:
-        apiSubdomain = 'shop1'
-    }
-    this.$axios.setBaseURL(`http://${apiSubdomain}${baseDomain}/api/v1/`)
   }
-  // head: {
-  //   title: 'Home page',
-  //   meta: [
-  //     {
-  //       hid: 'description',
-  //       name: 'description',
-  //       content: 'Home page description'
-  //     }
-  //   ]
-  // }
-  // head () {
-  //   return {
-  //     title: this.title,
-  //     meta: [
-  //       {
-  //         hid: 'description', //* * to override desc global */
-  //         name: 'description',
-  //         content: 'Home page description'
-  //       }
-  //     ]
-  //   }
-  // }
 }
 
 </script>

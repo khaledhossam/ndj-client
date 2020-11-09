@@ -9,7 +9,7 @@
     <hr>
     <div class="row container-fluid">
       <div v-for="post in $store.state.posts" :key="post.id" class="col-lg-3 post-grid">
-        <nuxt-link :to="{ name: 'post', params: { id: post.id, post: post }}">
+        <nuxt-link :to="{ name: 'category', params: { id: post.id, post: post }}">
           <span @click="updateSelectedPost(post)">
             {{ post.name }}
           </span>
@@ -36,8 +36,8 @@
             <v-btn
               color="green darken-1"
               text
-              @click="close"
               :disabled="loading"
+              @click="close"
             >
               close
             </v-btn>
@@ -63,7 +63,7 @@ export default {
   //       }
   //     })
   // },
-  fetch ({ $axios, store }) {
+  fetch ({ $axios, store, req, beforeNuxtRender }) {
     return $axios.$get('list-categories')
       .then((res) => {
         store.commit('updatePosts', res.data)

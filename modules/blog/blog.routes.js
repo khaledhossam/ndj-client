@@ -1,15 +1,15 @@
-import posts from '~/modules/blog/pages/posts.vue'
+import posts from '~/modules/blog/pages/categories.vue'
 import post from '~/modules/blog/pages/_id.vue'
 
 export default [
   {
-    name: 'posts',
-    path: '/posts',
+    name: 'categories',
+    path: '/categories',
     component: posts
   },
   {
-    name: 'post',
-    path: '/posts/:id',
+    name: 'category',
+    path: '/categories/:id',
     component: post,
     props: true
   }

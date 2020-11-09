@@ -11,9 +11,6 @@ export default {
       default: null,
       required: false
     }
-  },
-  mounted () {
-    // console.log(this.error)
   }
 }
 </script>

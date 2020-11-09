@@ -1,11 +1,20 @@
 <template>
   <div class="text-center">
     <h1>route params: {{ $route.params.id }}</h1>
-    <div class="text-center" style="width: 20%;margin:auto">
-      <h4>{{ post.title }}</h4>
-      <span>{{ post.body }}</span>
+    <h4>subcategories</h4>
+    <div v-if="$store.state.selectedPost.length" class="row" style="margin:auto;width:17%">
+      <div v-for="cat in $store.state.selectedPost" :key="cat.id">
+        <div class="text-center">
+          <h4 style="border:1px solid #ccc;padding:5px;margin:5px">
+            {{ cat.name }}
+          </h4>
+        </div>
+      </div>
     </div>
-    <nuxt-link :to="{ name: 'posts' }" class="btn btn-success mb-4">
+    <div v-else class="row" style="margin:auto;width:17%">
+      <span class="text-danger text-center">there is no subcategories...</span>
+    </div>
+    <nuxt-link :to="{ name: 'categories' }" class="btn btn-success mb-4">
       back
     </nuxt-link>
   </div>
@@ -20,8 +29,17 @@ export default {
     post: {
       type: Object,
       default: null,
-      required: true
+      required: false
     }
+  },
+  fetch ({ $axios, store, params }) {
+    // if (store.state.selectedPost && store.state.selectedPost.id === params.id) {
+    //   return true
+    // }
+    return $axios.$get(`list-sub-categories?category_id=${params.id}`)
+      .then((res) => {
+        store.commit('selectedPost', res.data)
+      })
   },
   data () {
     return {

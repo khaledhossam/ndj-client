@@ -31,7 +31,7 @@ const router = new Router({
       component: custom
     },
     {
-      path: '/posts',
+      path: '/categories',
       component: blogIndex,
       children: blogRoutes
     }

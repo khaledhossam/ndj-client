@@ -13,9 +13,6 @@ export default {
   component: {
     AppHeader,
     AppFooter
-  },
-  middleware (context) {
-    console.log('global middleware!')
   }
 }
 </script>
