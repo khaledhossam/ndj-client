@@ -11,6 +11,11 @@ import blogRoutes from '~/modules/blog/blog.routes'
 //* ** module admin routes** */
 // import adminCategoryIndex from '~/modules/admin/categories/index.vue'
 // import adminCategoryRoutes from '~/modules/admin/categories/category.routes'
+import adminIndex from '~/modules/admin/index.vue'
+import adminRoutes from '~/modules/admin/admin.routes.js'
+
+//* ** auth routes** */
+import adminLogin from '~/modules/core/admin/login.vue'
 
 Vue.use(Router)
 
@@ -34,6 +39,16 @@ const router = new Router({
       path: '/categories',
       component: blogIndex,
       children: blogRoutes
+    },
+    {
+      path: '/admin',
+      component: adminIndex,
+      children: adminRoutes
+    },
+    {
+      name: 'admin-login',
+      path: '/admin/login',
+      component: adminLogin
     }
     // {
     //   path: '/admin',

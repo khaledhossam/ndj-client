@@ -7,7 +7,7 @@ export default function ({ $axios, redirect, req, beforeNuxtRender }) {
   } else {
     host = window.location.host
   }
-  console.log('host>>>', host)
+  // console.log('host>>>', host)
   const baseDomain = '.tawreedimdad.com' || host.substring(host.indexOf('.'))
   const subDomain = host.split('.')[0]
 

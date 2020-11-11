@@ -10,23 +10,38 @@ export default {
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'dns-prefetch', href: 'https://fonts.gstatic.com' },
+      {
+        rel: 'stylesheet',
+        type: 'text/css',
+        href: 'https://fonts.googleapis.com/css?family=Nunito',
+      },
+      {
+        rel: 'stylesheet',
+        type: 'text/css',
+        href:
+          'https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css',
+      }
     ]
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
-    '@/assets/css/style.css'
+    '@/assets/css/style.css',
+    {src: '@/assets/admin/scss/main.scss'}
   ],
 
-  loading: {
-    // color: 'green',
-  },
+  /*
+   ** Customize the progress-bar color
+   */
+  loading: { color: '#fff' },
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
     {src: '~/plugins/hello.js', mode: 'server'}, //** call first time in application */
-    {src: '~/plugins/axios.js'}
+    {src: '~/plugins/axios.js'},
+    { src: '~/plugins/after-each.js', mode: 'client' }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -45,8 +60,10 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
+    ['nuxt-buefy', { materialDesignIcons: false }],
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/pwa'
   ],
 
   env: {
