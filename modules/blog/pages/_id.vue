@@ -38,7 +38,7 @@ export default {
     // }
     return $axios.$get(`list-sub-categories?category_id=${params.id}`)
       .then((res) => {
-        store.commit('selectedPost', res.data)
+        // store.commit('selectedPost', res.data)
       })
   },
   data () {
