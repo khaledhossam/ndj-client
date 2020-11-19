@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="text-center">
-      posts
+      {{ $t('website.categories') }}
       <nuxt-link :to="{ name: 'home' }" class="btn btn-success">
         back
       </nuxt-link>
@@ -66,7 +66,7 @@ export default {
   fetch ({ $axios, store, req, beforeNuxtRender }) {
     return $axios.$get('list-categories')
       .then((res) => {
-        store.commit('updatePosts', res.data)
+        // store.commit('updatePosts', res.data)
       })
   },
   data () {
@@ -88,7 +88,7 @@ export default {
         })
     },
     updateSelectedPost (post) {
-      this.$store.commit('selectedPost', post)
+      // this.$store.commit('selectedPost', post)
     },
     deletePost (post) {
       this.loading = true

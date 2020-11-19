@@ -1,72 +1,108 @@
-export default {
-  state: () => ({
-    posts: [],
-    selectedPost: {},
-    /* User */
-    userName: null,
-    userEmail: null,
-    userAvatar: null,
 
-    /* NavBar */
-    isNavBarVisible: true,
+// import Vue from 'vue'
+// import Vuex from 'vuex'
 
-    /* FooterBar */
-    isFooterBarVisible: true,
+// import admin from './admin'
+// import localization from './localization'
 
-    /* Aside */
-    isAsideVisible: true,
-    isAsideMobileExpanded: false
-  }),
-  mutations: {
-    updatePosts (state, posts) {
-      state.posts = posts
-    },
-    selectedPost (state, post) {
-      state.selectedPost = post
-    },
-    /* A fit-them-all commit */
-    basic (state, payload) {
-      state[payload.key] = payload.value
-    },
+export const state = () => ({})
+export const mutations = {}
+export const actions = {}
+export const getters = {}
 
-    /* User */
-    user (state, payload) {
-      if (payload.name) {
-        state.userName = payload.name
-      }
-      if (payload.email) {
-        state.userEmail = payload.email
-      }
-      if (payload.avatar) {
-        state.userAvatar = payload.avatar
-      }
-    },
+// Vue.use(Vuex)
 
-    /* Aside Mobile */
-    asideMobileStateToggle (state, payload = null) {
-      const htmlClassName = 'has-aside-mobile-expanded'
+// export const store = new Vuex.Store({
 
-      let isShow
+//   state: () => ({
+//     currentLocale: '',
+//     locales: ['ar', 'en']
+//   }),
+//   mutations: {},
+//   actions: {},
+//   getters: {},
+//   modules: {
+//     admin,
+//     localization
+//   },
+//   strict: false
+// })
 
-      if (payload !== null) {
-        isShow = payload
-      } else {
-        isShow = !state.isAsideMobileExpanded
-      }
+// export default {
+//   state: () => ({
+//     posts: [],
+//     selectedPost: {},
+//     /* User */
+//     userName: null,
+//     userEmail: null,
+//     userAvatar: null,
 
-      if (isShow) {
-        document.documentElement.classList.add(htmlClassName)
-      } else {
-        document.documentElement.classList.remove(htmlClassName)
-      }
+//     /* NavBar */
+//     isNavBarVisible: true,
 
-      state.isAsideMobileExpanded = isShow
-    }
-  },
+//     /* FooterBar */
+//     isFooterBarVisible: true,
 
-  actions: {
-    nuxtServerInit ({ commit }, { req }) {
-      // console.log('nuxt server init!', req.headers.host, process.env._AXIOS_BASE_URL_)
-    }
-  }
-}
+//     /* Aside */
+//     isAsideVisible: true,
+//     isAsideMobileExpanded: false
+//   }),
+//   mutations: {
+//     updatePosts (state, posts) {
+//       state.posts = posts
+//     },
+//     selectedPost (state, post) {
+//       state.selectedPost = post
+//     },
+//     /* A fit-them-all commit */
+//     basic (state, payload) {
+//       state[payload.key] = payload.value
+//     },
+
+//     /* User */
+//     user (state, payload) {
+//       if (payload.name) {
+//         state.userName = payload.name
+//       }
+//       if (payload.email) {
+//         state.userEmail = payload.email
+//       }
+//       if (payload.avatar) {
+//         state.userAvatar = payload.avatar
+//       }
+//     },
+
+//     /* Aside Mobile */
+//     asideMobileStateToggle (state, payload = null) {
+//       const htmlClassName = 'has-aside-mobile-expanded'
+
+//       let isShow
+
+//       if (payload !== null) {
+//         isShow = payload
+//       } else {
+//         isShow = !state.isAsideMobileExpanded
+//       }
+
+//       if (isShow) {
+//         document.documentElement.classList.add(htmlClassName)
+//       } else {
+//         document.documentElement.classList.remove(htmlClassName)
+//       }
+
+//       state.isAsideMobileExpanded = isShow
+//     }
+//   },
+
+//   actions: {
+//     nuxtServerInit ({ commit }, { req }) {
+//       // console.log('nuxt server init!', req.headers.host, process.env._AXIOS_BASE_URL_)
+//     },
+//     nuxtServerInit ({ state, commit, dispatch }, { route, app }) {
+//       // console.log('nuxt server init!', app)
+//       console.log('init server locale>>>', app.i18n.defaultLocale, state.localization)
+//       app.i18n.defaultLocale = state.localization.currentLocale
+//       console.log('init server locale>>>', app.i18n.defaultLocale, state.localization)
+//     }
+//   }
+// }

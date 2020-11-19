@@ -1,3 +1,6 @@
+import i18n from './locales/i18n'
+// import store from './store'
+
 export default {
   target: 'server',
   // Global page headers (https://go.nuxtjs.dev/config-head)
@@ -35,13 +38,14 @@ export default {
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#fff' },
+  loading: { color: '#3B8070' },
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
-    {src: '~/plugins/hello.js', mode: 'server'}, //** call first time in application */
+    {src: '~/plugins/i18n.js' }, //** call first time in application */
     {src: '~/plugins/axios.js'},
-    { src: '~/plugins/after-each.js', mode: 'client' }
+    { src: '~/plugins/after-each.js', mode: 'client' },
+    { src: '~/plugins/persistedState.js' }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -53,7 +57,41 @@ export default {
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
     // With options
-    ['@nuxtjs/router', { /* module options */ }]
+    ['@nuxtjs/router', { /* module options */ }],
+    [
+      'nuxt-i18n',
+      {
+        vueI18nLoader: true,
+        strategy: 'no_prefix',
+        // seo: true,
+        defaultLocale: 'en',
+        locales: [
+          {
+            code: 'ar',
+            iso: 'ar',
+            name: 'Arabic'
+          },
+          {
+            code: 'en',
+            iso: 'en-US',
+            name: 'English'
+          }
+        ],
+        loadLanguagesAsync: true,
+        langDir: 'locales/',
+        vueI18n: i18n,
+        lazy:true,
+        // rootRedirect: 'ar',
+        // https://stackoverflow.com/questions/57947613/how-to-fetch-locales-asynchronously-nuxt-js-i18n-axios
+        // https://i18n.nuxtjs.org/different-domains/
+        // differentDomains: true,
+        // detectBrowserLanguage: false
+        detectBrowserLanguage: {
+          useCookie: true,
+          cookieKey: 'i18n_redirected'
+        }
+      }
+    ]
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
@@ -95,9 +133,16 @@ export default {
   //     baseURL: process.env.BASE_URL
   //   }
   // },
+  // extendRoutes (nuxtRoutes, resolve) {
+  //   nuxtRoutes.splice(0, nuxtRoutes.length, ...routes.map((route) => {
+  //     return { ...route, component: resolve(__dirname, route.component) }
+  //   }))
+  // },
   router: {
-    middleware: 'hello'
+    // base: '/en',
+    middleware: 'i18n'
   },
+
   serverMiddleware: [
     {path: '/', handler: '~/server-middleware/logger.js'}
   ],

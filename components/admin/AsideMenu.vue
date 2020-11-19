@@ -34,7 +34,10 @@ export default {
     }
   },
   computed: {
-    ...mapState(['isAsideVisible'])
+    // ...mapState(['isAsideVisible'])
+    ...mapState({
+      isAsideVisible: state => state.admin.isAsideVisible
+    })
   },
   methods: {
     menuClick (item) {

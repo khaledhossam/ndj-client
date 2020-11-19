@@ -29,4 +29,11 @@ export default function ({ $axios, redirect, req, beforeNuxtRender }) {
   //     redirect('/sorry')
   //   }
   // })
+  // $axios.onRequest((config) => {
+  //   // ...
+  //   // Refresh JWT token if needed
+  //   // ...
+  //   config.headers['Authorization'] = `Bearer ${token}`
+  //   return config
+  // })
 }

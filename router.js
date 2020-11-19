@@ -28,6 +28,10 @@ const router = new Router({
     {
       name: 'home',
       path: '/',
+      alias: [
+        '/ar',
+        '/en'
+      ],
       component: home
     },
     {

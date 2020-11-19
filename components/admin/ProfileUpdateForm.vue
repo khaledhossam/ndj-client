@@ -49,7 +49,11 @@ export default {
     }
   },
   computed: {
-    ...mapState(['userName', 'userEmail'])
+    // ...mapState(['userName', 'userEmail'])
+    ...mapState({
+      userName: state => state.admin.userName,
+      userEmail: state => state.admin.userEmail
+    })
   },
   watch: {
     userName (newValue) {
@@ -68,7 +72,7 @@ export default {
       this.isLoading = true
       setTimeout(() => {
         this.isLoading = false
-        this.$store.commit('user', this.form)
+        this.$store.commit('admin/user', this.form)
         this.$buefy.snackbar.open({
           message: 'Updated',
           queue: false

@@ -2,9 +2,34 @@
   <div class="container">
     <div>
       <Logo />
-      <h1 class="title">
-        ndj-nuxt
-      </h1>
+      <h2>
+        {{ $t('website.welcomeMessage', ['Preetish HS', 'contact@preetish.in']) }}
+      </h2>
+      <div class="lang-dropdown text-muted">
+        <select
+          v-model="$store.state.localization.currentLocale"
+          style="border: 2px solid #bbb"
+          @change="onLangChange($event.target.value)"
+        >
+          <option
+            v-for="lang in $i18n.locales"
+            :key="lang.code"
+            :value="lang.code"
+          >
+            {{ lang.name }}
+          <!-- <nuxt-link
+            :to="switchLocalePath('en')"
+          >
+            english
+          </nuxt-link>
+          <nuxt-link
+            :to="switchLocalePath('ar')"
+          >
+            arabic
+          </nuxt-link> -->
+          </option>
+        </select>
+      </div>
       <div class="links">
         <a
           href="https://nuxtjs.org/"
@@ -33,6 +58,7 @@
 
 <script>
 import MetaTag from '@/components/head-meta-tags'
+import { mapState } from 'vuex'
 
 export default {
   components: {
@@ -41,6 +67,27 @@ export default {
   data () {
     return {
       title: 'home page'
+      // currentLocale: ''
+    }
+  },
+  computed: {
+    ...mapState({
+      // currentLocale: state => state.localization.currentLocale
+      currentLocale: 'localization.currentLocale'
+    })
+  },
+  created () {},
+  methods: {
+    onLangChange (event) {
+      // this.$i18n.locale = event
+      this.$store.commit('localization/setCurrentLocale', event)
+
+      this.$buefy.snackbar.open({
+        message: `changed successfully to ${event}`,
+        queue: false
+      })
+      // window.location.reload(`/${event}/${this.$router.currentRoute.path}`)
+      // this.$router.replace({ path: `/${event}/${this.$router.currentRoute.path}` })
     }
   }
 }
@@ -70,7 +117,7 @@ export default {
     sans-serif;
   display: block;
   font-weight: 300;
-  font-size: 100px;
+  font-size: 40px;
   color: #35495e;
   letter-spacing: 1px;
 }

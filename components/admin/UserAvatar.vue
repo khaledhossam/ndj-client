@@ -32,7 +32,11 @@ export default {
 
       return `https://avatars.dicebear.com/v2/human/${name}.svg?options[mood][]=happy`
     },
-    ...mapState(['userAvatar', 'userName'])
+    // ...mapState(['userAvatar', 'userName'])
+    ...mapState({
+      userName: state => state.admin.userName,
+      userAvatar: state => state.admin.userAvatar
+    })
   }
 }
 </script>

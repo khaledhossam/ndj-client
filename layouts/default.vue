@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :key="reRenderKey">
     <app-header />
     <Nuxt />
     <app-footer />
@@ -13,6 +13,13 @@ export default {
   component: {
     AppHeader,
     AppFooter
+  },
+  data () {
+    return {
+      reRenderKey: Math.random().toString(36).substr(2, 9)
+    }
+  },
+  methods: {
   }
 }
 </script>

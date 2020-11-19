@@ -34,7 +34,8 @@ export default {
     year () {
       return dayjs().year()
     },
-    ...mapState(['isFooterBarVisible'])
+    // ...mapState(['isFooterBarVisible'])
+    ...mapState({ isFooterBarVisible: state => state.admin.isFooterBarVisible })
   }
 }
 </script>

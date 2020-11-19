@@ -127,11 +127,16 @@ export default {
     menuToggleMobileIcon () {
       return this.isAsideMobileExpanded ? 'backburger' : 'forwardburger'
     },
-    ...mapState(['isNavBarVisible', 'isAsideMobileExpanded', 'userName'])
+    // ...mapState(['isNavBarVisible', 'isAsideMobileExpanded', 'userName'])
+    ...mapState({
+      isNavBarVisible: state => state.admin.isNavBarVisible,
+      isAsideMobileExpanded: state => state.admin.isAsideMobileExpanded,
+      userName: state => state.admin.userName
+    })
   },
   methods: {
     menuToggleMobile () {
-      this.$store.commit('asideMobileStateToggle')
+      this.$store.commit('admin/asideMobileStateToggle')
     },
     menuNavBarToggle () {
       this.isMenuNavBarActive = !this.isMenuNavBarActive

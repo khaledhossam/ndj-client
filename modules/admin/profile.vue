@@ -51,7 +51,11 @@ export default {
     titleStack () {
       return ['Admin', 'Profile']
     },
-    ...mapState(['userName', 'userEmail'])
+    // ...mapState(['userName', 'userEmail'])
+    ...mapState({
+      userName: state => state.admin.userName,
+      userEmail: state => state.admin.userEmail
+    })
   },
   head () {
     return {
