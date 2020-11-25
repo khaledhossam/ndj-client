@@ -1,3 +1,7 @@
 export default {
-  welcome: 'hello!'
+  welcome: 'hello!',
+  email: 'email',
+  password: 'password',
+  remember: 'Remember Me!',
+  login: 'Login'
 }

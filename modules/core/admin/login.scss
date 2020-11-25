@@ -114,3 +114,10 @@
 .checkbox-success input[type="checkbox"]:checked+label::after {
   color: #fff;
 }
+
+b-field{
+  width: 100%;
+}
+.is-invalid{
+  border: 1px solid #d9534f;
+}

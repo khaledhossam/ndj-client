@@ -1,5 +1,4 @@
 import i18n from './locales/i18n'
-// import store from './store'
 
 export default {
   target: 'server',
@@ -42,10 +41,11 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
-    {src: '~/plugins/i18n.js' }, //** call first time in application */
-    {src: '~/plugins/axios.js'},
-    { src: '~/plugins/after-each.js', mode: 'client' },
-    { src: '~/plugins/persistedState.js' }
+    { src: '~/plugins/vee-validate' },
+    { src: '~/plugins/i18n' }, //** call first time in application */
+    { src: '~/plugins/axios' },
+    { src: '~/plugins/after-each', mode: 'client' },
+    { src: '~/plugins/persistedState' }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -58,8 +58,7 @@ export default {
     '@nuxtjs/eslint-module',
     // With options
     ['@nuxtjs/router', { /* module options */ }],
-    [
-      'nuxt-i18n',
+    ['nuxt-i18n',
       {
         vueI18nLoader: true,
         strategy: 'no_prefix',
