@@ -87,7 +87,6 @@ export default {
       email: 'john@example.com',
       avatar: 'https://avatars.dicebear.com/v2/gridy/John-Doe.svg'
     })
-    // console.log('store>>>', this.$store.state)
   },
   mounted () {
     document.documentElement.classList.add('has-aside-left')

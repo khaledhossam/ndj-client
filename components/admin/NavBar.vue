@@ -142,8 +142,11 @@ export default {
       this.isMenuNavBarActive = !this.isMenuNavBarActive
     },
     logout () {
+      this.$store.dispatch('clearAll')
+      this.$router.replace({ name: 'admin-login' })
+
       this.$buefy.snackbar.open({
-        message: 'Log out clicked',
+        message: this.$t('admin.logged_out_successfully'),
         queue: false
       })
     }

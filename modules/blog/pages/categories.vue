@@ -75,10 +75,7 @@ export default {
       loading: false
     }
   },
-  mounted () {
-    // this.loadPosts()
-    // console.log('base url:', process.env.BROWSER_BASE_URL)
-  },
+  mounted () {},
   methods: {
     loadPosts () {
       //* * call axios from module nuxt */

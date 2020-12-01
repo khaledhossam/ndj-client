@@ -7,7 +7,11 @@
 
 export const state = () => ({})
 export const mutations = {}
-export const actions = {}
+export const actions = {
+  clearAll ({ commit }) {
+    commit('auth/admin/reset')
+  }
+}
 export const getters = {}
 
 // Vue.use(Vuex)

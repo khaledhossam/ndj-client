@@ -7,8 +7,7 @@ export default function ({ $axios, redirect, req, beforeNuxtRender }) {
   } else {
     host = window.location.host
   }
-  // console.log('host>>>', host)
-  const baseDomain = '.tawreedimdad.com' || host.substring(host.indexOf('.'))
+  const baseDomain = '.manssah.com' || host.substring(host.indexOf('.'))
   const subDomain = host.split('.')[0]
 
   switch (subDomain) {
@@ -19,12 +18,29 @@ export default function ({ $axios, redirect, req, beforeNuxtRender }) {
       apiSubdomain = 'shop2'
       break
     default:
-      apiSubdomain = 'shop1'
+      apiSubdomain = 'store1'
   }
   const apiURL = `${apiSubdomain}${baseDomain}`
-  $axios.setBaseURL(`http://${apiURL}/api/v1/`)
+  $axios.setBaseURL(`http://${apiURL}/backend/public/api`)
+  // Add a request interceptor
+  $axios.interceptors.request.use(function (config) {
+    // Do something before request is sent
+    return config
+  }, function (error) {
+    // Do something with request error
+    return Promise.reject(error)
+  })
 
+  // Add a response interceptor
+  $axios.interceptors.response.use(function (response) {
+    // Do something with response data
+    return Promise.resolve(response.data)
+  }, function (error) {
+    // Do something with response error
+    return Promise.reject(error.response.data)
+  })
   // $axios.onError((error) => {
+  //   return error
   //   if (error.response.status === 500) {
   //     redirect('/sorry')
   //   }

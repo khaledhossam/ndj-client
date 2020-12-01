@@ -41,11 +41,13 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
-    { src: '~/plugins/vee-validate' },
+    { src: '~/plugins/vee-validate', ssr: true },
     { src: '~/plugins/i18n' }, //** call first time in application */
     { src: '~/plugins/axios' },
     { src: '~/plugins/after-each', mode: 'client' },
-    { src: '~/plugins/persistedState' }
+    { src: '~/plugins/persistedState' },
+    { src: '~/plugins/service' },
+    { src: '~/plugins/secure-route' }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)

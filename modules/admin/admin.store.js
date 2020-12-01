@@ -56,9 +56,7 @@ export const mutations = {
   }
 }
 export const actions = {
-  nuxtServerInit ({ commit }, { req }) {
-    // console.log('nuxt server init!', req.headers.host, process.env._AXIOS_BASE_URL_)
-  }
+  nuxtServerInit ({ commit }, { req }) {}
 }
 export const getters = {}
 
