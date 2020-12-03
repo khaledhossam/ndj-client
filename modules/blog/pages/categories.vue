@@ -162,10 +162,7 @@ export default {
       isLoading: false
     }
   },
-  mounted () {
-    this.loadCategoriess()
-    // console.log('base url:', process.env.BROWSER_BASE_URL)
-  },
+  mounted () {},
   methods: {
     loadCategoriess () {
       //* * call axios from module nuxt */

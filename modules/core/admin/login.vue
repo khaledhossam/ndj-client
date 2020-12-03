@@ -37,7 +37,6 @@
                     <span>{{ errors[0] }}</span>
                   </ValidationProvider>
                 </ValidationObserver> -->
-
               </div>
             </div>
             <div class="row">

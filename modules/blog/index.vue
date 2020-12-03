@@ -14,9 +14,7 @@ export default {
   created () {
 
   },
-  mounted () {
-    // console.log('Planner Index Component')
-  },
+  mounted () {},
   methods: {}
 }
 </script>

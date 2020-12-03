@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 //* * basic routes */
 import custom from '~/modules/blog.vue'
 import home from '~/modules/index.vue'
@@ -52,7 +53,10 @@ const router = new Router({
     {
       name: 'admin-login',
       path: '/admin/login',
-      component: adminLogin
+      component: adminLogin,
+      meta: {
+        noAuthentication: true
+      }
     }
     // {
     //   path: '/admin',
@@ -61,12 +65,6 @@ const router = new Router({
     // }
   ]
 })
-
-// global navigation guard to validate authentication on any route
-// router.beforeEach((to, from, next) => {
-//   console.log('from router:', from)
-//   next()
-// })
 
 export function createRouter () {
   return router
