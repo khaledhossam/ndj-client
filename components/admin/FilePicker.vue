@@ -34,25 +34,28 @@ export default {
     upload (file) {
       this.$emit('input', file)
       // Use this as an example for handling file uploads
-      // let formData = new FormData()
-      // formData.append('file', file)
+      const formData = new FormData()
+      formData.append('image', file)
+      formData.append('path', 'admin/avatar')
 
-      // axios
-      //   .post(window.routeMediaStore, formData, {
-      //     headers: {
-      //       'Content-Type': 'multipart/form-data'
-      //     },
-      //     onUploadProgress: this.progressEvent
-      //   })
-      //   .then(r => {
-      //
-      //   })
-      //   .catch(err => {
-      //     this.$buefy.toast.open({
-      //       message: `Error: ${err.message}`,
-      //       type: 'is-danger'
-      //     })
-      //   })
+      this.$axios
+        .$post('/admin/uploader', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          },
+          onUploadProgress: this.progressEvent
+        })
+        .then((res) => {
+          this.file = { file: res.response }
+          this.$emit('uploadedFile', { file: res.response })
+          console.log('fireEvent', { file: res.response })
+        })
+        .catch((err) => {
+          this.$buefy.snackbar.open({
+            message: `Error: ${err.response.data.error}`,
+            type: 'is-danger'
+          })
+        })
     },
     progressEvent (progressEvent) {
       this.uploadPercent = Math.round(

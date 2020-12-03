@@ -3,12 +3,12 @@ import post from '~/modules/blog/pages/_id.vue'
 
 export default [
   {
-    name: 'categories',
+    name: 'categories_old',
     path: '/categories',
     component: posts
   },
   {
-    name: 'category',
+    name: 'category_old',
     path: '/categories/:id',
     component: post,
     props: true

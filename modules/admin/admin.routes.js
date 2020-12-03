@@ -3,7 +3,8 @@ import tables from '~/modules/admin/tables.vue'
 import forms from '~/modules/admin/forms.vue'
 import profile from '~/modules/admin/profile.vue'
 import client from '~/modules/admin/client/_id.vue'
-
+import adminCategoryIndex from '~/modules/admin/categories/index.vue'
+import adminCategoryRoutes from '~/modules/admin/categories/category.routes'
 export default [
   {
     name: 'statistics',
@@ -33,5 +34,10 @@ export default [
     path: 'clients',
     component: client,
     props: true
+  },
+  {
+    path: 'categories',
+    component: adminCategoryIndex,
+    children: adminCategoryRoutes
   }
 ]
