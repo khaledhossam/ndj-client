@@ -6,9 +6,6 @@
           {{ $t('admin.login') }}
         </h4>
         <div class="card-body">
-          <!-- <div class="alert alert-danger" role="alert">
-            Usuario y/o Contraseña incorrecta.
-          </div> -->
           <b-form class @submit.prevent="handleSubmit()" @reset="handleReset()">
             <div class="row">
               <div class="col-md-12">

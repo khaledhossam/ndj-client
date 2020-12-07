@@ -1,9 +1,15 @@
 
 import AuthService from '@/modules/core/services/AuthService'
+import AdminService from '@/modules/admin/admins/services/AdminService'
+
+import RoleService from '@/modules/admin/roles/services/RoleService'
+import UploadService from '@/modules/admin/uploaders/services/UploadService'
 
 export default (ctx, inject) => {
-  ctx.AuthService = new AuthService(ctx)
-  inject('AuthService', ctx.AuthService)
+  inject('AuthService', new AuthService(ctx))
+  inject('AdminService', new AdminService(ctx))
+  inject('RoleService', new RoleService(ctx))
+  inject('UploadService', new UploadService(ctx))
 }
 
 // we can call AuthService

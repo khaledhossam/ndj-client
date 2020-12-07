@@ -43,12 +43,7 @@ export default {
             queue: false
           })
         })
-        .catch(err =>
-          this.$buefy.snackbar.open({
-            message: err.message,
-            queue: false
-          })
-        )
+        .catch(() => {})
     },
     handleReset () {
       this.$nextTick(() => this.$validator.reset())

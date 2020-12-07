@@ -10,7 +10,6 @@ function initialState () {
 const state = initialState
 const mutations = {
   setAccessToken (state, payload) {
-    // axios.defaults.headers.common['Authorization'] = `Bearer ${payload.access_token}`
     state.accessToken = `Bearer ${payload}`
   },
 

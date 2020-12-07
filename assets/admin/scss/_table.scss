@@ -70,6 +70,9 @@ table.table {
         background-color: transparent;
       }
     }
+    .b-table .table-wrapper.has-sticky-header{
+      height: 480px;
+    }
   }
 }
 

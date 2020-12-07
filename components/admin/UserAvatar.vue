@@ -34,8 +34,8 @@ export default {
     },
     // ...mapState(['userAvatar', 'userName'])
     ...mapState({
-      userName: state => state.admin.userName,
-      userAvatar: state => state.admin.userAvatar
+      userName: state => state.auth.admin.authUser.name,
+      userAvatar: state => state.auth.admin.authUser.avatar
     })
   }
 }

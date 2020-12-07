@@ -9,9 +9,13 @@
 
 <script>
 // @ is an alias to /src
+import Vue from 'vue'
 import NavBar from '@/components/admin/NavBar'
 import AsideMenu from '@/components/admin/AsideMenu'
 import FooterBar from '@/components/admin/FooterBar'
+import mixins from '@/modules/admin/global/mixins'
+
+Vue.mixin(mixins)
 
 export default {
   // name: 'admin-default',
@@ -29,6 +33,11 @@ export default {
             to: { name: 'statistics' },
             icon: 'desktop-mac',
             label: 'Dashboard'
+          },
+          {
+            to: { name: 'admins' },
+            icon: 'account-circle',
+            label: 'Admins'
           }
         ],
         'Examples',

@@ -2,7 +2,7 @@
 
 const state = () => ({
   currentLocale: 'en',
-  locales: ['en', 'en']
+  locales: ['ar', 'en']
 })
 const mutations = {
   setCurrentLocale (state, payload) {

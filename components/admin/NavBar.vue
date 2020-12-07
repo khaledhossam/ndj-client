@@ -76,21 +76,27 @@
               <b-icon icon="email" custom-size="default" />
               <span>Messages</span>
             </a>
+            <a class="navbar-item" @click="onLangChange(currentLocale == 'en' ? 'ar' : 'en')">
+              <b-icon icon="email" custom-size="default" />
+              <span>
+                {{ currentLocale == 'en' ? 'العربية' : 'English'}}
+              </span>
+            </a>
             <hr class="navbar-divider">
-            <a class="navbar-item">
+            <a @click="logout" class="navbar-item">
               <b-icon icon="logout" custom-size="default" />
               <span>Log Out</span>
             </a>
           </div>
         </nav-bar-menu>
-        <a
+        <!-- <a
           href="https://justboil.me/bulma-admin-template/one"
           class="navbar-item has-divider is-desktop-icon-only"
           title="About"
         >
           <b-icon icon="help-circle-outline" custom-size="default" />
           <span>About</span>
-        </a>
+        </a> -->
         <a
           class="navbar-item is-desktop-icon-only"
           title="Log out"
@@ -131,7 +137,8 @@ export default {
     ...mapState({
       isNavBarVisible: state => state.admin.isNavBarVisible,
       isAsideMobileExpanded: state => state.admin.isAsideMobileExpanded,
-      userName: state => state.admin.userName
+      userName: state => state.auth.admin.authUser.name,
+      currentLocale: state => state.localization.currentLocale
     })
   },
   methods: {

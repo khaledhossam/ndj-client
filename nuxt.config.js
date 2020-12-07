@@ -47,7 +47,8 @@ export default {
     { src: '~/plugins/after-each', mode: 'client' },
     { src: '~/plugins/persistedState' },
     { src: '~/plugins/service' },
-    { src: '~/plugins/secure-route' }
+    { src: '~/plugins/secure-route' },
+    { src: '~/plugins/event-bus' }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)

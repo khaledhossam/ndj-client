@@ -32,30 +32,30 @@ export default {
   },
   methods: {
     upload (file) {
-      this.$emit('input', file)
+      this.$EventBus.$emit('handle-uploader', file)
       // Use this as an example for handling file uploads
-      const formData = new FormData()
-      formData.append('image', file)
-      formData.append('path', 'admin/avatar')
+      // const formData = new FormData()
+      // formData.append('image', file)
+      // formData.append('path', 'admin/avatar')
 
-      this.$axios
-        .$post('/admin/uploader', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          },
-          onUploadProgress: this.progressEvent
-        })
-        .then((res) => {
-          this.file = { file: res.response }
-          this.$emit('uploadedFile', { file: res.response })
-          console.log('fireEvent', { file: res.response })
-        })
-        .catch((err) => {
-          this.$buefy.snackbar.open({
-            message: `Error: ${err.response.data.error}`,
-            type: 'is-danger'
-          })
-        })
+      // this.$axios
+      //   .$post('/admin/uploader', formData, {
+      //     headers: {
+      //       'Content-Type': 'multipart/form-data'
+      //     },
+      //     onUploadProgress: this.progressEvent
+      //   })
+      //   .then((res) => {
+      //     this.file = { file: res.response }
+      //     this.$emit('uploadedFile', { file: res.response })
+      //     console.log('fireEvent', { file: res.response })
+      //   })
+      //   .catch((err) => {
+      //     this.$buefy.snackbar.open({
+      //       message: `Error: ${err.response.data.error}`,
+      //       type: 'is-danger'
+      //     })
+      //   })
     },
     progressEvent (progressEvent) {
       this.uploadPercent = Math.round(

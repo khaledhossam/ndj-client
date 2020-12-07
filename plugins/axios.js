@@ -1,33 +1,53 @@
-export default function ({ $axios, redirect, req, beforeNuxtRender }) {
-  let host = ''
-  let apiSubdomain = ''
+import Vue from 'vue'
 
-  if (process.server) {
-    host = req.headers.host
-  } else {
-    host = window.location.host
-  }
-  const baseDomain = '.manssah.com' || host.substring(host.indexOf('.'))
-  const subDomain = host.split('.')[0]
+export default function ({ $axios, redirect, store, req, beforeNuxtRender }) {
+  const apiURL = getApiUrl()
 
-  switch (subDomain) {
-    case 'shop1-nuxt':
-      apiSubdomain = 'shop1'
-      break
-    case 'shop2-nuxt':
-      apiSubdomain = 'shop2'
-      break
-    case 'souq-nuxt':
-      apiSubdomain = 'souq'
-      break
-    default:
-      apiSubdomain = 'store1'
-  }
-  const apiURL = `${apiSubdomain}${baseDomain}`
   $axios.setBaseURL(`http://${apiURL}/backend/public/api`)
+
+  function getApiUrl () {
+    let host = ''
+    let apiSubdomain = ''
+
+    if (process.server) {
+      host = req.headers.host
+    } else {
+      host = window.location.host
+    }
+    const baseDomain = '.manssah.com' || host.substring(host.indexOf('.'))
+    const subDomain = host.split('.')[0]
+
+    switch (subDomain) {
+      case 'shop1-nuxt':
+        apiSubdomain = 'shop1'
+        break
+      case 'shop2-nuxt':
+        apiSubdomain = 'shop2'
+        break
+      default:
+        apiSubdomain = 'store1'
+    }
+    return `${apiSubdomain}${baseDomain}`
+  }
+
+  function getHeaders () {
+    const accessToken = store.state.auth.admin.accessToken
+    const headers = {
+      // 'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Accept-Language': store.state.localization.currentLocale
+    }
+    if (accessToken) {
+      headers.Authorization = accessToken
+    }
+    return headers
+  }
+
   // Add a request interceptor
   $axios.interceptors.request.use(function (config) {
     // Do something before request is sent
+    config.headers = getHeaders()
     return config
   }, function (error) {
     // Do something with request error
@@ -39,8 +59,15 @@ export default function ({ $axios, redirect, req, beforeNuxtRender }) {
     // Do something with response data
     return Promise.resolve(response.data)
   }, function (error) {
+    console.log('error>>>', error.response)
+    const err = error.response.data
+    //* generic error *//
+    Vue.prototype.$buefy.snackbar.open({
+      message: err.error,
+      queue: false
+    })
     // Do something with response error
-    return Promise.reject(error.response.data)
+    return Promise.reject(err)
   })
   // $axios.onError((error) => {
   //   return error

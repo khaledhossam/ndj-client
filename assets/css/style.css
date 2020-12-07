@@ -1,3 +1,6 @@
 body{
   background-color: #fff;
 }
+.b-table .table-wrapper.has-sticky-header{
+  height: 480px;
+}
