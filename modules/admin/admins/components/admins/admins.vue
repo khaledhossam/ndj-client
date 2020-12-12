@@ -9,7 +9,7 @@
     <section class="section is-main-section">
       <card-component
         class="has-table has-mobile-sort-spaced"
-        title="Clients"
+        :title="$t('admin.admins')"
         icon="account-multiple"
       >
         <section class="hero is-hero-bar">
@@ -21,7 +21,7 @@
               <div class="level-right">
                 <div class="level-item">
                   <nuxt-link :to="{ name: 'createAdmin' }" class="btn btn-success">
-                    Create
+                    {{ $t('admin.create') }}
                   </nuxt-link>
                 </div>
               </div>
@@ -36,10 +36,10 @@
           backend-pagination
           :total="total"
           :per-page="perPage"
-          aria-next-label="Next page"
-          aria-previous-label="Previous page"
-          aria-page-label="Page"
-          aria-current-label="Current page"
+          :aria-next-label="$t('admin.next_page')"
+          :aria-previous-label="$t('admin.previous_page')"
+          :aria-page-label="$t('admin.page')"
+          :aria-current-label="$t('admin.current_page')"
 
           :striped="true"
           :hoverable="true"
@@ -60,20 +60,26 @@
                 >
               </div>
             </b-table-column>
-            <b-table-column field="name" label="Name" sortable>
+            <b-table-column field="name" :label="$t('admin.name')" sortable>
               <span class="tag">
                 {{ props.row.name }}
               </span>
             </b-table-column>
 
-            <b-table-column field="email" label="email" sortable>
+            <b-table-column field="email" :label="$t('admin.email')" sortable>
               {{ props.row.email }}
+            </b-table-column>
+
+            <b-table-column field="is_active" :label="$t('admin.status')">
+              <span :class="type(props.row.is_active)">
+                {{ props.row.is_active ? $t('admin.active') : $t('admin.inactive') }}
+              </span>
             </b-table-column>
 
             <b-table-column
               field="phone"
               class="has-text-grey is-abbr-like"
-              label="Phone"
+              :label="$t('admin.phone')"
               numeric
               sortable
               centered
@@ -84,14 +90,14 @@
             <b-table-column
               field="created_at"
               class="has-text-grey is-abbr-like"
-              label="Created At"
+              :label="$t('admin.created_at')"
               sortable
               centered
             >
               {{ props.row.created_at }}
             </b-table-column>
 
-            <b-table-column label="actions" custom-key="actions" class="is-actions-cell">
+            <b-table-column :label="$t('admin.action')" custom-key="actions" class="is-actions-cell">
               <div class="buttons is-right">
                 <nuxt-link
                   :to="{ name: 'updateAdmin', params: { id: props.row.id } }"
@@ -99,6 +105,14 @@
                 >
                   <b-icon icon="account-edit" size="is-small" />
                 </nuxt-link>
+                <button
+                  :class="`button is-small ${props.row.is_active ? 'is-warning' : 'is-success'}`"
+                  type="button"
+                  @click.prevent="handleToggleStatus(props.row.id)"
+                  :title="`${props.row.is_active ? $t('admin.inactiveTitle') : $t('admin.activeTitle')}`"
+                >
+                  <b-icon class="text-white" :icon="`${props.row.is_active ? 'close-circle' : 'check-circle'}`" size="is-small" />
+                </button>
                 <button
                   class="button is-small is-danger"
                   type="button"

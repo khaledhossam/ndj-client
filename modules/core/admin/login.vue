@@ -14,26 +14,16 @@
                 </label>
                 <b-input
                   v-model="form.email"
+                  v-validate="{ required: true, max: 150, email: true }"
                   icon="email"
                   type="email"
                   :placeholder="$t('admin.email')"
                   name="email"
-                  rules="'required|email'"
+                  :class="{ 'is-invalid': errors.has('email') }"
                 />
-                <!-- <span>{{ errors[0] }}</span> -->
-                <!-- <ValidationObserver>
-                  <ValidationProvider tag="div" :rules="{ required: true }" name="email" v-slot="{ errors }">
-                    <b-input
-                      v-model="form.email"
-                      icon="email"
-                      type="email"
-                      :placeholder="$t('admin.email')"
-                      name="email"
-                      :class="{ 'is-invalid': submitted && errors.has('email') }"
-                    />
-                    <span>{{ errors[0] }}</span>
-                  </ValidationProvider>
-                </ValidationObserver> -->
+                <p v-show="errors.has('email')" class="text-danger text-sm">
+                  {{ errors.first("email") }}
+                </p>
               </div>
             </div>
             <div class="row">
@@ -43,12 +33,17 @@
                 </label>
                 <b-input
                   v-model="form.password"
+                  v-validate="{ required: true }"
                   icon="eye"
                   type="password"
                   :placeholder="$t('admin.password')"
                   name="password"
                   password-reveal
+                  :class="{ 'is-invalid': errors.has('password') }"
                 />
+                <p v-show="errors.has('password')" class="text-danger text-sm">
+                  {{ errors.first("password") }}
+                </p>
               </div>
             </div>
             <div class="row">

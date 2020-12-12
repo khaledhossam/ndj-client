@@ -32,12 +32,12 @@ export default {
           {
             to: { name: 'statistics' },
             icon: 'desktop-mac',
-            label: 'Dashboard'
+            label: this.$t('admin.dashboard')
           },
           {
             to: { name: 'admins' },
             icon: 'account-circle',
-            label: 'Admins'
+            label: this.$t('admin.admins')
           }
         ],
         'Examples',
@@ -105,3 +105,17 @@ export default {
   }
 }
 </script>
+<style scoped>
+  .is-invalid{
+    border: 1px solid #dc3545;
+    border-radius: 5px;
+  }
+  p.text-danger{
+    background: #ffe2e2;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  .b-table .table-wrapper.has-sticky-header{
+    height: 480px;
+  }
+</style>

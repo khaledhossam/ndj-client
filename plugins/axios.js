@@ -59,7 +59,6 @@ export default function ({ $axios, redirect, store, req, beforeNuxtRender }) {
     // Do something with response data
     return Promise.resolve(response.data)
   }, function (error) {
-    console.log('error>>>', error.response)
     const err = error.response.data
     //* generic error *//
     Vue.prototype.$buefy.snackbar.open({

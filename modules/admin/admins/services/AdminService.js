@@ -1,27 +1,31 @@
 import ApplicationService from '@/services/ApplicationService'
 
 export default class AdminService extends ApplicationService {
-  resource = '/admin'
+  resource = '/admin/admins'
 
   //* **************************************************** *//
   async getAdmins (queryParam = {}) {
-    return await this.get(`${this.resource}/admins${queryParam}`)
+    return await this.get(`${this.resource}${queryParam}`)
   }
 
   async createAdmin (data) {
-    return await this.post(`${this.resource}/admins`, data)
+    return await this.post(`${this.resource}`, data)
   }
 
   async updateAdmin (data, id) {
-    return await this.put(`${this.resource}/admins/${id}`, data)
+    return await this.put(`${this.resource}/${id}`, data)
+  }
+
+  async toggleStatus (id, data = {}) {
+    return await this.put(`${this.resource}/${id}/toggle-status`, data)
   }
 
   async adminDetails (id) {
-    return await this.get(`${this.resource}/admins/${id}`)
+    return await this.get(`${this.resource}/${id}`)
   }
 
   async deleteAdmin (id) {
-    return await this.delete(`${this.resource}/admins/${id}`)
+    return await this.delete(`${this.resource}/${id}`)
   }
   //* **************************************************** *//
 }

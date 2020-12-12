@@ -64,7 +64,7 @@
         <b-table-column custom-key="actions" class="is-actions-cell">
           <div class="buttons is-right">
             <nuxt-link
-              :to="{ name: 'category', params: { id: props.row.id } }"
+              :to="{ name: 'post', params: { id: props.row.id } }"
               class="button is-small is-primary"
             >
               <b-icon icon="account-edit" size="is-small" />
@@ -169,7 +169,6 @@ export default {
       this.$axios.$get('/categories')
         .then((res) => {
           this.categories = res.response.data
-          console.log(res)
         })
     },
     updateSelectedPost (post) {

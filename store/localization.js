@@ -1,4 +1,9 @@
-// import axios from 'axios'
+import Vue from 'vue'
+import VeeValidate, { Validator } from 'vee-validate'
+// import Vuetify from 'vuetify/lib'
+
+// Vue.use(Vuetify)
+Vue.use(VeeValidate)
 
 const state = () => ({
   currentLocale: 'en',
@@ -8,6 +13,12 @@ const mutations = {
   setCurrentLocale (state, payload) {
     this.$i18n.locale = payload
     state.currentLocale = payload
+    Validator.localize(payload)
+    // process.app.$vuetify.lang.current = payload
+    // Vue.prototype.$vuetify.rtl = payload == 'en' ? false : true
+    // Vue.use(Vuetify, {
+    //   rtl: payload === 'en' ? false : true
+    // })
   },
   setLocales (state, payload) {
     state.locales = payload

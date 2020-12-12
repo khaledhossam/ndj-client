@@ -1,10 +1,20 @@
-import { ValidationProvider, ValidationObserver } from 'vee-validate'
+// import { ValidationProvider, ValidationObserver } from 'vee-validate'
 import { mapState } from 'vuex'
+// import { Validator } from 'vee-validate'
+// import { extend } from 'vee-validate'
+// import { required, email } from 'vee-validate/dist/rules'
+// extend('required', required)
+// extend('email', email)
+
+// extend('required', {
+//   ...required
+// })
 
 export default {
   components: {
-    ValidationProvider,
-    ValidationObserver
+    // ValidationProvider,
+    // ValidationObserver,
+    // Validator
   },
   layout: 'empty-layout',
   data () {
@@ -25,25 +35,23 @@ export default {
   },
   methods: {
     async handleSubmit () {
-      this.submitted = true
-      // this.$validator.validate().then((valid) => {
-      //   if (valid) {
-      //     // Successfully validated & update the data.
-      //   }
-      // })
-      await this.$AuthService.adminLogin(this.form)
-        .then((response) => {
-          this.$store.commit('auth/admin/setAccessToken', response.access_token)
-          this.$store.commit('auth/admin/setAuthUser', response.user)
+      const validData = await this.$validator.validateAll()
 
-          this.$router.replace({ name: 'statistics' })
+      if (validData) {
+        await this.$AuthService.adminLogin(this.form)
+          .then((response) => {
+            this.$store.commit('auth/admin/setAccessToken', response.access_token)
+            this.$store.commit('auth/admin/setAuthUser', response.user)
 
-          this.$buefy.snackbar.open({
-            message: this.$t('admin.logged_in_successfully'),
-            queue: false
+            this.$router.replace({ name: 'statistics' })
+
+            this.$buefy.snackbar.open({
+              message: this.$t('admin.logged_in_successfully'),
+              queue: false
+            })
           })
-        })
-        .catch(() => {})
+          .catch(() => {})
+      }
     },
     handleReset () {
       this.$nextTick(() => this.$validator.reset())

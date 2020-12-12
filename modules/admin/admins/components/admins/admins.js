@@ -48,7 +48,7 @@ export default {
   },
   computed: {
     titleStack () {
-      return ['Admin', 'Admins']
+      return [this.$t('admin.admins')]
     }
   },
   mounted () {
@@ -62,6 +62,13 @@ export default {
     }.bind(this))
   },
   methods: {
+    type (value) {
+      if (value === true) {
+        return 'pl-2 pr-2 bg-light text-success'
+      } else {
+        return 'pl-2 pr-2 bg-light text-warning'
+      }
+    },
     handleSearch (search) {
       this.searchValue = search
       //* Reset Page *//
@@ -107,7 +114,6 @@ export default {
     * Handle sort event
     */
     onSort (field, order) {
-      console.log('order>>>', field, order)
       this.sortField = field
       this.sortOrder = order
       this.loadAsyncData()
@@ -119,6 +125,18 @@ export default {
           this.collection = this.collection.filter((admin) => {
             return admin.id !== id
           })
+        })
+    },
+    handleToggleStatus (id) {
+      this.$AdminService.toggleStatus(id)
+        .then((response) => {
+          //* update list to remove this row *//
+          this.collection.forEach((element, index) => {
+            if (element.id === response.id) {
+              this.collection[index] = Object.assign(this.collection[index], response)
+            }
+          })
+          this.buefyBar(this.$t('admin.updated_successfully'))
         })
     }
   }

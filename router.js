@@ -29,7 +29,10 @@ const router = new Router({
     {
       name: 'home',
       path: '/',
-      component: home
+      component: home,
+      meta: {
+        noAuthentication: true
+      }
     },
     {
       name: 'custom',
@@ -39,7 +42,10 @@ const router = new Router({
     {
       path: '/categories',
       component: blogIndex,
-      children: blogRoutes
+      children: blogRoutes,
+      meta: {
+        noAuthentication: true
+      }
     },
     {
       path: '/admin',

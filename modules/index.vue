@@ -47,7 +47,7 @@
         >
           GitHub
         </a>
-        <nuxt-link :to="{ name: 'categories' }" class="button--green">
+        <nuxt-link :to="{ name: 'posts' }" class="button--green">
           categories
         </nuxt-link>
       </div>

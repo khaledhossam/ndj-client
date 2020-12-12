@@ -2,6 +2,7 @@ import mapValues from 'lodash/mapValues'
 import TitleBar from '@/components/admin/TitleBar'
 import CardComponent from '@/components/admin/CardComponent'
 import FilePicker from '@/components/admin/FilePicker'
+import { mapState } from 'vuex'
 
 export default {
   // validate ({ params, query, store }) {
@@ -39,9 +40,15 @@ export default {
     }
   },
   computed: {
+    titleBar () {
+      return this.form.id ? this.$t('admin.edit') : this.$t('admin.create')
+    },
     titleStack () {
-      return ['Admins', 'Create']
-    }
+      return [this.$t('admin.admins'), this.$t('admin.create')]
+    },
+    ...mapState({
+      accessToken: state => state.localization.currentLocale
+    })
   },
   created () {
     this.customEvents.forEach(function (customEvent) {
@@ -94,41 +101,44 @@ export default {
           this.buefyBar('File Uploaded Successfully')
         })
     },
-    submit () {
-      if (this.param_id) {
-        this.updateAdmin()
-      } else {
-        this.createAdmin()
+    async submit () {
+      const validData = await this.$validator.validateAll()
+
+      if (validData) {
+        if (this.param_id) {
+          this.updateAdmin()
+        } else {
+          this.createAdmin()
+        }
       }
-      this.$router.push({ name: 'admins' })
     },
     createAdmin () {
       this.$AdminService.createAdmin(this.form)
         .then(() => {
           this.$router.push({ name: 'admins' })
-          this.buefyBar('Created Successfully')
+          this.buefyBar(this.$t('admin.created_successfully'))
         })
     },
     updateAdmin () {
       this.$AdminService.updateAdmin(this.form, this.param_id)
         .then(() => {
           this.$router.push({ name: 'admins' })
-          this.buefyBar('Updated Successfully')
+          this.buefyBar(this.$t('admin.updated_successfully'))
         })
     },
-    reset () {
+    handleReset () {
       this.form = mapValues(this.form, (item) => {
         if (item && (typeof item === 'object' || Array.isArray(item))) {
           return []
         }
         return null
       })
-      this.buefyBar('Reset Successfully')
+      this.buefyBar(this.$t('admin.reset_successfully'))
     }
   },
   head () {
     return {
-      title: 'Forms — Admin One Nuxt.js'
+      title: this.title
     }
   }
 }

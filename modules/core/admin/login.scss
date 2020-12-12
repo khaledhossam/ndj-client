@@ -119,5 +119,11 @@ b-field{
   width: 100%;
 }
 .is-invalid{
-  border: 1px solid #d9534f;
+  border: 1px solid #dc3545;
+  border-radius: 5px;
+}
+p.text-danger{
+  background: #ffe2e2;
+  padding: 5px;
+  border-radius: 5px;
 }

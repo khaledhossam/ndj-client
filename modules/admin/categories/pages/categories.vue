@@ -122,7 +122,6 @@ export default {
       this.$axios.$get('/categories')
         .then((res) => {
           this.categories = res.response.data
-          console.log(res)
         })
     },
     updateSelectedPost (post) {

@@ -13,7 +13,7 @@ import updateAdmin from '~/modules/admin/admins/modals/create-admin/create.vue'
 export default [
   {
     name: 'statistics',
-    path: '/',
+    path: 'statistics',
     component: statistics
   },
   {

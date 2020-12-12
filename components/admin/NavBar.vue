@@ -79,13 +79,13 @@
             <a class="navbar-item" @click="onLangChange(currentLocale == 'en' ? 'ar' : 'en')">
               <b-icon icon="email" custom-size="default" />
               <span>
-                {{ currentLocale == 'en' ? 'العربية' : 'English'}}
+                {{ currentLocale == 'en' ? 'العربية' : 'English' }}
               </span>
             </a>
             <hr class="navbar-divider">
-            <a @click="logout" class="navbar-item">
+            <a class="navbar-item" @click="logout">
               <b-icon icon="logout" custom-size="default" />
-              <span>Log Out</span>
+              <span>{{ $t('admin.logout') }}</span>
             </a>
           </div>
         </nav-bar-menu>

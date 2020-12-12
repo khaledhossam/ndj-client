@@ -1,3 +1,4 @@
+
 export default {
   data () {
     return {
@@ -27,7 +28,6 @@ export default {
       this.isModalActive = false
     },
     onLangChange (lang) {
-      // this.$i18n.locale = event
       this.$store.commit('localization/setCurrentLocale', lang)
 
       this.$buefy.snackbar.open({
