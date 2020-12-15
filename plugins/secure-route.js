@@ -1,6 +1,6 @@
 export default ({ app, store }) => {
   app.router.beforeEach((to, from, next) => {
-    console.log('to>>>', to.fullPath.split('/')[1])
+    // console.log('to>>>', to.fullPath.split('/')[1])
     const prefix = to.fullPath.split('/')[1]
 
     if (to.meta.noAuthentication) {

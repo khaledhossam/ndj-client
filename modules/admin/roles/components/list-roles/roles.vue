@@ -2,14 +2,14 @@
   <div>
     <modal-box
       :is-active="isModalActive"
-      @confirm="trashConfirm('event-delete-admin')"
+      @confirm="trashConfirm('event-delete-role')"
       @cancel="trashCancel"
     />
     <title-bar :title-stack="titleStack" />
     <section class="section is-main-section">
       <card-component
         class="has-table has-mobile-sort-spaced"
-        :title="$t('admin.admins')"
+        :title="$t('admin.roles')"
         icon="account-multiple"
       >
         <section class="hero is-hero-bar">
@@ -20,7 +20,7 @@
               </div>
               <div class="level-right">
                 <div class="level-item">
-                  <nuxt-link :to="{ name: 'createAdmin' }" class="btn btn-success">
+                  <nuxt-link :to="{ name: 'createRole' }" class="btn btn-success">
                     {{ $t('admin.create') }}
                   </nuxt-link>
                 </div>
@@ -51,40 +51,16 @@
           @sort="onSort"
         >
           <template slot-scope="props">
-            <b-table-column class="has-no-head-mobile is-image-cell">
-              <div class="image">
-                <img
-                  :src="props.row.avatar"
-                  :alt="props.row.name"
-                  class="is-rounded"
-                >
-              </div>
-            </b-table-column>
-            <b-table-column field="name" :label="$t('admin.name')" sortable>
+            <b-table-column field="display_name" :label="$t('admin.name')" sortable>
               <span class="tag">
-                {{ props.row.name }}
+                {{ props.row[currentLocale].display_name }}
               </span>
-            </b-table-column>
-
-            <b-table-column field="email" :label="$t('admin.email')" sortable>
-              {{ props.row.email }}
             </b-table-column>
 
             <b-table-column field="is_active" :label="$t('admin.status')">
               <span :class="type(props.row.is_active)">
                 {{ props.row.is_active ? $t('admin.active') : $t('admin.inactive') }}
               </span>
-            </b-table-column>
-
-            <b-table-column
-              field="phone"
-              class="has-text-grey is-abbr-like"
-              :label="$t('admin.phone')"
-              numeric
-              sortable
-              centered
-            >
-              {{ props.row.phone || '---' }}
             </b-table-column>
 
             <b-table-column
@@ -100,7 +76,7 @@
             <b-table-column :label="$t('admin.action')" custom-key="actions" class="is-actions-cell">
               <div class="buttons is-right">
                 <nuxt-link
-                  :to="{ name: 'updateAdmin', params: { id: props.row.id } }"
+                  :to="{ name: 'updateRole', params: { id: props.row.id } }"
                   class="button is-small is-primary"
                 >
                   <b-icon icon="account-edit" size="is-small" />
@@ -108,8 +84,8 @@
                 <button
                   :class="`button is-small ${props.row.is_active ? 'is-warning' : 'is-success'}`"
                   type="button"
-                  @click.prevent="handleToggleStatus(props.row.id)"
                   :title="`${props.row.is_active ? $t('admin.inactiveTitle') : $t('admin.activeTitle')}`"
+                  @click.prevent="handleToggleStatus(props.row.id)"
                 >
                   <b-icon class="text-white" :icon="`${props.row.is_active ? 'close-circle' : 'check-circle'}`" size="is-small" />
                 </button>
@@ -129,5 +105,4 @@
   </div>
 </template>
 
-<style lang="scss" scoped src="./admins.scss"></style>
-<script src="./admins.js"></script>
+<script src="./roles.js"></script>

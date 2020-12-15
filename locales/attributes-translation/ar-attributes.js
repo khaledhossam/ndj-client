@@ -4,5 +4,7 @@ export default {
   password: 'كلمة المرور',
   password_confirmation: 'تأكيد كلمة المرور',
   phone: 'رقم الجوال',
-  roles: 'الأدوار'
+  roles: 'الأدوار',
+  'en.name': 'الاسم بالانجليزى',
+  'ar.name': 'الاسم بالعربى'
 }

@@ -36,5 +36,9 @@ export default {
   active: 'active',
   inactive: 'inactive',
   activeTitle: 'active',
-  inactiveTitle: 'inactive'
+  inactiveTitle: 'inactive',
+  admin_roles: 'Admin & Roles',
+  general: 'General',
+  'en.name': 'English Name',
+  'ar.name': 'Arabic Name'
 }

@@ -6,9 +6,13 @@ import client from '~/modules/admin/client/_id.vue'
 // import adminCategoryIndex from '~/modules/admin/categories/index.vue'
 // import adminCategoryRoutes from '~/modules/admin/categories/category.routes'
 //* admin routes of each store *//
-import admins from '~/modules/admin/admins/components/admins/admins.vue'
+import admins from '~/modules/admin/admins/components/list-admins/admins.vue'
 import createAdmin from '~/modules/admin/admins/modals/create-admin/create.vue'
-import updateAdmin from '~/modules/admin/admins/modals/create-admin/create.vue'
+// import updateAdmin from '~/modules/admin/admins/modals/create-admin/create.vue'
+
+import roles from '~/modules/admin/roles/components/list-roles/roles.vue'
+import createRole from '~/modules/admin/roles/modals/create-role/create.vue'
+// import updateRole from '~/modules/admin/roles/modals/create-role/create.vue'
 
 export default [
   {
@@ -55,7 +59,25 @@ export default [
   {
     name: 'updateAdmin',
     path: 'admins/:id',
-    component: updateAdmin,
+    component: createAdmin,
+    props: true
+  },
+  {
+    name: 'roles',
+    path: 'roles',
+    component: roles,
+    props: true
+  },
+  {
+    name: 'createRole',
+    path: 'roles/create',
+    component: createRole,
+    props: true
+  },
+  {
+    name: 'updateRole',
+    path: 'roles/:id',
+    component: createRole,
     props: true
   }
   // {

@@ -36,5 +36,9 @@ export default {
   active: 'مفعل',
   inactive: 'غير مفعل',
   activeTitle: 'تفعيل',
-  inactiveTitle: 'الغاء التفعيل'
+  inactiveTitle: 'الغاء التفعيل',
+  admin_roles: 'الصلاحيات والمديرين',
+  general: 'الاعدادات العامة',
+  'en.name': 'الاسم بالانجليزى',
+  'ar.name': 'الاسم بالعربى'
 }

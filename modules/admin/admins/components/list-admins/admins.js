@@ -23,6 +23,7 @@ export default {
   },
   data () {
     return {
+      titlePage: this.$t('admin.admins'),
       collection: [],
       isPaginated: true,
       searchValue: '',
@@ -138,6 +139,11 @@ export default {
           })
           this.buefyBar(this.$t('admin.updated_successfully'))
         })
+    }
+  },
+  head () {
+    return {
+      title: this.titlePage
     }
   }
 }

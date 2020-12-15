@@ -11,42 +11,38 @@ export default {
     }
     return true
   },
-  name: 'Admins',
+  name: 'Roles',
   components: {
     FilePicker,
     CardComponent,
     TitleBar
   },
   async asyncData (context) {
-    const roles = await context.$RoleService.getRoles('?is_paginated=false')
+    // https://nuxtjs.org/blog/understanding-how-fetch-works-in-nuxt-2-12/
+    const groups = await context.$RoleService.getPermissions('?is_paginated=false')
 
     if (context.params.id) {
-      const adminDetail = await context.$AdminService.adminDetails(context.params.id)
-      return { roles, adminDetail }
+      const roleDetail = await context.$RoleService.roleDetails(context.params.id)
+      return { groups, roleDetail }
     }
-    return { roles }
+    return { groups }
   },
+  // fetchOnServer: false,
   data () {
     return {
-      titlePage: this.$t('admin.admins'),
+      titlePage: this.$t('admin.roles'),
       form: {
-        name: null,
-        email: null,
-        phone: null,
-        roles: [],
-        is_active: true,
-        avatar: null,
-        password: null,
-        password_confirmation: null
-      },
-      uploader: {
-        path: 'admin/avatar',
-        file_url: null
+        en: {
+          display_name: ''
+        },
+        ar: {
+          display_name: ''
+        },
+        permissions: [],
+        is_active: true
       },
       param_id: this.$route.params.id,
-      customEvents: [
-        { eventName: 'handle-uploader', callback: this.handleUploadFile }
-      ]
+      customEvents: []
     }
   },
   computed: {
@@ -54,7 +50,7 @@ export default {
       return this.form.id ? this.$t('admin.edit') : this.$t('admin.create')
     },
     titleStack () {
-      return [this.$t('admin.admins'), this.$t('admin.create')]
+      return [this.$t('admin.roles'), this.$t('admin.create')]
     },
     ...mapState({
       currentLocale: state => state.localization.currentLocale
@@ -67,7 +63,7 @@ export default {
     }.bind(this))
   },
   mounted () {
-    this.adminDetails()
+    this.roleDetails()
   },
   beforeDestroy () {
     this.customEvents.forEach(function (customEvent) {
@@ -76,30 +72,23 @@ export default {
     }.bind(this))
   },
   methods: {
-    adminDetails () {
-      if (this.adminDetail) {
-        this.reAssignForm(this.adminDetail)
+    roleDetails () {
+      if (this.roleDetail) {
+        this.reAssignForm(this.roleDetail)
       }
     },
     reAssignForm (data) {
       const obj = {
-        name: data.name,
-        email: data.email,
-        phone: data.phone,
-        is_active: data.is_active,
-        roles: data.roles.map(role => role.id),
-        avatar: data.avatar
+        en: {
+          display_name: data.en.display_name
+        },
+        ar: {
+          display_name: data.ar.display_name
+        },
+        permissions: data.permissions.map(permission => permission.id)
       }
       // overrite of form data
       this.form = { ...this.form, ...obj }
-    },
-    handleUploadFile (file) {
-      this.uploader.file_url = file
-      this.$UploadService.uploadSingleFile(this.uploader)
-        .then((response) => {
-          this.form.avatar = response.file_url
-          this.buefyBar('File Uploaded Successfully')
-        })
     },
     async submit () {
       const validData = await this.$validator.validateAll()
@@ -113,16 +102,16 @@ export default {
       }
     },
     createAdmin () {
-      this.$AdminService.createAdmin(this.form)
+      this.$RoleService.createRole(this.form)
         .then(() => {
-          this.$router.push({ name: 'admins' })
+          this.$router.push({ name: 'roles' })
           this.buefyBar(this.$t('admin.created_successfully'))
         })
     },
     updateAdmin () {
-      this.$AdminService.updateAdmin(this.form, this.param_id)
+      this.$RoleService.updateRole(this.form, this.param_id)
         .then(() => {
-          this.$router.push({ name: 'admins' })
+          this.$router.push({ name: 'roles' })
           this.buefyBar(this.$t('admin.updated_successfully'))
         })
     },

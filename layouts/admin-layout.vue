@@ -27,17 +27,32 @@ export default {
   computed: {
     menu () {
       return [
-        'General',
+        this.$t('admin.general'),
         [
           {
             to: { name: 'statistics' },
             icon: 'desktop-mac',
             label: this.$t('admin.dashboard')
-          },
+          }
+        ],
+        this.$t('admin.admin_roles'),
+        [
           {
-            to: { name: 'admins' },
-            icon: 'account-circle',
-            label: this.$t('admin.admins')
+            label: this.$t('admin.admin_roles'),
+            subLabel: 'Submenus Example',
+            icon: 'view-list',
+            menu: [
+              {
+                to: { name: 'admins' },
+                icon: 'account-circle',
+                label: this.$t('admin.admins')
+              },
+              {
+                to: { name: 'roles' },
+                icon: 'square-edit-outline',
+                label: this.$t('admin.roles')
+              }
+            ]
           }
         ],
         'Examples',

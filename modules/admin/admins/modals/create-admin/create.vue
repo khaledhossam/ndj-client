@@ -4,24 +4,6 @@
     <section class="section is-main-section">
       <card-component :title="titleBar" icon="ballot">
         <form @submit.prevent="submit" @reset="handleReset()">
-          <!-- <div class="row">
-            <label class="col-md-3">
-              {{ $t('admin.name') }}
-            </label>
-            <div class="col-md-8">
-              <b-input
-                v-model="form.name"
-                v-validate="{ required: true, max: 150 }"
-                icon="account"
-                :placeholder="$t('admin.name')"
-                name="name"
-                :class="{ 'is-invalid': errors.has('name') }"
-              />
-              <p v-show="errors.has('name')" class="text-danger text-sm">
-                {{ errors.first("name") }}
-              </p>
-            </div>
-          </div> -->
           <b-field :label="$t('admin.name')" horizontal>
             <b-input
               v-model="form.name"
@@ -75,7 +57,7 @@
               :menu-props="{ maxHeight: '400' }"
               :label="$t('admin.select')"
               multiple
-              item-text="name"
+              item-text="display_name"
               :item-value="'id'"
               name="roles"
               persistent-hint
