@@ -40,5 +40,13 @@ export default {
   admin_roles: 'الصلاحيات والمديرين',
   general: 'الاعدادات العامة',
   'en.name': 'الاسم بالانجليزى',
-  'ar.name': 'الاسم بالعربى'
+  'ar.name': 'الاسم بالعربى',
+  properties: 'الخصائص الاضافية',
+  property_type_id: 'نوع الخاصية',
+  categories: 'الأقسام',
+  properties_products: 'الخصائص والمنتجات',
+  products: 'المنتجات',
+  required: 'مطلوب',
+  select_all: 'تحديد الكل',
+  options: 'الخيارات'
 }
