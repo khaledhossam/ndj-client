@@ -6,5 +6,7 @@ export default {
   phone: 'رقم الجوال',
   roles: 'الأدوار',
   'en.name': 'الاسم بالانجليزى',
-  'ar.name': 'الاسم بالعربى'
+  'ar.name': 'الاسم بالعربى',
+  property_type_id: 'نوع الخاصية',
+  categories: 'الأقسام'
 }

@@ -1,22 +1,26 @@
 import ApplicationService from '@/services/ApplicationService'
 
-export default class RoleService extends ApplicationService {
-  resource = '/admin/roles'
+export default class PropertyService extends ApplicationService {
+  resource = '/admin/properties'
 
   //* **************************************************** *//
-  async getRoles (queryParam = {}) {
+  async getProperties (queryParam = {}) {
     return await this.get(`${this.resource}${queryParam}`)
   }
 
-  async getPermissions (queryParam = {}) {
-    return await this.get(`/admin/permissions${queryParam}`)
+  async getPropertyTypes (queryParam = {}) {
+    return await this.get(`/admin/property-types${queryParam}`)
   }
 
-  async createRole (data) {
+  async getCategories (queryParam = {}) {
+    return await this.get(`/admin/categories${queryParam}`)
+  }
+
+  async createProperty (data) {
     return await this.post(`${this.resource}`, data)
   }
 
-  async updateRole (data, id) {
+  async updateProperty (data, id) {
     return await this.put(`${this.resource}/${id}`, data)
   }
 
@@ -24,11 +28,11 @@ export default class RoleService extends ApplicationService {
     return await this.put(`${this.resource}/${id}/toggle-status`, data)
   }
 
-  async roleDetails (id) {
+  async propertyDetails (id) {
     return await this.get(`${this.resource}/${id}`)
   }
 
-  async deleteRole (id) {
+  async deleteProperty (id) {
     return await this.delete(`${this.resource}/${id}`)
   }
   //* **************************************************** *//

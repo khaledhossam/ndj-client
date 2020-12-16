@@ -40,5 +40,13 @@ export default {
   admin_roles: 'Admin & Roles',
   general: 'General',
   'en.name': 'English Name',
-  'ar.name': 'Arabic Name'
+  'ar.name': 'Arabic Name',
+  properties: 'Extra Properties',
+  property_type_id: 'Property Type',
+  categories: 'Categories',
+  properties_products: 'Products & Properties',
+  products: 'Products',
+  required: 'Required',
+  select_all: 'Select All',
+  options: 'Property Options'
 }

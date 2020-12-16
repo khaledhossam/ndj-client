@@ -14,6 +14,9 @@ import roles from '~/modules/admin/roles/components/list-roles/roles.vue'
 import createRole from '~/modules/admin/roles/modals/create-role/create.vue'
 // import updateRole from '~/modules/admin/roles/modals/create-role/create.vue'
 
+import properties from '~/modules/admin/properties/components/list-properties/properties.vue'
+import createProperty from '~/modules/admin/properties/modals/create-property/create.vue'
+
 export default [
   {
     name: 'statistics',
@@ -78,6 +81,24 @@ export default [
     name: 'updateRole',
     path: 'roles/:id',
     component: createRole,
+    props: true
+  },
+  {
+    name: 'properties',
+    path: 'properties',
+    component: properties,
+    props: true
+  },
+  {
+    name: 'createProperty',
+    path: 'properties/create',
+    component: createProperty,
+    props: true
+  },
+  {
+    name: 'updateProperty',
+    path: 'properties/:id',
+    component: createProperty,
     props: true
   }
   // {

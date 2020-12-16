@@ -5,48 +5,69 @@ import FilePicker from '@/components/admin/FilePicker'
 import { mapState } from 'vuex'
 
 export default {
-  validate ({ params, query, store }) {
+  validate ({ params }) {
     if (params.id) {
       return !isNaN(params.id)
     }
     return true
   },
-  name: 'Admins',
+  name: 'Properties',
   components: {
     FilePicker,
     CardComponent,
     TitleBar
   },
   async asyncData (context) {
-    const roles = await context.$RoleService.getRoles('?is_paginated=false')
+    const [categories, propertyTypes] = await Promise.all([
 
+      context.$PropertyService.getCategories('?is_paginated=0'),
+
+      context.$PropertyService.getPropertyTypes('?is_paginated=false')
+    ])
     if (context.params.id) {
-      const adminDetail = await context.$AdminService.adminDetails(context.params.id)
-      return { roles, adminDetail }
+      const propertyDetail = await context.$PropertyService.propertyDetails(context.params.id)
+
+      return { categories, propertyTypes, propertyDetail }
+    } else {
+      return { categories, propertyTypes }
     }
-    return { roles }
   },
   data () {
     return {
-      titlePage: this.$t('admin.admins'),
+      titlePage: this.$t('admin.properties'),
       form: {
-        name: null,
-        email: null,
-        phone: null,
-        roles: [],
+        en: {
+          name: ''
+        },
+        ar: {
+          name: ''
+        },
+        is_required: true,
         is_active: true,
-        avatar: null,
-        password: null,
-        password_confirmation: null
-      },
-      uploader: {
-        path: 'admin/avatar',
-        file_url: null
+        has_options: false,
+        categories: [],
+        options: [
+          {
+            en: {
+              name: ''
+            },
+            ar: {
+              name: ''
+            }
+          },
+          {
+            en: {
+              name: ''
+            },
+            ar: {
+              name: ''
+            }
+          }
+        ]
       },
       param_id: this.$route.params.id,
-      customEvents: [
-        { eventName: 'handle-uploader', callback: this.handleUploadFile }
-      ]
+      icon: 'mdi-checkbox-blank-outline',
+      customEvents: []
     }
   },
   computed: {
@@ -54,7 +75,7 @@ export default {
       return this.form.id ? this.$t('admin.edit') : this.$t('admin.create')
     },
     titleStack () {
-      return [this.$t('admin.admins'), this.$t('admin.create')]
+      return [this.$t('admin.roles'), this.$t('admin.create')]
     },
     ...mapState({
       currentLocale: state => state.localization.currentLocale
@@ -67,7 +88,7 @@ export default {
     }.bind(this))
   },
   mounted () {
-    this.adminDetails()
+    this.roleDetails()
   },
   beforeDestroy () {
     this.customEvents.forEach(function (customEvent) {
@@ -80,30 +101,34 @@ export default {
       const index = arr.indexOf(item.id)
       arr.splice(index, 1)
     },
-    adminDetails () {
-      if (this.adminDetail) {
-        this.reAssignForm(this.adminDetail)
+    toggle () {
+      this.$nextTick(() => {
+        if (this.form.categories.length) {
+          this.icon = 'mdi-minus-box'
+          this.form.categories = []
+        } else {
+          this.icon = 'mdi-close-box'
+          this.form.categories = this.categories.map(category => category.id)
+        }
+      })
+    },
+    roleDetails () {
+      if (this.roleDetail) {
+        this.reAssignForm(this.roleDetail)
       }
     },
     reAssignForm (data) {
       const obj = {
-        name: data.name,
-        email: data.email,
-        phone: data.phone,
-        is_active: data.is_active,
-        roles: data.roles.map(role => role.id),
-        avatar: data.avatar
+        en: {
+          display_name: data.en.display_name
+        },
+        ar: {
+          display_name: data.ar.display_name
+        },
+        permissions: data.permissions.map(permission => permission.id)
       }
       // overrite of form data
       this.form = { ...this.form, ...obj }
-    },
-    handleUploadFile (file) {
-      this.uploader.file_url = file
-      this.$UploadService.uploadSingleFile(this.uploader)
-        .then((response) => {
-          this.form.avatar = response.file_url
-          this.buefyBar('File Uploaded Successfully')
-        })
     },
     async submit () {
       const validData = await this.$validator.validateAll()
@@ -117,16 +142,16 @@ export default {
       }
     },
     createAdmin () {
-      this.$AdminService.createAdmin(this.form)
+      this.$RoleService.createRole(this.form)
         .then(() => {
-          this.$router.push({ name: 'admins' })
+          this.$router.push({ name: 'roles' })
           this.buefyBar(this.$t('admin.created_successfully'))
         })
     },
     updateAdmin () {
-      this.$AdminService.updateAdmin(this.form, this.param_id)
+      this.$RoleService.updateRole(this.form, this.param_id)
         .then(() => {
-          this.$router.push({ name: 'admins' })
+          this.$router.push({ name: 'roles' })
           this.buefyBar(this.$t('admin.updated_successfully'))
         })
     },

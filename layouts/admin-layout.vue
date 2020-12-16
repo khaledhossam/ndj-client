@@ -55,6 +55,27 @@ export default {
             ]
           }
         ],
+        this.$t('admin.properties_products'),
+        [
+          {
+            label: this.$t('admin.products'),
+            subLabel: 'Submenus Example',
+            icon: 'view-list',
+            menu: [
+              {
+                to: { name: 'properties' },
+                icon: 'square-edit-outline',
+                label: this.$t('admin.properties')
+              },
+              {
+                // to: { name: 'products' },
+                href: '#',
+                icon: 'account-circle',
+                label: this.$t('admin.products')
+              }
+            ]
+          }
+        ],
         'Examples',
         [
           {

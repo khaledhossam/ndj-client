@@ -63,7 +63,24 @@
               persistent-hint
               chips
               small-chips
-            />
+            >
+              <template v-slot:selection="data">
+                <v-chip
+                  v-bind="data.attrs"
+                  :input-value="data.selected"
+                  close
+                  @click="data.select"
+                  @click:close="removeSelect(form.roles, data.item)"
+                >
+                  {{ data.item[currentLocale].display_name }}
+                </v-chip>
+              </template>
+              <template v-slot:item="data">
+                <v-list-item-content>
+                  <v-list-item-title v-text="data.item[currentLocale].display_name" />
+                </v-list-item-content>
+              </template>
+            </v-autocomplete>
             <p v-show="errors.has('roles')" class="text-danger text-sm">
               {{ errors.first("roles") }}
             </p>
@@ -73,7 +90,7 @@
             <b-input
               ref="password"
               v-model="form.password"
-              v-validate="{ required: true }"
+              v-validate="param_id ? '' : { required: true }"
               type="password"
               :placeholder="$t('admin.password')"
               name="password"
@@ -87,7 +104,7 @@
           <b-field :label="$t('admin.confirm_password')" horizontal>
             <b-input
               v-model="form.password_confirmation"
-              v-validate="'required|confirmed:password'"
+              v-validate="param_id ? '' : 'required|confirmed:password'"
               type="password"
               :placeholder="$t('admin.confirm_password')"
               name="password_confirmation"

@@ -13,3 +13,9 @@ p.text-danger{
   padding: 5px;
   border-radius: 5px;
 }
+.custom-alert {
+  padding: 0.25rem 0.25rem;
+}
+.cursor{
+  cursor: pointer;
+}

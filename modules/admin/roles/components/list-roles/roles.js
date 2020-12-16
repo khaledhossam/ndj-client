@@ -69,9 +69,9 @@ export default {
   methods: {
     type (value) {
       if (value === true) {
-        return 'pl-2 pr-2 bg-light text-success'
+        return 'alert-success'
       } else {
-        return 'pl-2 pr-2 bg-light text-warning'
+        return 'alert-danger'
       }
     },
     handleSearch (search) {

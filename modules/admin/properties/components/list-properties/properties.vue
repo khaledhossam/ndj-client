@@ -2,14 +2,14 @@
   <div>
     <modal-box
       :is-active="isModalActive"
-      @confirm="trashConfirm('event-delete-role')"
+      @confirm="trashConfirm('event-delete-property')"
       @cancel="trashCancel"
     />
     <title-bar :title-stack="titleStack" />
     <section class="section is-main-section">
       <card-component
         class="has-table has-mobile-sort-spaced"
-        :title="$t('admin.roles')"
+        :title="$t('admin.properties')"
         icon="account-multiple"
       >
         <section class="hero is-hero-bar">
@@ -20,7 +20,7 @@
               </div>
               <div class="level-right">
                 <div class="level-item">
-                  <nuxt-link :to="{ name: 'createRole' }" class="btn btn-success">
+                  <nuxt-link :to="{ name: 'createProperty' }" class="btn btn-success">
                     {{ $t('admin.create') }}
                   </nuxt-link>
                 </div>
@@ -51,9 +51,15 @@
           @sort="onSort"
         >
           <template slot-scope="props">
-            <b-table-column field="display_name" :label="$t('admin.name')" sortable>
+            <b-table-column field="name" :label="$t('admin.name')" sortable>
               <span class="tag">
-                {{ props.row[currentLocale].display_name }}
+                {{ props.row[currentLocale].name }}
+              </span>
+            </b-table-column>
+
+            <b-table-column field="categories" :label="$t('admin.categories')" sortable>
+              <span v-for="(category, key) in props.row.categories" :key="key" class="m-1 custom-alert alert alert-success">
+                {{ category.name }}
               </span>
             </b-table-column>
 
@@ -63,20 +69,10 @@
               </span>
             </b-table-column>
 
-            <b-table-column
-              field="created_at"
-              class="has-text-grey is-abbr-like"
-              :label="$t('admin.created_at')"
-              sortable
-              centered
-            >
-              {{ props.row.created_at }}
-            </b-table-column>
-
             <b-table-column :label="$t('admin.action')" custom-key="actions" class="is-actions-cell">
               <div class="buttons is-right">
                 <nuxt-link
-                  :to="{ name: 'updateRole', params: { id: props.row.id } }"
+                  :to="{ name: 'updateProperty', params: { id: props.row.id } }"
                   class="button is-small is-primary"
                 >
                   <b-icon icon="account-edit" size="is-small" />
@@ -105,4 +101,4 @@
   </div>
 </template>
 
-<script src="./roles.js"></script>
+<script src="./properties.js"></script>

@@ -71,7 +71,7 @@
             </b-table-column>
 
             <b-table-column field="is_active" :label="$t('admin.status')">
-              <span :class="type(props.row.is_active)">
+              <span :class="`custom-alert alert ${type(props.row.is_active)}`">
                 {{ props.row.is_active ? $t('admin.active') : $t('admin.inactive') }}
               </span>
             </b-table-column>
