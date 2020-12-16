@@ -20,7 +20,7 @@ export default {
   async asyncData (context) {
     const [categories, propertyTypes] = await Promise.all([
 
-      context.$PropertyService.getCategories('?is_paginated=0'),
+      context.$PropertyService.getCategories('?is_paginated=false'),
 
       context.$PropertyService.getPropertyTypes('?is_paginated=false')
     ])
@@ -46,24 +46,7 @@ export default {
         is_active: true,
         has_options: false,
         categories: [],
-        options: [
-          {
-            en: {
-              name: ''
-            },
-            ar: {
-              name: ''
-            }
-          },
-          {
-            en: {
-              name: ''
-            },
-            ar: {
-              name: ''
-            }
-          }
-        ]
+        options: []
       },
       param_id: this.$route.params.id,
       icon: 'mdi-checkbox-blank-outline',
@@ -88,7 +71,7 @@ export default {
     }.bind(this))
   },
   mounted () {
-    this.roleDetails()
+    this.propertyDetails()
   },
   beforeDestroy () {
     this.customEvents.forEach(function (customEvent) {
@@ -112,46 +95,66 @@ export default {
         }
       })
     },
-    roleDetails () {
-      if (this.roleDetail) {
-        this.reAssignForm(this.roleDetail)
+    changePropertyType (propertyId) {
+      const property = this.propertyTypes.find(property => property.id === propertyId)
+      //* check if property has options or not */
+      if (property && property.has_options) {
+        this.addOption()
+        this.form.has_options = true
+      } else {
+        //* reset values of options */
+        this.form.options = []
+        this.form.has_options = false
+      }
+    },
+    addOption () {
+      this.form.options.push({
+        en: {
+          name: ''
+        },
+        ar: {
+          name: ''
+        }
+      })
+    },
+    removeOption (key) {
+      this.form.options.splice(key, 1)
+    },
+    propertyDetails () {
+      if (this.propertyDetail) {
+        this.reAssignForm(this.propertyDetail)
       }
     },
     reAssignForm (data) {
       const obj = {
-        en: {
-          display_name: data.en.display_name
-        },
-        ar: {
-          display_name: data.ar.display_name
-        },
-        permissions: data.permissions.map(permission => permission.id)
+        property_type_id: data.property_type.id,
+        categories: data.categories.map(category => category.id)
       }
-      // overrite of form data
-      this.form = { ...this.form, ...obj }
+      // overwrite of form data
+      this.form = { ...data, ...obj }
     },
     async submit () {
       const validData = await this.$validator.validateAll()
 
       if (validData) {
         if (this.param_id) {
-          this.updateAdmin()
+          this.updateProperty()
         } else {
-          this.createAdmin()
+          this.createProperty()
         }
       }
     },
-    createAdmin () {
-      this.$RoleService.createRole(this.form)
+    createProperty () {
+      this.$PropertyService.createProperty(this.form)
         .then(() => {
-          this.$router.push({ name: 'roles' })
+          this.$router.push({ name: 'properties' })
           this.buefyBar(this.$t('admin.created_successfully'))
         })
     },
-    updateAdmin () {
-      this.$RoleService.updateRole(this.form, this.param_id)
+    updateProperty () {
+      this.$PropertyService.updateProperty(this.form, this.param_id)
         .then(() => {
-          this.$router.push({ name: 'roles' })
+          this.$router.push({ name: 'properties' })
           this.buefyBar(this.$t('admin.updated_successfully'))
         })
     },

@@ -58,7 +58,7 @@
             </b-table-column>
 
             <b-table-column field="categories" :label="$t('admin.categories')" sortable>
-              <span v-for="(category, key) in props.row.categories" :key="key" class="m-1 custom-alert alert alert-success">
+              <span v-for="(category, key) in props.row.categories" :key="key" class="m-1 tag">
                 {{ category.name }}
               </span>
             </b-table-column>

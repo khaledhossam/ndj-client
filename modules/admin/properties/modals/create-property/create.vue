@@ -6,7 +6,7 @@
         <form @submit.prevent="submit" @reset="handleReset()">
           <b-field :label="$t('admin[\'en.name\']')" horizontal>
             <b-input
-              v-model="form.en.display_name"
+              v-model="form.en.name"
               v-validate="{ required: true, max: 150 }"
               icon="account"
               :placeholder="$t('admin[\'en.name\']')"
@@ -20,7 +20,7 @@
 
           <b-field :label="$t('admin[\'ar.name\']')" horizontal>
             <b-input
-              v-model="form.ar.display_name"
+              v-model="form.ar.name"
               v-validate="{ required: true, max: 150 }"
               icon="account"
               :placeholder="$t('admin[\'ar.name\']')"
@@ -88,7 +88,7 @@
             </p>
           </b-field>
 
-          <b-field :label="$t('admin.property_type_id')" horizontal>
+          <b-field :label="$t('admin.property_type_id')" horizontal :message="param_id ? $t('admin.property_type_disable') : ''">
             <v-autocomplete
               v-model="form.property_type_id"
               v-validate="{ required: true }"
@@ -101,6 +101,8 @@
               persistent-hint
               chips
               small-chips
+              :disabled="param_id ? true : false"
+              @change="changePropertyType"
             >
               <template v-slot:selection="data">
                 <v-chip
@@ -124,30 +126,38 @@
             </p>
           </b-field>
 
-          <card-component v-if="form.options.length" :title="$t('admin.options')" icon="ballot-outline">
+          <card-component v-if="form.has_options" :title="$t('admin.options')" icon="ballot-outline">
             <b-field v-for="(option, key) in form.options" :key="key" label="" horizontal>
               <b-field>
                 <b-input
                   v-model="option.en.name"
+                  v-validate="{ required: true }"
+                  type="text"
                   :placeholder="$t('admin[\'en.name\']')"
-                  name="en.name"
+                  :name="`en.name.${key}`"
                 />
+                <p v-show="errors.has(`en.name.${key}`)" class="text-danger text-sm">
+                  {{ errors.first(`en.name.${key}`) }}
+                </p>
               </b-field>
               <b-field>
                 <b-input
-                  v-model="form.ar.name"
+                  v-model="option.ar.name"
+                  v-validate="{ required: true }"
                   type="text"
                   :placeholder="$t('admin[\'ar.name\']')"
-                  name="ar.name"
+                  :name="`ar.name.${key}`"
                 />
+                <p v-show="errors.has(`ar.name.${key}`)" class="text-danger text-sm">
+                  {{ errors.first(`ar.name.${key}`) }}
+                </p>
               </b-field>
-              <span class="mdi mdi-trash-can-outline text-danger mdi-24px cursor" />
+              <span class="mdi mdi-trash-can-outline text-danger mdi-24px cursor" @click="removeOption(key)" />
             </b-field>
             <b-field class="text-center">
-              <span class="mdi mdi-plus-circle-outline fa-3x text-success mdi-24px cursor" />
+              <span class="mdi mdi-plus-circle-outline fa-3x text-success mdi-24px cursor" @click="addOption" />
             </b-field>
           </card-component>
-          <hr>
 
           <hr>
           <b-field :label="$t('admin.required')" horizontal>

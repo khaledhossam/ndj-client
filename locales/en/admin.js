@@ -48,5 +48,6 @@ export default {
   products: 'Products',
   required: 'Required',
   select_all: 'Select All',
-  options: 'Property Options'
+  options: 'Property Options',
+  property_type_disable: 'Not Allowed to Edit Type to avoid affecting on product structure'
 }

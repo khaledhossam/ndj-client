@@ -48,5 +48,6 @@ export default {
   products: 'المنتجات',
   required: 'مطلوب',
   select_all: 'تحديد الكل',
-  options: 'الخيارات'
+  options: 'الخيارات',
+  property_type_disable: 'لا يمكن تعديل النوع لتجنب التأثير على استراكشر المنتجات'
 }
