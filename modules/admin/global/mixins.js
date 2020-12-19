@@ -34,6 +34,16 @@ export default {
         message: `changed successfully to ${lang}`,
         queue: false
       })
+      // console.log('route', this.$router.currentRoute)
+      // window.location.reload(`/${this.$router.currentRoute.path}`)
+      // this.$router.push({ name: `${this.$router.currentRoute.name}` })
+      // this.$router.app.refresh()
+      // window.location.reload(true)
+      // this.$nuxt.refresh()
+      // this.$router.go(0)
+      this.$mount()
+      // this.$forceUpdate()
+      // this.$router.push({ replace: true, name: `${this.$router.currentRoute.name}` }).catch(() => {})
     },
     buefyBar (message) {
       this.$buefy.snackbar.open({

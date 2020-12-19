@@ -86,6 +86,7 @@ export default {
         message: `changed successfully to ${event}`,
         queue: false
       })
+      this.$forceUpdate()
       // window.location.reload(`/${event}/${this.$router.currentRoute.path}`)
       // this.$router.replace({ path: `/${event}/${this.$router.currentRoute.path}` })
     }

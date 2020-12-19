@@ -49,5 +49,9 @@ export default {
   required: 'Required',
   select_all: 'Select All',
   options: 'Property Options',
-  property_type_disable: 'Not Allowed to Edit Type to avoid affecting on product structure'
+  property_type_disable: 'Not Allowed to Edit Type to avoid affecting on product structure',
+  category: 'Category',
+  subcategory: 'Subcategory',
+  price: 'Price',
+  quantity: 'Quantity'
 }

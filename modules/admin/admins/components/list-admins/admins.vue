@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :key="reRenderKey">
     <modal-box
       :is-active="isModalActive"
       @confirm="trashConfirm('event-delete-admin')"

@@ -17,6 +17,9 @@ import createRole from '~/modules/admin/roles/modals/create-role/create.vue'
 import properties from '~/modules/admin/properties/components/list-properties/properties.vue'
 import createProperty from '~/modules/admin/properties/modals/create-property/create.vue'
 
+import products from '~/modules/admin/products/components/list-products/products.vue'
+import createProduct from '~/modules/admin/products/modals/create-product/create.vue'
+
 export default [
   {
     name: 'statistics',
@@ -99,6 +102,24 @@ export default [
     name: 'updateProperty',
     path: 'properties/:id',
     component: createProperty,
+    props: true
+  },
+  {
+    name: 'admin.products',
+    path: 'products',
+    component: products,
+    props: true
+  },
+  {
+    name: 'createProduct',
+    path: 'products/create',
+    component: createProduct,
+    props: true
+  },
+  {
+    name: 'updateProduct',
+    path: 'products/:id',
+    component: createProduct,
     props: true
   }
   // {

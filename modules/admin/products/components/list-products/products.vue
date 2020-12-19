@@ -2,14 +2,14 @@
   <div>
     <modal-box
       :is-active="isModalActive"
-      @confirm="trashConfirm('event-delete-property')"
+      @confirm="trashConfirm('event-delete-product')"
       @cancel="trashCancel"
     />
     <title-bar :title-stack="titleStack" />
     <section class="section is-main-section">
       <card-component
         class="has-table has-mobile-sort-spaced"
-        :title="$t('admin.properties')"
+        :title="$t('admin.products')"
         icon="account-multiple"
       >
         <section class="hero is-hero-bar">
@@ -20,7 +20,7 @@
               </div>
               <div class="level-right">
                 <div class="level-item">
-                  <nuxt-link :to="{ name: 'createProperty' }" class="btn btn-success">
+                  <nuxt-link :to="{ name: 'createProduct' }" class="btn btn-success">
                     {{ $t('admin.create') }}
                   </nuxt-link>
                 </div>
@@ -51,15 +51,37 @@
           @sort="onSort"
         >
           <template slot-scope="props">
+            <b-table-column class="has-no-head-mobile is-image-cell">
+              <div class="image">
+                <img
+                  :src="props.row.attachments[0].file || ''"
+                  :alt="props.row[currentLocale].name"
+                  class="is-rounded"
+                >
+              </div>
+            </b-table-column>
+
             <b-table-column field="name" :label="$t('admin.name')" sortable>
               <span class="tag">
                 {{ props.row[currentLocale].name }}
               </span>
             </b-table-column>
 
-            <b-table-column field="categories" :label="$t('admin.categories')" sortable>
-              <span v-for="(category, key) in props.row.categories" :key="key" class="m-1 tag">
-                {{ category[currentLocale].name }}
+            <b-table-column field="subcategory" :label="$t('admin.subcategory')" sortable>
+              <span class="m-1 tag">
+                {{ props.row.sub_category[currentLocale].name }}
+              </span>
+            </b-table-column>
+
+            <b-table-column field="price" :label="$t('admin.price')" sortable>
+              <span class="m-1 tag">
+                {{ props.row.price }}
+              </span>
+            </b-table-column>
+
+            <b-table-column field="quantity" :label="$t('admin.quantity')" sortable>
+              <span class="m-1 tag">
+                {{ props.row.quantity }}
               </span>
             </b-table-column>
 
@@ -72,7 +94,7 @@
             <b-table-column :label="$t('admin.action')" custom-key="actions" class="is-actions-cell">
               <div class="buttons is-right">
                 <nuxt-link
-                  :to="{ name: 'updateProperty', params: { id: props.row.id } }"
+                  :to="{ name: 'updateProuct', params: { id: props.row.id } }"
                   class="button is-small is-primary"
                 >
                   <b-icon icon="account-edit" size="is-small" />
@@ -101,4 +123,4 @@
   </div>
 </template>
 
-<script src="./properties.js"></script>
+<script src="./products.js"></script>

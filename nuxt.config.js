@@ -1,5 +1,6 @@
 import i18n from './locales/i18n'
 // https://cdn.materialdesignicons.com/2.6.95/
+// https://www.toptal.com/vue-js/server-side-rendered-vue-js-using-nuxt-js
 //** to fix out of heap memory */
 require('dotenv').config()
 // "scripts": {

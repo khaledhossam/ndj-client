@@ -68,8 +68,7 @@ export default {
                 label: this.$t('admin.properties')
               },
               {
-                // to: { name: 'products' },
-                href: '#',
+                to: { name: 'admin.products' },
                 icon: 'account-circle',
                 label: this.$t('admin.products')
               }

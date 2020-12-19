@@ -1,11 +1,11 @@
+import { mapState } from 'vuex'
 import CardComponent from '@/components/admin/CardComponent'
 import TitleBar from '@/components/admin/TitleBar'
 import ModalBox from '@/components/admin/ModalBox'
 import QuickSearch from '@/modules/admin/global/search/quick-search.vue'
-import { mapState } from 'vuex'
 
 export default {
-  name: 'Admins',
+  name: 'Products',
   components: {
     TitleBar,
     CardComponent,
@@ -24,7 +24,7 @@ export default {
   },
   data () {
     return {
-      titlePage: this.$t('admin.admins'),
+      titlePage: this.$t('admin.products'),
       collection: [],
       isPaginated: true,
       searchValue: '',
@@ -36,10 +36,9 @@ export default {
       page: 1,
       perPage: 0,
       queryParam: '',
-      reRenderKey: this.uniqueID(),
       customEvents: [
         { eventName: 'handle-quick-search', callback: this.handleSearch },
-        { eventName: 'event-delete-admin', callback: this.handleDeleteAdmin }
+        { eventName: 'event-delete-product', callback: this.handleDeleteProduct }
       ]
     }
   },
@@ -51,7 +50,7 @@ export default {
   },
   computed: {
     titleStack () {
-      return [this.$t('admin.admins')]
+      return [this.$t('admin.products')]
     },
     ...mapState({
       currentLocale: state => state.localization.currentLocale
@@ -89,7 +88,7 @@ export default {
       this.loading = true
       this.queryParam = `?page=${this.page}&publicSearch=${this.searchValue}&orderBy=${this.sortField}&orderType=${this.sortOrder}`
 
-      this.$AdminService.getAdmins(this.queryParam)
+      this.$ProductService.getProducts(this.queryParam)
         .then((response) => {
           this.collection = response.data
 
@@ -124,17 +123,17 @@ export default {
       this.sortOrder = order
       this.loadAsyncData()
     },
-    handleDeleteAdmin (id) {
-      this.$AdminService.deleteAdmin(id)
+    handleDeleteProduct (id) {
+      this.$ProductService.deleteProduct(id)
         .then(() => {
           //* update list to remove this row *//
-          this.collection = this.collection.filter((admin) => {
-            return admin.id !== id
+          this.collection = this.collection.filter((obj) => {
+            return obj.id !== id
           })
         })
     },
     handleToggleStatus (id) {
-      this.$AdminService.toggleStatus(id)
+      this.$ProductService.toggleStatus(id)
         .then((response) => {
           //* update list to remove this row *//
           this.collection.forEach((element, index) => {
