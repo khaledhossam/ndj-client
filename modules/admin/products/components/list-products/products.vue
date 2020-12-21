@@ -54,7 +54,7 @@
             <b-table-column class="has-no-head-mobile is-image-cell">
               <div class="image">
                 <img
-                  :src="props.row.attachments[0].file || ''"
+                  :src="props.row.primary_attachment.file"
                   :alt="props.row[currentLocale].name"
                   class="is-rounded"
                 >
@@ -69,7 +69,7 @@
 
             <b-table-column field="subcategory" :label="$t('admin.subcategory')" sortable>
               <span class="m-1 tag">
-                {{ props.row.sub_category[currentLocale].name }}
+                {{ props.row.subcategory[currentLocale].name }}
               </span>
             </b-table-column>
 

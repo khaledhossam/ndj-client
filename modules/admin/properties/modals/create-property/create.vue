@@ -108,9 +108,7 @@
                 <v-chip
                   v-bind="data.attrs"
                   :input-value="data.selected"
-                  close
                   @click="data.select"
-                  @click:close="removeSelect(form.propertyTypes, data.item)"
                 >
                   {{ data.item[currentLocale].name }}
                 </v-chip>

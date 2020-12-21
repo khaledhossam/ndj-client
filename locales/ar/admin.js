@@ -49,5 +49,20 @@ export default {
   required: 'مطلوب',
   select_all: 'تحديد الكل',
   options: 'الخيارات',
-  property_type_disable: 'لا يمكن تعديل النوع لتجنب التأثير على استراكشر المنتجات'
+  property_type_disable: 'لا يمكن تعديل النوع لتجنب التأثير على استراكشر المنتجات',
+  category: 'القسم الرئيسى',
+  subcategory: 'القسم الفرعى',
+  price: 'السعر',
+  quantity: 'الكمية',
+  'en.tags': 'التاجات بالانجليزى',
+  'ar.tags': 'التاجات بالعربى',
+  'en.description': 'الوصف بالانجليزى',
+  'ar.description': 'الوصف بالعربى',
+  brand: 'العلامة التجارية',
+  max_purchase_quantity: 'أكثر كمية يمكن شراؤها',
+  stores: 'المتاجر',
+  is_unique: 'يظهر فى هذا المتجر فقط',
+  barcode: 'الباركود',
+  primary_attachment: 'الصورة الرئيسية',
+  attachments: 'الصور الفرعية'
 }

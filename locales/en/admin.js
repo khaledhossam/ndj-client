@@ -53,5 +53,16 @@ export default {
   category: 'Category',
   subcategory: 'Subcategory',
   price: 'Price',
-  quantity: 'Quantity'
+  quantity: 'Quantity',
+  'en.tags': 'English Tags',
+  'ar.tags': 'Arabic Tags',
+  'en.description': 'English Description',
+  'ar.description': 'Arabic Description',
+  brand: 'Brand',
+  max_purchase_quantity: 'Max Purchase Quantity',
+  stores: 'Stores',
+  is_unique: 'Store For this Store Only',
+  barcode: 'barcode',
+  primary_attachment: 'Primary Attachment',
+  attachments: 'Attachments'
 }

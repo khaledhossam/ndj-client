@@ -11,45 +11,61 @@ export default {
     }
     return true
   },
-  name: 'Properties',
+  name: 'products',
   components: {
     FilePicker,
     CardComponent,
     TitleBar
   },
   async asyncData (context) {
-    const [categories, propertyTypes] = await Promise.all([
+    const [categories, brands] = await Promise.all([
 
       context.$PropertyService.getCategories('?is_paginated=false'),
 
-      context.$PropertyService.getPropertyTypes('?is_paginated=false')
+      context.$ProductService.getBrands('?is_active=1&is_paginated=false')
     ])
     if (context.params.id) {
-      const propertyDetail = await context.$PropertyService.propertyDetails(context.params.id)
+      const productDetail = await context.$ProductService.productDetails(context.params.id)
 
-      return { categories, propertyTypes, propertyDetail }
+      return { categories, brands, productDetail }
     } else {
-      return { categories, propertyTypes }
+      return { categories, brands }
     }
   },
   data () {
     return {
-      titlePage: this.$t('admin.properties'),
+      titlePage: this.$t('admin.products'),
+      subcategories: [],
+      stores: [],
       form: {
         en: {
-          name: ''
+          name: '',
+          description: '',
+          tags: []
         },
         ar: {
-          name: ''
+          name: '',
+          description: '',
+          tags: []
         },
-        is_required: true,
+        category_id: '',
+        subcategory_id: '',
+        brand_id: '',
+        quantity: '',
+        price: '',
+        barcode: '',
+        max_purchase_quantity: '',
+        is_unique: true,
+        stores: [],
+        properties: [],
         is_active: true,
-        has_options: false,
-        categories: [],
-        options: []
+        attachments: []
       },
+      syncEnTags: '', // sync search
+      syncArTags: '', // sync search
       param_id: this.$route.params.id,
       icon: 'mdi-checkbox-blank-outline',
+      queryParam: '?is_active=1&is_paginated=false',
       customEvents: []
     }
   },
@@ -58,7 +74,7 @@ export default {
       return this.form.id ? this.$t('admin.edit') : this.$t('admin.create')
     },
     titleStack () {
-      return [this.$t('admin.roles'), this.$t('admin.create')]
+      return [this.$t('admin.products'), this.$t('admin.create')]
     },
     ...mapState({
       currentLocale: state => state.localization.currentLocale
@@ -71,7 +87,7 @@ export default {
     }.bind(this))
   },
   mounted () {
-    this.propertyDetails()
+    this.productDetails()
   },
   beforeDestroy () {
     this.customEvents.forEach(function (customEvent) {
@@ -80,54 +96,54 @@ export default {
     }.bind(this))
   },
   methods: {
-    removeSelect (arr, item) {
+    removeSelectItem (arr, item) {
       const index = arr.indexOf(item.id)
       arr.splice(index, 1)
     },
-    toggle () {
+    toggleSelectAll (formArr, originalArr) {
       this.$nextTick(() => {
-        if (this.form.categories.length) {
+        if (formArr.length) {
           this.icon = 'mdi-minus-box'
-          this.form.categories = []
+          formArr = []
         } else {
           this.icon = 'mdi-close-box'
-          this.form.categories = this.categories.map(category => category.id)
+          formArr = originalArr.map(obj => obj.store_id)
         }
       })
     },
-    changePropertyType (propertyId) {
-      const property = this.propertyTypes.find(property => property.id === propertyId)
-      //* check if property has options or not */
-      if (property && property.has_options) {
-        this.addOption()
-        this.form.has_options = true
+    updateTags (tags, inputSearch) {
+      this.$nextTick(() => {
+        tags.push(...inputSearch.split(','))
+        this.$nextTick(() => {
+          inputSearch = ''
+        })
+      })
+    },
+    toggleUnique (isUnique) {
+      if (!isUnique) {
+        this.$ProductService.getStores(this.queryParam)
+          .then((response) => {
+            this.stores = response
+          })
       } else {
-        //* reset values of options */
-        this.form.options = []
-        this.form.has_options = false
+        this.form.stores = []
       }
     },
-    addOption () {
-      this.form.options.push({
-        en: {
-          name: ''
-        },
-        ar: {
-          name: ''
-        }
-      })
+    changeCategory (value) {
+      //* reset subcategory value before load new data */
+      this.form.subcategory_id = ''
+      this.$ProductService.getSubcategories(value, this.queryParam)
+        .then((response) => {
+          this.subcategories = response
+        })
     },
-    removeOption (key) {
-      this.form.options.splice(key, 1)
-    },
-    propertyDetails () {
-      if (this.propertyDetail) {
-        this.reAssignForm(this.propertyDetail)
+    productDetails () {
+      if (this.productDetail) {
+        this.reAssignForm(this.productDetail)
       }
     },
     reAssignForm (data) {
       const obj = {
-        property_type_id: data.property_type.id,
         categories: data.categories.map(category => category.id)
       }
       // overwrite of form data
@@ -138,23 +154,23 @@ export default {
 
       if (validData) {
         if (this.param_id) {
-          this.updateProperty()
+          this.updateProduct()
         } else {
-          this.createProperty()
+          this.createProduct()
         }
       }
     },
-    createProperty () {
-      this.$PropertyService.createProperty(this.form)
+    createProduct () {
+      this.$ProductService.createProduct(this.form)
         .then(() => {
-          this.$router.push({ name: 'properties' })
+          this.$router.push({ name: 'products' })
           this.buefyBar(this.$t('admin.created_successfully'))
         })
     },
-    updateProperty () {
-      this.$PropertyService.updateProperty(this.form, this.param_id)
+    updateProduct () {
+      this.$ProductService.updateProduct(this.form, this.param_id)
         .then(() => {
-          this.$router.push({ name: 'properties' })
+          this.$router.push({ name: 'products' })
           this.buefyBar(this.$t('admin.updated_successfully'))
         })
     },
