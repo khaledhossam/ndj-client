@@ -61,8 +61,9 @@ export default {
   brand: 'Brand',
   max_purchase_quantity: 'Max Purchase Quantity',
   stores: 'Stores',
-  is_unique: 'Store For this Store Only',
+  is_unique: 'Unique For this Store Only',
   barcode: 'barcode',
   primary_attachment: 'Primary Attachment',
-  attachments: 'Attachments'
+  secondary_attachments: 'Attachments',
+  attachment_uploaded_successfully: 'Attachment Uploaded Successfully'
 }

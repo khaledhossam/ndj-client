@@ -2,6 +2,7 @@ import mapValues from 'lodash/mapValues'
 import TitleBar from '@/components/admin/TitleBar'
 import CardComponent from '@/components/admin/CardComponent'
 import FilePicker from '@/components/admin/FilePicker'
+import categoryProperties from '@/modules/admin/products/modals/category-properties/category-properties.vue'
 import { mapState } from 'vuex'
 
 export default {
@@ -15,7 +16,8 @@ export default {
   components: {
     FilePicker,
     CardComponent,
-    TitleBar
+    TitleBar,
+    categoryProperties
   },
   async asyncData (context) {
     const [categories, brands] = await Promise.all([
@@ -37,6 +39,8 @@ export default {
       titlePage: this.$t('admin.products'),
       subcategories: [],
       stores: [],
+      properties: [],
+      uploaderFolder: 'products',
       form: {
         en: {
           name: '',
@@ -59,6 +63,10 @@ export default {
         stores: [],
         properties: [],
         is_active: true,
+        primary_attachment: {
+          file: '',
+          type: ''
+        },
         attachments: []
       },
       syncEnTags: '', // sync search
@@ -66,7 +74,10 @@ export default {
       param_id: this.$route.params.id,
       icon: 'mdi-checkbox-blank-outline',
       queryParam: '?is_active=1&is_paginated=false',
-      customEvents: []
+      customEvents: [
+        { eventName: 'update-properties', callback: this.updateProperties },
+        { eventName: 'handle-uploader', callback: this.handleUploadFile }
+      ]
     }
   },
   computed: {
@@ -129,13 +140,51 @@ export default {
         this.form.stores = []
       }
     },
-    changeCategory (value) {
+    async changeCategory (value) {
       //* reset subcategory value before load new data */
       this.form.subcategory_id = ''
-      this.$ProductService.getSubcategories(value, this.queryParam)
-        .then((response) => {
-          this.subcategories = response
+      this.form.properties = []
+
+      const response = await Promise.all([
+        this.$ProductService.getSubcategories(value, this.queryParam),
+
+        this.$ProductService.getProperties(value, this.queryParam)
+      ])
+      this.subcategories = response[0]
+
+      this.properties = response[1].map((obj) => {
+        if (obj.property_type.has_options) {
+          obj.value = []
+        } else {
+          obj.value = ''
+        }
+        return obj
+      })
+      this.$EventBus.$emit('reset-properties', this.properties)
+    },
+    updateProperties (data) {
+      this.properties = data
+    },
+    handleUploadFile (data) {
+      if (Array.isArray(data)) {
+        this.$UploadService.uploadMultipleFiles({
+          files: data,
+          path: this.uploaderFolder
         })
+          .then((response) => {
+            this.form.attachments = response
+            this.buefyBar(this.$t('admin.attachment_uploaded_successfully'))
+          })
+      } else {
+        this.$UploadService.uploadSingleFile({
+          file: data,
+          path: this.uploaderFolder
+        })
+          .then((response) => {
+            this.form.primary_attachment = response
+            this.buefyBar(this.$t('admin.attachment_uploaded_successfully'))
+          })
+      }
     },
     productDetails () {
       if (this.productDetail) {

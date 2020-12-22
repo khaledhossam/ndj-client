@@ -64,5 +64,6 @@ export default {
   is_unique: 'يظهر فى هذا المتجر فقط',
   barcode: 'الباركود',
   primary_attachment: 'الصورة الرئيسية',
-  attachments: 'الصور الفرعية'
+  secondary_attachments: 'الصور الفرعية',
+  attachment_uploaded_successfully: 'تم رفع الملفات بنجاح'
 }

@@ -152,7 +152,6 @@
               persistent-hint
               chips
               small-chips
-              :disabled="param_id ? true : false"
               @change="changeCategory"
             >
               <template v-slot:selection="data">
@@ -188,7 +187,6 @@
               persistent-hint
               chips
               small-chips
-              :disabled="param_id ? true : false"
             >
               <template v-slot:selection="data">
                 <v-chip
@@ -223,7 +221,6 @@
               persistent-hint
               chips
               small-chips
-              :disabled="param_id ? true : false"
             >
               <template v-slot:selection="data">
                 <v-chip
@@ -246,38 +243,7 @@
             </p>
           </b-field>
 
-          <!-- <card-component v-if="form.has_options" :title="$t('admin.options')" icon="ballot-outline">
-            <b-field v-for="(option, key) in form.options" :key="key" label="" horizontal>
-              <b-field>
-                <b-input
-                  v-model="option.en.name"
-                  v-validate="{ required: true }"
-                  type="text"
-                  :placeholder="$t('admin[\'en.name\']')"
-                  :name="`en.name.${key}`"
-                />
-                <p v-show="errors.has(`en.name.${key}`)" class="text-danger text-sm">
-                  {{ errors.first(`en.name.${key}`) }}
-                </p>
-              </b-field>
-              <b-field>
-                <b-input
-                  v-model="option.ar.name"
-                  v-validate="{ required: true }"
-                  type="text"
-                  :placeholder="$t('admin[\'ar.name\']')"
-                  :name="`ar.name.${key}`"
-                />
-                <p v-show="errors.has(`ar.name.${key}`)" class="text-danger text-sm">
-                  {{ errors.first(`ar.name.${key}`) }}
-                </p>
-              </b-field>
-              <span class="mdi mdi-trash-can-outline text-danger mdi-24px cursor" @click="removeOption(key)" />
-            </b-field>
-            <b-field class="text-center">
-              <span class="mdi mdi-plus-circle-outline fa-3x text-success mdi-24px cursor" @click="addOption" />
-            </b-field>
-          </card-component> -->
+          <category-properties v-if="properties.length" :properties="properties" />
 
           <hr>
           <b-field :label="$t('admin.is_unique')" horizontal>
@@ -339,6 +305,14 @@
             <p v-show="errors.has('stores')" class="text-danger text-sm">
               {{ errors.first("stores") }}
             </p>
+          </b-field>
+
+          <b-field :label="$t('admin.primary_attachment')" horizontal>
+            <file-picker v-model="form.primary_attachment.file" />
+          </b-field>
+
+          <b-field :label="$t('admin.secondary_attachments')" horizontal>
+            <file-picker v-model="form.attachments" :multiple="true" />
           </b-field>
 
           <hr>

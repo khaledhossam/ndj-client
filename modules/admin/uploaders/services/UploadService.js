@@ -7,9 +7,17 @@ export default class UploadService extends ApplicationService {
   async uploadSingleFile (data) {
     const formData = new FormData()
     formData.append('path', data.path)
-    formData.append('image', data.file_url)
+    formData.append('file', data.file_url)
 
     return await this.post(`${this.resource}/uploader`, formData)
+  }
+
+  async uploadMultipleFiles (data) {
+    const formData = new FormData()
+    formData.append('path', data.path)
+    formData.append('files', data.files)
+
+    return await this.post(`${this.resource}/uploader/multiple-files`, formData)
   }
 
   //* **************************************************** *//

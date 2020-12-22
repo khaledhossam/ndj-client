@@ -20,6 +20,10 @@ export default class ProductService extends ApplicationService {
     return await this.get(`/admin/categories/${id}/sub-categories${queryParam}`)
   }
 
+  async getProperties (id, queryParam = {}) {
+    return await this.get(`/admin/categories/${id}/properties${queryParam}`)
+  }
+
   async createProduct (data) {
     return await this.post(`${this.resource}`, data)
   }
