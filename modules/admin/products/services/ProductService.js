@@ -17,7 +17,7 @@ export default class ProductService extends ApplicationService {
   }
 
   async getSubcategories (id, queryParam = {}) {
-    return await this.get(`/admin/categories/${id}/sub-categories${queryParam}`)
+    return await this.get(`/admin/categories/${id}/subcategories${queryParam}`)
   }
 
   async getProperties (id, queryParam = {}) {

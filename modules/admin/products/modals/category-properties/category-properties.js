@@ -3,9 +3,11 @@ import { mapState } from 'vuex'
 export default {
   props: ['properties'],
   data () {
+    // const today = new Date()
     return {
       categoryProperties: this.properties || [],
       icon: 'mdi-checkbox-blank-outline',
+      minDate: new Date(),
       customEvents: [
         { eventName: 'reset-properties', callback: this.resetProperties }
       ]
@@ -29,6 +31,13 @@ export default {
     }.bind(this))
   },
   methods: {
+    dateFormatter (dt) {
+      return dt.toLocaleDateString()
+    },
+    dateInput (index) {
+      const value = this.categoryProperties[index].value
+      this.categoryProperties[index].value = value.toLocaleDateString()
+    },
     removeSelectItem (arr, item) {
       const index = arr.indexOf(item.id)
       arr.splice(index, 1)
@@ -40,22 +49,19 @@ export default {
           formArr = []
         } else {
           this.icon = 'mdi-close-box'
-          formArr = originalArr.map(obj => obj.store_id)
+          formArr = originalArr.map(obj => obj.id)
         }
       })
     },
     resetProperties (data) {
       this.categoryProperties = data
-    },
-    dateInput () {
-
     }
   },
   watch: {
     categoryProperties: {
       handler (val, oldVal) {
-        console.info('prop comp', this.categoryProperties, val, oldVal)
-        this.$EventBus.$emit('update-properties', this.properties)
+        console.log('data', this.categoryProperties)
+        this.$EventBus.$emit('update-properties', this.categoryProperties)
       },
       deep: true
     }

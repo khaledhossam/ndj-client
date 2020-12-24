@@ -70,8 +70,10 @@
           v-validate="property.is_required ? 'required' : ''"
           :placeholder="property[currentLocale].name"
           icon="calendar-today"
-          @input="dateInput"
           :name="`property.${key}`"
+          :min-date="minDate"
+          :locale="currentLocale"
+          :date-formatter="dateFormatter"
         />
         <p v-show="errors.has(`property.${key}`)" class="text-danger text-sm">
           {{ errors.first(`property.${key}`) }}
@@ -150,7 +152,7 @@
           <template v-slot:prepend-item>
             <v-list-item
               ripple
-              @click="toggleSelectAll(property.value, property.options)"
+              @click="toggleSelectAll(categoryProperties[key].value, property.options)"
             >
               <v-list-item-action>
                 <v-icon :color="property.options.length ? 'indigo darken-4' : ''">

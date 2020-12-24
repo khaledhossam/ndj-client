@@ -142,8 +142,8 @@ export default {
     },
     async changeCategory (value) {
       //* reset subcategory value before load new data */
-      this.form.subcategory_id = ''
-      this.form.properties = []
+      // this.form.subcategory_id = ''
+      // this.form.properties = []
 
       const response = await Promise.all([
         this.$ProductService.getSubcategories(value, this.queryParam),
@@ -153,30 +153,54 @@ export default {
       this.subcategories = response[0]
 
       this.properties = response[1].map((obj) => {
-        if (obj.property_type.has_options) {
-          obj.value = []
+        //* check on edit mode or not */
+        if (this.param_id) {
+          //* get value from form properties if exist or check on has options type to set default value */
+          const formValue = this.form.properties.find(prop => prop.property.id === obj.id)
+          //* chack value type array or string */
+          if (formValue) {
+            if (Array.isArray(formValue.value)) {
+              obj.value = formValue.value.map(value => value.id)
+            } else {
+              obj.value = obj.property_type.key === 'date' ? new Date(formValue.value) : formValue.value
+            }
+          } else {
+            obj = this.defaultPropertyValue(obj)
+          }
         } else {
-          obj.value = ''
+          obj = this.defaultPropertyValue(obj)
         }
         return obj
       })
       this.$EventBus.$emit('reset-properties', this.properties)
     },
+    defaultPropertyValue (obj) {
+      if (obj.property_type.has_options) {
+        obj.value = []
+      } else {
+        obj.value = obj.property_type.key === 'date' ? new Date() : ''
+      }
+      return obj
+    },
     updateProperties (data) {
       this.properties = data
     },
-    handleUploadFile (data) {
+    async handleUploadFile (data) {
       if (Array.isArray(data)) {
-        this.$UploadService.uploadMultipleFiles({
+        await this.$UploadService.uploadMultipleFiles({
           files: data,
           path: this.uploaderFolder
         })
           .then((response) => {
-            this.form.attachments = response
+            //* append new files in attachments */
+            this.form.attachments = [...this.form.attachments, ...response]
             this.buefyBar(this.$t('admin.attachment_uploaded_successfully'))
           })
       } else {
-        this.$UploadService.uploadSingleFile({
+        if (this.form.primary_attachment.file) {
+          await this.handleDeleteFile(this.form.primary_attachment.file, this.uploaderFolder)
+        }
+        await this.$UploadService.uploadSingleFile({
           file: data,
           path: this.uploaderFolder
         })
@@ -186,6 +210,15 @@ export default {
           })
       }
     },
+    async deleteFile (index) {
+      await this.handleDeleteFile(this.form.attachments[index].file, this.uploaderFolder)
+        .then(() => {
+          this.buefyBar(this.$t('admin.attachment_deleted_successfully'))
+          //* remove index from array */
+          this.form.attachments.splice(index, 1)
+          console.log('attach', this.form.attachments)
+        })
+    },
     productDetails () {
       if (this.productDetail) {
         this.reAssignForm(this.productDetail)
@@ -193,15 +226,36 @@ export default {
     },
     reAssignForm (data) {
       const obj = {
-        categories: data.categories.map(category => category.id)
+        en: data.en,
+        ar: data.ar,
+        category_id: data.category.id,
+        subcategory_id: data.subcategory.id,
+        brand_id: data.brand.id || '',
+        barcode: data.barcode,
+        price: data.price,
+        quantity: data.quantity,
+        is_unique: data.is_unique,
+        is_active: data.is_active,
+        properties: data.extra_properties,
+        max_purchase_quantity: data.max_purchase_quantity,
+        primary_attachment: data.primary_attachment,
+        attachments: data.attachments
       }
       // overwrite of form data
-      this.form = { ...data, ...obj }
+      this.form = obj
+      //* prepare drop downs & extra properties data */
+      this.changeCategory(this.form.category_id)
     },
     async submit () {
       const validData = await this.$validator.validateAll()
 
       if (validData) {
+        this.form.properties = this.properties.map((obj) => {
+          return {
+            property_id: obj.id,
+            value: obj.value
+          }
+        })
         if (this.param_id) {
           this.updateProduct()
         } else {
@@ -212,14 +266,14 @@ export default {
     createProduct () {
       this.$ProductService.createProduct(this.form)
         .then(() => {
-          this.$router.push({ name: 'products' })
+          this.$router.push({ name: 'admin.products' })
           this.buefyBar(this.$t('admin.created_successfully'))
         })
     },
     updateProduct () {
       this.$ProductService.updateProduct(this.form, this.param_id)
         .then(() => {
-          this.$router.push({ name: 'products' })
+          this.$router.push({ name: 'admin.products' })
           this.buefyBar(this.$t('admin.updated_successfully'))
         })
     },

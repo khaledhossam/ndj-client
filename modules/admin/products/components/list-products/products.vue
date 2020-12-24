@@ -94,7 +94,7 @@
             <b-table-column :label="$t('admin.action')" custom-key="actions" class="is-actions-cell">
               <div class="buttons is-right">
                 <nuxt-link
-                  :to="{ name: 'updateProuct', params: { id: props.row.id } }"
+                  :to="{ name: 'updateProduct', params: { id: props.row.id } }"
                   class="button is-small is-primary"
                 >
                   <b-icon icon="account-edit" size="is-small" />

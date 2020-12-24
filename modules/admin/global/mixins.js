@@ -27,6 +27,12 @@ export default {
     trashCancel () {
       this.isModalActive = false
     },
+    async handleDeleteFile (filePath, folderName) {
+      await this.$UploadService.deleteSingleFile({
+        file: filePath.split('/').pop(),
+        path: folderName
+      })
+    },
     onLangChange (lang) {
       this.$store.commit('localization/setCurrentLocale', lang)
 

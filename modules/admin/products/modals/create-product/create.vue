@@ -139,6 +139,19 @@
             </p>
           </b-field>
 
+          <b-field :label="$t('admin.barcode')" horizontal>
+            <b-input
+              v-model="form.barcode"
+              v-validate="{ required: true, numeric:true }"
+              :placeholder="$t('admin.barcode')"
+              name="barcode"
+              :class="{ 'is-invalid': errors.has('barcode') }"
+            />
+            <p v-show="errors.has('barcode')" class="text-danger text-sm">
+              {{ errors.first("barcode") }}
+            </p>
+          </b-field>
+
           <b-field :label="$t('admin.category')" horizontal>
             <v-autocomplete
               v-model="form.category_id"
@@ -308,13 +321,29 @@
           </b-field>
 
           <b-field :label="$t('admin.primary_attachment')" horizontal>
-            <file-picker v-model="form.primary_attachment.file" />
+            <file-picker v-model="form.primary_attachment.file" v-validate="{ required: true }" name="primary_attachment" />
+             <p v-show="errors.has('primary_attachment')" class="text-danger text-sm">
+              {{ errors.first("primary_attachment") }}
+            </p>
+          </b-field>
+          <b-field v-if="form.primary_attachment.file" :label="$t('admin.preview')">
+            <v-col md="3">
+              <img :src="form.primary_attachment.file" class="img-thumbnail">
+            </v-col>
           </b-field>
 
           <b-field :label="$t('admin.secondary_attachments')" horizontal>
             <file-picker v-model="form.attachments" :multiple="true" />
           </b-field>
 
+          <b-field v-if="form.attachments.length" :label="$t('admin.preview')">
+            <v-col v-for="(attachment, index) in form.attachments" :key="index" md="3">
+              <b-field>
+                <span class="mdi mdi-trash-can-outline text-danger mdi-24px cursor" @click="deleteFile(index)" />
+                <img :src="attachment.file" class="img-thumbnail">
+              </b-field>
+            </v-col>
+          </b-field>
           <hr>
           <b-field :label="$t('admin.status')" horizontal>
             <b-switch v-model="form.is_active" />

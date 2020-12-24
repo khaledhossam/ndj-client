@@ -41,7 +41,7 @@ export default {
       },
       uploader: {
         path: 'admin/avatar',
-        file_url: null
+        file: null
       },
       param_id: this.$route.params.id,
       customEvents: [
@@ -98,10 +98,13 @@ export default {
       this.form = { ...this.form, ...obj }
     },
     handleUploadFile (file) {
-      this.uploader.file_url = file
+      if (this.form.avater) {
+        this.handleDeleteFile(this.form.avatar, this.uploader.path)
+      }
+      this.uploader.file = file
       this.$UploadService.uploadSingleFile(this.uploader)
         .then((response) => {
-          this.form.avatar = response.file_url
+          this.form.avatar = response.file
           this.buefyBar('File Uploaded Successfully')
         })
     },

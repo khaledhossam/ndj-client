@@ -65,5 +65,6 @@ export default {
   barcode: 'الباركود',
   primary_attachment: 'الصورة الرئيسية',
   secondary_attachments: 'الصور الفرعية',
-  attachment_uploaded_successfully: 'تم رفع الملفات بنجاح'
+  attachment_uploaded_successfully: 'تم رفع الملفات بنجاح',
+  attachment_deleted_successfully: 'تم حذف الملف بنجاح'
 }
