@@ -18,6 +18,8 @@ export default {
   subcategory_id: 'القسم الفرعى',
   stores: 'المتاجر',
   max_purchase_quantity: 'أكثر كمية يمكن شراؤها',
+  primary_attachment: 'الصورة الرئيسية',
+  profile_image: 'الصورة الشخصية',
   'en.name.*': 'الاسم بالانجليزى',
   'en.name.0': 'الاسم بالانجليزى',
   'en.name.1': 'الاسم بالانجليزى',

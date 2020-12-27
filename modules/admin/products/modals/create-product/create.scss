@@ -1,0 +1,16 @@
+.img-wrap {
+  position: relative;
+}
+.img-wrap .delete-file {
+  position: absolute;
+  top: 5px;
+  right: 8px;
+  z-index: 100;
+}
+.img-wrap img{
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+span.v-stepper__step__step.primary{
+  background: #00b89c !important;
+}

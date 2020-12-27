@@ -1,6 +1,6 @@
 export default {
   name: 'name',
-  password_confirmation: 'Password',
+  password_confirmation: 'Password confirmation',
   'en.name': 'English Name',
   'ar.name': 'Arabic Name',
   property_type_id: 'Property Type',
@@ -14,6 +14,7 @@ export default {
   subcategory_id: 'Subcategory',
   stores: 'Stores',
   max_purchase_quantity: 'Max Puchase Quantity',
+  profile_image: 'Profile Image',
   'en.name.*': 'English Name',
   'en.name.0': 'English Name',
   'en.name.1': 'English Name',

@@ -6,57 +6,63 @@
           {{ $t('admin.login') }}
         </h4>
         <div class="card-body">
-          <b-form class @submit.prevent="handleSubmit()" @reset="handleReset()">
-            <div class="row">
-              <div class="col-md-12">
-                <label>
-                  {{ $t('admin.email') }}
-                </label>
-                <b-input
+          <v-form class @submit.prevent="handleSubmit()" @reset="handleReset()">
+            <v-row>
+              <v-col
+                cols="12"
+              >
+                <v-text-field
                   v-model="form.email"
                   v-validate="{ required: true, max: 150, email: true }"
                   icon="email"
                   type="email"
-                  :placeholder="$t('admin.email')"
+                  :label="$t('admin.email')"
                   name="email"
                   :class="{ 'is-invalid': errors.has('email') }"
-                />
-                <p v-show="errors.has('email')" class="text-danger text-sm">
+                >
+                </v-text-field>
+                <span v-show="errors.has('email')" class="text-error text-sm">
                   {{ errors.first("email") }}
-                </p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <label>
-                  {{ $t('admin.password') }}
-                </label>
-                <b-input
+                </span>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col
+                cols="12"
+              >
+                <v-text-field
                   v-model="form.password"
                   v-validate="{ required: true }"
                   icon="eye"
                   type="password"
-                  :placeholder="$t('admin.password')"
+                  :label="$t('admin.password')"
                   name="password"
                   password-reveal
                   :class="{ 'is-invalid': errors.has('password') }"
-                />
-                <p v-show="errors.has('password')" class="text-danger text-sm">
+                >
+                </v-text-field>
+                <span v-show="errors.has('password')" class="text-error text-sm">
                   {{ errors.first("password") }}
-                </p>
-              </div>
-            </div>
-            <div class="row">
-              <b-checkbox v-model="form.remember">
-                {{ $t('admin.remember') }}
-              </b-checkbox>
-            </div>
-            <div class="row buttons mt-3">
-              <b-button type="is-primary" expanded @click="handleSubmit()">
-                {{ $t('admin.login') }}
-              </b-button>
-            </div>
-          </b-form>
+                </span>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col
+                cols="12"
+              >
+                <b-checkbox v-model="form.remember">
+                  {{ $t('admin.remember') }}
+                </b-checkbox>
+              </v-col>
+              <v-col
+                cols="12"
+              >
+                <b-button type="is-primary" class="text-center" expanded @click="handleSubmit()">
+                  {{ $t('admin.login') }}
+                </b-button>
+              </v-col>
+            </v-row>
+          </v-form>
         </div>
       </div>
     </div>

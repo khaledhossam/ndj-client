@@ -66,5 +66,8 @@ export default {
   primary_attachment: 'Primary Attachment',
   secondary_attachments: 'Attachments',
   attachment_uploaded_successfully: 'Attachment Uploaded Successfully',
-  attachment_deleted_successfully: 'Attachment Deleted Successfully'
+  attachment_deleted_successfully: 'Attachment Deleted Successfully',
+  profile_image: ' profile image',
+  previous: 'Previous',
+  next: 'Next'
 }

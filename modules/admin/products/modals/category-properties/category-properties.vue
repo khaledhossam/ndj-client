@@ -1,92 +1,108 @@
 <template>
   <card-component v-if="categoryProperties.length" :title="$t('admin.properties')" icon="ballot-outline">
-    <b-field v-for="(property, key) in categoryProperties" :key="key" label="" horizontal>
+    <v-row v-for="(property, key) in categoryProperties" :key="key">
       <!-- start text property -->
-      <b-field
+      <v-col
+        cols="12"
+        md="12"
         v-if="property.property_type.key == 'text'"
         :label="property[currentLocale].name"
-        horizontal
       >
-        <b-input
+        <v-text-field
           v-model.lazy="property.value"
           v-validate="property.is_required ? 'required' : ''"
           :placeholder="property[currentLocale].name"
           :name="`property.${key}`"
           :class="{ 'is-invalid': errors.has(`property.${key}`) }"
         />
-        <p v-show="errors.has(`property.${key}`)" class="text-danger text-sm">
+        <span v-show="errors.has(`property.${key}`)" class="text-error text-sm">
           {{ errors.first(`property.${key}`) }}
-        </p>
-      </b-field>
+        </span>
+      </v-col>
       <!-- end text property -->
 
       <!-- start number property -->
-      <b-field
+      <v-col
+        cols="12"
+        md="12"
         v-else-if="property.property_type.key == 'number'"
         :label="property[currentLocale].name"
-        horizontal
       >
-        <b-input
+        <v-text-field
           v-model="property.value"
           v-validate="property.is_required ? 'required|numeric' : 'numeric'"
           :placeholder="property[currentLocale].name"
           :name="`property.${key}`"
           :class="{ 'is-invalid': errors.has(`property.${key}`) }"
         />
-        <p v-show="errors.has(`property.${key}`)" class="text-danger text-sm">
+        <span v-show="errors.has(`property.${key}`)" class="text-danger text-sm">
           {{ errors.first(`property.${key}`) }}
-        </p>
-      </b-field>
+        </span>
+      </v-col>
       <!-- end number property -->
 
       <!-- start textarea property -->
-      <b-field
+      <v-col
+        cols="12"
+        md="12"
         v-else-if="property.property_type.key == 'textarea'"
         :label="property[currentLocale].name"
-        horizontal
       >
         <v-textarea
           v-model="property.value"
           v-validate="property.is_required ? 'required' : ''"
           :name="`property.${key}`"
-          outlined
           :label="property[currentLocale].name"
-          value=""
         />
-        <p v-show="errors.has(`property.${key}`)" class="text-danger text-sm">
+        <span v-show="errors.has(`property.${key}`)" class="text-danger text-sm">
           {{ errors.first(`property.${key}`) }}
-        </p>
-      </b-field>
+        </span>
+      </v-col>
       <!-- end textarea property -->
 
       <!-- start date property -->
-      <b-field
+      <v-col
+        cols="12"
+        md="12"
         v-else-if="property.property_type.key == 'date'"
         :label="property[currentLocale].name"
-        horizontal
       >
-        <b-datepicker
-          v-model.lazy="property.value"
-          v-validate="property.is_required ? 'required' : ''"
-          :placeholder="property[currentLocale].name"
-          icon="calendar-today"
-          :name="`property.${key}`"
-          :min-date="minDate"
-          :locale="currentLocale"
-          :date-formatter="dateFormatter"
-        />
-        <p v-show="errors.has(`property.${key}`)" class="text-danger text-sm">
+        <v-menu
+          v-model="menu1"
+          :close-on-content-click="false"
+          max-width="290"
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <v-text-field
+              v-model="property.value"
+              :value="computedDateFormattedMomentjs"
+              clearable
+              :label="property[currentLocale].name"
+              readonly
+              v-bind="attrs"
+              v-on="on"
+              prepend-icon="mdi-calendar"
+              @click:clear="property.value = null"
+            ></v-text-field>
+          </template>
+          <v-date-picker
+            v-model="property.value"
+            @change="menu1 = false"
+          ></v-date-picker>
+        </v-menu>
+        <span v-show="errors.has(`property.${key}`)" class="text-danger text-sm">
           {{ errors.first(`property.${key}`) }}
-        </p>
-      </b-field>
+        </span>
+      </v-col>
       <!-- end date property -->
 
       <!-- start checkbox property -->
-      <b-field
+      <v-col
+        cols="12"
+        md="12"
         v-else-if="property.property_type.key == 'checkbox'"
         :label="property[currentLocale].name"
         class="has-check"
-        horizontal
       >
         <b-checkbox
           v-for="(option, index) in property.options"
@@ -99,18 +115,19 @@
         >
           {{ option[currentLocale].name }}
         </b-checkbox>
-        <p v-show="errors.has(`property.${key}`)" class="text-danger text-sm">
+        <span v-show="errors.has(`property.${key}`)" class="text-danger text-sm">
           {{ errors.first(`property.${key}`) }}
-        </p>
-      </b-field>
+        </span>
+      </v-col>
       <!-- end checkbox property -->
 
       <!-- start radio property -->
-      <b-field
+      <v-col
+        cols="12"
+        md="12"
         v-else-if="property.property_type.key == 'radio'"
         :label="property[currentLocale].name"
         class="has-check"
-        horizontal
       >
         <b-radio
           v-for="(option, index) in property.options"
@@ -123,17 +140,19 @@
         >
           {{ option[currentLocale].name }}
         </b-radio>
-        <p v-show="errors.has(`property.${key}`)" class="text-danger text-sm">
+        <span v-show="errors.has(`property.${key}`)" class="text-danger text-sm">
           {{ errors.first(`property.${key}`) }}
-        </p>
-      </b-field>
+        </span>
+      </v-col>
       <!-- end radio property -->
 
       <!-- start multi select property -->
-      <b-field
+      <v-col
+        cols="12"
+        md="12"
         v-else-if="property.property_type.key == 'multiple_select'"
         :label="property[currentLocale].name"
-        horizontal>
+      >
         <v-autocomplete
           v-model="property.value"
           v-validate="property.is_required ? 'required' : ''"
@@ -185,17 +204,18 @@
             </v-list-item-content>
           </template>
         </v-autocomplete>
-        <p v-show="errors.has(`property.${key}`)" class="text-danger text-sm">
+        <span v-show="errors.has(`property.${key}`)" class="text-danger text-sm">
           {{ errors.first(`property.${key}`) }}
-        </p>
-      </b-field>
+        </span>
+      </v-col>
       <!-- start multi select property -->
 
       <!-- start select property -->
-      <b-field
+      <v-col
+        cols="12"
+        md="12"
         v-else
         :label="property[currentLocale].name"
-        horizontal
       >
         <b-form-select
           v-model="property.value"
@@ -212,12 +232,12 @@
             {{ option[currentLocale].name }}
           </option>
         </b-form-select>
-        <p v-show="errors.has(`property.${key}`)" class="text-danger text-sm">
+        <span v-show="errors.has(`property.${key}`)" class="text-danger text-sm">
           {{ errors.first(`property.${key}`) }}
-        </p>
-      </b-field>
+        </span>
+      </v-col>
       <!-- start select property -->
-    </b-field>
+    </v-row>
   </card-component>
 </template>
 <script src="./category-properties.js"></script>

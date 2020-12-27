@@ -39,6 +39,7 @@ export default {
         password: null,
         password_confirmation: null
       },
+      profile_image: [],
       uploader: {
         path: 'admin/avatar',
         file: null
@@ -105,6 +106,7 @@ export default {
       this.$UploadService.uploadSingleFile(this.uploader)
         .then((response) => {
           this.form.avatar = response.file
+          console.log('avatar', this.form)
           this.buefyBar('File Uploaded Successfully')
         })
     },

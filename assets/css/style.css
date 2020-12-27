@@ -4,14 +4,14 @@ body{
 .b-table .table-wrapper.has-sticky-header{
   height: 480px;
 }
-.is-invalid{
-  border: 1px solid #dc3545;
-  border-radius: 5px;
+.is-invalid .theme--light.v-label,span.text-error{
+  color: #ff3d00;
 }
-p.text-danger{
-  background: #ffe2e2;
-  padding: 5px;
+span.text-error{
+  font-size: 12px;
+  /* background: #ffe2e2;
   border-radius: 5px;
+  padding: 5px; */
 }
 .custom-alert {
   padding: 0.25rem 0.25rem;

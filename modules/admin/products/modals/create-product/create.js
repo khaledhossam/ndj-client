@@ -36,11 +36,13 @@ export default {
   },
   data () {
     return {
+      stepper: 1,
       titlePage: this.$t('admin.products'),
       subcategories: [],
       stores: [],
       properties: [],
       uploaderFolder: 'products',
+      primary_attachment: [],
       form: {
         en: {
           name: '',
@@ -162,7 +164,7 @@ export default {
             if (Array.isArray(formValue.value)) {
               obj.value = formValue.value.map(value => value.id)
             } else {
-              obj.value = obj.property_type.key === 'date' ? new Date(formValue.value) : formValue.value
+              obj.value = formValue.value
             }
           } else {
             obj = this.defaultPropertyValue(obj)
@@ -178,7 +180,7 @@ export default {
       if (obj.property_type.has_options) {
         obj.value = []
       } else {
-        obj.value = obj.property_type.key === 'date' ? new Date() : ''
+        obj.value = ''
       }
       return obj
     },
@@ -245,6 +247,20 @@ export default {
       this.form = obj
       //* prepare drop downs & extra properties data */
       this.changeCategory(this.form.category_id)
+    },
+    async firstStep () {
+      const validData = await this.$validator.validateAll('firstStep')
+
+      if (validData) {
+        this.stepper = 2
+      }
+    },
+    async secondStep () {
+      const validData = await this.$validator.validateAll('secondStep')
+
+      if (validData) {
+        this.stepper = 3
+      }
     },
     async submit () {
       const validData = await this.$validator.validateAll()

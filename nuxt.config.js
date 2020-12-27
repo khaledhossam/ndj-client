@@ -3,11 +3,6 @@ import i18n from './locales/i18n'
 // https://www.toptal.com/vue-js/server-side-rendered-vue-js-using-nuxt-js
 //** to fix out of heap memory */
 require('dotenv').config()
-// "scripts": {
-//   "dev": "node --max-old-space-size=4096 node_modules/nuxt/bin/nuxt.js",
-//   "build": "node --max-old-space-size=4096 node_modules/nuxt/bin/nuxt.js build",
-//   "start": "node --max-old-space-size=4096 node_modules/nuxt/bin/nuxt.js start"
-// },
 export default {
   target: 'server',
   // Global page headers (https://go.nuxtjs.dev/config-head)

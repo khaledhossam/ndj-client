@@ -1,4 +1,6 @@
 import { mapState } from 'vuex'
+import moment from 'moment'
+// import { format, parseISO } from 'date-fns'
 
 export default {
   props: ['properties'],
@@ -7,7 +9,7 @@ export default {
     return {
       categoryProperties: this.properties || [],
       icon: 'mdi-checkbox-blank-outline',
-      minDate: new Date(),
+      menu1: false,
       customEvents: [
         { eventName: 'reset-properties', callback: this.resetProperties }
       ]
@@ -20,6 +22,9 @@ export default {
     }.bind(this))
   },
   computed: {
+    computedDateFormattedMomentjs () {
+      return this.date ? moment(this.date).format('dddd, MMMM Do YYYY') : ''
+    },
     ...mapState({
       currentLocale: state => state.localization.currentLocale
     })
@@ -31,13 +36,6 @@ export default {
     }.bind(this))
   },
   methods: {
-    dateFormatter (dt) {
-      return dt.toLocaleDateString()
-    },
-    dateInput (index) {
-      const value = this.categoryProperties[index].value
-      this.categoryProperties[index].value = value.toLocaleDateString()
-    },
     removeSelectItem (arr, item) {
       const index = arr.indexOf(item.id)
       arr.splice(index, 1)
