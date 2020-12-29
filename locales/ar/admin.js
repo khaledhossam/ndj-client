@@ -66,5 +66,9 @@ export default {
   primary_attachment: 'الصورة الرئيسية',
   secondary_attachments: 'الصور الفرعية',
   attachment_uploaded_successfully: 'تم رفع الملفات بنجاح',
-  attachment_deleted_successfully: 'تم حذف الملف بنجاح'
+  attachment_deleted_successfully: 'تم حذف الملف بنجاح',
+  profile_image: 'الصورة الشخصية',
+  previous: 'السابق',
+  next: 'التالى',
+  image: 'الصورة'
 }

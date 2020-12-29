@@ -40,6 +40,7 @@ export default {
         password_confirmation: null
       },
       profile_image: [],
+      enableSubmit: true,
       uploader: {
         path: 'admin/avatar',
         file: null
@@ -99,6 +100,8 @@ export default {
       this.form = { ...this.form, ...obj }
     },
     handleUploadFile (file) {
+      this.enableSubmit = false
+
       if (this.form.avater) {
         this.handleDeleteFile(this.form.avatar, this.uploader.path)
       }
@@ -106,7 +109,7 @@ export default {
       this.$UploadService.uploadSingleFile(this.uploader)
         .then((response) => {
           this.form.avatar = response.file
-          console.log('avatar', this.form)
+          this.enableSubmit = true
           this.buefyBar('File Uploaded Successfully')
         })
     },

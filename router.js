@@ -10,8 +10,6 @@ import blogIndex from '~/modules/blog/index.vue'
 import blogRoutes from '~/modules/blog/blog.routes'
 
 //* ** module admin routes** */
-// import adminCategoryIndex from '~/modules/admin/categories/index.vue'
-// import adminCategoryRoutes from '~/modules/admin/categories/category.routes'
 import adminIndex from '~/modules/admin/index.vue'
 import adminRoutes from '~/modules/admin/admin.routes.js'
 
@@ -60,11 +58,6 @@ const router = new Router({
         noAuthentication: true
       }
     }
-    // {
-    //   path: '/admin',
-    //   component: adminCategoryIndex,
-    //   children: adminCategoryRoutes
-    // }
   ]
 })
 

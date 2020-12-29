@@ -3,16 +3,19 @@ import tables from '~/modules/admin/tables.vue'
 import forms from '~/modules/admin/forms.vue'
 import profile from '~/modules/admin/profile.vue'
 import client from '~/modules/admin/client/_id.vue'
-// import adminCategoryIndex from '~/modules/admin/categories/index.vue'
-// import adminCategoryRoutes from '~/modules/admin/categories/category.routes'
+
 //* admin routes of each store *//
 import admins from '~/modules/admin/admins/components/list-admins/admins.vue'
 import createAdmin from '~/modules/admin/admins/modals/create-admin/create.vue'
-// import updateAdmin from '~/modules/admin/admins/modals/create-admin/create.vue'
+
+import categories from '~/modules/admin/categories/components/list-categories/categories.vue'
+import createCategory from '~/modules/admin/categories/modals/create-category/create.vue'
+
+import subcategories from '~/modules/admin/subcategories/components/list-subcategories/subcategories.vue'
+import createSubcategory from '~/modules/admin/subcategories/modals/create-subcategory/create.vue'
 
 import roles from '~/modules/admin/roles/components/list-roles/roles.vue'
 import createRole from '~/modules/admin/roles/modals/create-role/create.vue'
-// import updateRole from '~/modules/admin/roles/modals/create-role/create.vue'
 
 import properties from '~/modules/admin/properties/components/list-properties/properties.vue'
 import createProperty from '~/modules/admin/properties/modals/create-property/create.vue'
@@ -64,8 +67,44 @@ export default [
   },
   {
     name: 'updateAdmin',
-    path: 'admins/:id',
+    path: 'admins/:id/edit',
     component: createAdmin,
+    props: true
+  },
+  {
+    name: 'admin.categories',
+    path: 'categories',
+    component: categories,
+    props: true
+  },
+  {
+    name: 'createCategory',
+    path: 'categories/create',
+    component: createCategory,
+    props: true
+  },
+  {
+    name: 'updateCategory',
+    path: 'categories/:id/edit',
+    component: createCategory,
+    props: true
+  },
+  {
+    name: 'admin.subcategories',
+    path: 'subcategories',
+    component: subcategories,
+    props: true
+  },
+  {
+    name: 'createSubcategory',
+    path: 'subcategories/create',
+    component: createSubcategory,
+    props: true
+  },
+  {
+    name: 'updateSubcategory',
+    path: 'subcategories/:id/edit',
+    component: createSubcategory,
     props: true
   },
   {
@@ -82,7 +121,7 @@ export default [
   },
   {
     name: 'updateRole',
-    path: 'roles/:id',
+    path: 'roles/:id/edit',
     component: createRole,
     props: true
   },
@@ -100,7 +139,7 @@ export default [
   },
   {
     name: 'updateProperty',
-    path: 'properties/:id',
+    path: 'properties/:id/edit',
     component: createProperty,
     props: true
   },
@@ -118,13 +157,8 @@ export default [
   },
   {
     name: 'updateProduct',
-    path: 'products/:id',
+    path: 'products/:id/edit',
     component: createProduct,
     props: true
   }
-  // {
-  //   path: 'categories',
-  //   component: adminCategoryIndex,
-  //   children: adminCategoryRoutes
-  // }
 ]

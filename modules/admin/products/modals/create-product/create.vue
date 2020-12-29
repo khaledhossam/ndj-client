@@ -546,6 +546,7 @@
                       <b-button
                         native-type="submit"
                         type="is-primary"
+                        :disabled="!enableSubmit"
                       >
                         {{ $t('admin.submit') }}
                       </b-button>

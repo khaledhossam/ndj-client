@@ -69,5 +69,6 @@ export default {
   attachment_deleted_successfully: 'Attachment Deleted Successfully',
   profile_image: ' profile image',
   previous: 'Previous',
-  next: 'Next'
+  next: 'Next',
+  image: 'Image'
 }

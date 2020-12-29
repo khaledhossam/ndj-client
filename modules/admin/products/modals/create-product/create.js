@@ -43,6 +43,7 @@ export default {
       properties: [],
       uploaderFolder: 'products',
       primary_attachment: [],
+      enableSubmit: true,
       form: {
         en: {
           name: '',
@@ -188,6 +189,8 @@ export default {
       this.properties = data
     },
     async handleUploadFile (data) {
+      this.enableSubmit = false
+
       if (Array.isArray(data)) {
         await this.$UploadService.uploadMultipleFiles({
           files: data,
@@ -196,6 +199,7 @@ export default {
           .then((response) => {
             //* append new files in attachments */
             this.form.attachments = [...this.form.attachments, ...response]
+            this.enableSubmit = true
             this.buefyBar(this.$t('admin.attachment_uploaded_successfully'))
           })
       } else {
@@ -208,16 +212,19 @@ export default {
         })
           .then((response) => {
             this.form.primary_attachment = response
+            this.enableSubmit = true
             this.buefyBar(this.$t('admin.attachment_uploaded_successfully'))
           })
       }
     },
     async deleteFile (index) {
+      this.enableSubmit = false
       await this.handleDeleteFile(this.form.attachments[index].file, this.uploaderFolder)
         .then(() => {
           this.buefyBar(this.$t('admin.attachment_deleted_successfully'))
           //* remove index from array */
           this.form.attachments.splice(index, 1)
+          this.enableSubmit = true
           console.log('attach', this.form.attachments)
         })
     },
@@ -250,7 +257,7 @@ export default {
     },
     async firstStep () {
       const validData = await this.$validator.validateAll('firstStep')
-
+      console.log('test', this.$validator)
       if (validData) {
         this.stepper = 2
       }

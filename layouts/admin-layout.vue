@@ -33,6 +33,11 @@ export default {
             to: { name: 'statistics' },
             icon: 'desktop-mac',
             label: this.$t('admin.dashboard')
+          },
+          {
+            to: { name: 'admin.categories' },
+            icon: 'view-list',
+            label: this.$t('admin.categories')
           }
         ],
         this.$t('admin.admin_roles'),
@@ -74,41 +79,41 @@ export default {
               }
             ]
           }
-        ],
-        'Examples',
-        [
-          {
-            to: { name: 'tables' },
-            label: 'Tables',
-            icon: 'table',
-            updateMark: true
-          },
-          {
-            to: { name: 'forms' },
-            label: 'Forms',
-            icon: 'square-edit-outline'
-          },
-          {
-            to: { name: 'profile' },
-            label: 'Profile',
-            icon: 'account-circle'
-          },
-          {
-            label: 'submenus',
-            subLabel: 'Submenus Example',
-            icon: 'view-list',
-            menu: [
-              {
-                href: '#void',
-                label: 'Sub-item One'
-              },
-              {
-                href: '#void',
-                label: 'Sub-item Two'
-              }
-            ]
-          }
         ]
+        // 'Examples',
+        // [
+        //   {
+        //     to: { name: 'tables' },
+        //     label: 'Tables',
+        //     icon: 'table',
+        //     updateMark: true
+        //   },
+        //   {
+        //     to: { name: 'forms' },
+        //     label: 'Forms',
+        //     icon: 'square-edit-outline'
+        //   },
+        //   {
+        //     to: { name: 'profile' },
+        //     label: 'Profile',
+        //     icon: 'account-circle'
+        //   },
+        //   {
+        //     label: 'submenus',
+        //     subLabel: 'Submenus Example',
+        //     icon: 'view-list',
+        //     menu: [
+        //       {
+        //         href: '#void',
+        //         label: 'Sub-item One'
+        //       },
+        //       {
+        //         href: '#void',
+        //         label: 'Sub-item Two'
+        //       }
+        //     ]
+        //   }
+        // ]
         // 'About',
         // [
         //   {

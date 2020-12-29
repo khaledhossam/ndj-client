@@ -38,7 +38,7 @@ export default {
       queryParam: '',
       customEvents: [
         { eventName: 'handle-quick-search', callback: this.handleSearch },
-        { eventName: 'event-delete-role', callback: this.handleDeleteAdmin }
+        { eventName: 'event-delete-role', callback: this.handleDeleteRole }
       ]
     }
   },
@@ -123,12 +123,12 @@ export default {
       this.sortOrder = order
       this.loadAsyncData()
     },
-    handleDeleteAdmin (id) {
-      this.$RoleService.deleteAdmin(id)
+    handleDeleteRole (id) {
+      this.$RoleService.deleteRole(id)
         .then(() => {
           //* update list to remove this row *//
-          this.collection = this.collection.filter((admin) => {
-            return admin.id !== id
+          this.collection = this.collection.filter((role) => {
+            return role.id !== id
           })
         })
     },
