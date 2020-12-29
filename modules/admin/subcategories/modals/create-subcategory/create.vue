@@ -16,8 +16,7 @@
                 :label="$t('admin[\'en.name\']')"
                 name="en.name"
                 :class="{ 'is-invalid': errors.has('en.name') }"
-              >
-              </v-text-field>
+              />
               <span v-show="errors.has('en.name')" class="text-error text-sm">
                 {{ errors.first("en.name") }}
               </span>
@@ -34,8 +33,7 @@
                 :label="$t('admin[\'ar.name\']')"
                 name="ar.name"
                 :class="{ 'is-invalid': errors.has('ar.name') }"
-              >
-              </v-text-field>
+              />
               <span v-show="errors.has('ar.name')" class="text-error text-sm">
                 {{ errors.first("ar.name") }}
               </span>
@@ -43,26 +41,70 @@
 
             <v-col
               cols="12"
-              md="12"
+              md="9"
               :label="$t('admin.categories')"
             >
-              <b-form-select
-                v-model="form.category_id"
+              <v-select
+                v-model="form.parent_id"
                 v-validate="'required'"
-                :placeholder="$t('admin.categories')"
-                name="category_id"
+                :items="categories"
+                :label="$t('admin.categories')"
+                name="parent_id"
+                item-text="name"
+                :item-value="'id'"
+                :class="{ 'is-invalid': errors.has('parent_id') }"
               >
-                <option
-                  v-for="(category, index) in categories"
-                  :key="index"
-                  :value="category.id"
-                  :placeholder="category[currentLocale].name"
-                >
-                  {{ category[currentLocale].name }}
-                </option>
-              </b-form-select>
-              <span v-show="errors.has('category_id')" class="text-danger text-sm">
-                {{ errors.first('category_id') }}
+                <template v-slot:selection="data">
+                  <v-chip
+                    v-bind="data.attrs"
+                    :input-value="data.selected"
+                    @click="data.select"
+                  >
+                    {{ data.item[currentLocale].name }}
+                  </v-chip>
+                </template>
+                <template v-slot:item="data">
+                  <v-list-item-content>
+                    <v-list-item-title v-text="data.item[currentLocale].name" />
+                  </v-list-item-content>
+                </template>
+              </v-select>
+              <span v-show="errors.has('parent_id')" class="text-error text-sm">
+                {{ errors.first('parent_id') }}
+              </span>
+            </v-col>
+
+            <v-col
+              cols="12"
+              md="9"
+            >
+              <v-text-field
+                v-model="form.tax_percentage"
+                v-validate="{ required: true, numeric: true, max_value: 100, min_value: 0 }"
+                :label="$t('admin.tax_percentage')"
+                name="tax_percentage"
+                suffix="%"
+                :class="{ 'is-invalid': errors.has('tax_percentage') }"
+              />
+              <span v-show="errors.has('tax_percentage')" class="text-error text-sm">
+                {{ errors.first("tax_percentage") }}
+              </span>
+            </v-col>
+
+            <v-col
+              cols="12"
+              md="9"
+            >
+              <v-select
+                v-model="form.order"
+                v-validate="'required'"
+                :items="orders"
+                :label="$t('admin.orderSort')"
+                name="orderSort"
+                :class="{ 'is-invalid': errors.has('orderSort') }"
+              />
+              <span v-show="errors.has('orderSort')" class="text-error text-sm">
+                {{ errors.first("orderSort") }}
               </span>
             </v-col>
 
@@ -72,14 +114,14 @@
             >
               <v-file-input
                 v-model="image"
+                v-validate="{ required: true }"
                 accept="image/*"
                 :label="$t('admin.image')"
-                v-validate="{ required: true }"
                 name="image"
-                @change="handleUploadFile"
                 :class="{ 'is-invalid': errors.has('image') }"
                 small-chips
-              ></v-file-input>
+                @change="handleUploadFile"
+              />
 
               <a v-if="form.image" :href="form.image" target="_blank">
                 <v-img
@@ -131,9 +173,7 @@
                 </b-field>
               </b-field>
             </v-col>
-
           </v-row>
-
         </v-form>
       </card-component>
     </section>

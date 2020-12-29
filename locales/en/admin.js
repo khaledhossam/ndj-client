@@ -44,6 +44,7 @@ export default {
   properties: 'Extra Properties',
   property_type_id: 'Property Type',
   categories: 'Categories',
+  subcategories: 'Subcategories',
   properties_products: 'Products & Properties',
   products: 'Products',
   required: 'Required',
@@ -59,6 +60,7 @@ export default {
   'en.description': 'English Description',
   'ar.description': 'Arabic Description',
   brand: 'Brand',
+  brands: 'Brands',
   max_purchase_quantity: 'Max Purchase Quantity',
   stores: 'Stores',
   is_unique: 'Unique For this Store Only',
@@ -70,5 +72,7 @@ export default {
   profile_image: ' profile image',
   previous: 'Previous',
   next: 'Next',
-  image: 'Image'
+  image: 'Image',
+  orderSort: 'Order',
+  tax_percentage: 'Tax Percentage'
 }

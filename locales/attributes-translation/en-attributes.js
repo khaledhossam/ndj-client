@@ -15,6 +15,7 @@ export default {
   stores: 'Stores',
   max_purchase_quantity: 'Max Puchase Quantity',
   profile_image: 'Profile Image',
+  tax_percentage: 'Tax Percentage',
   'en.name.*': 'English Name',
   'en.name.0': 'English Name',
   'en.name.1': 'English Name',

@@ -27,5 +27,14 @@ export default class CategoryService extends ApplicationService {
   async deleteCategory (id) {
     return await this.delete(`${this.resource}/${id}`)
   }
+
+  async getCategoryProperties (id, queryParam = {}) {
+    return await this.get(`${this.resource}/${id}/properties${queryParam}`)
+  }
+
+  async getCategorySubcategories (id, queryParam = {}) {
+    return await this.get(`${this.resource}/${id}/subcategories${queryParam}`)
+  }
+
   //* **************************************************** *//
 }

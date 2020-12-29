@@ -19,8 +19,7 @@
                   :label="$t('admin.email')"
                   name="email"
                   :class="{ 'is-invalid': errors.has('email') }"
-                >
-                </v-text-field>
+                />
                 <span v-show="errors.has('email')" class="text-error text-sm">
                   {{ errors.first("email") }}
                 </span>
@@ -39,8 +38,7 @@
                   name="password"
                   password-reveal
                   :class="{ 'is-invalid': errors.has('password') }"
-                >
-                </v-text-field>
+                />
                 <span v-show="errors.has('password')" class="text-error text-sm">
                   {{ errors.first("password") }}
                 </span>

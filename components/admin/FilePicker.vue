@@ -1,6 +1,6 @@
 <template>
   <b-field class="file">
-    <b-upload v-model="file" :accept="accept" @input="upload" :multiple="multiple">
+    <b-upload v-model="file" :accept="accept" :multiple="multiple" @input="upload">
       <a class="button is-primary">
         <b-icon icon="upload" custom-size="default" />
         <span>{{ buttonLabel }}</span>

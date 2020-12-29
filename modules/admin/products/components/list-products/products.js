@@ -86,7 +86,7 @@ export default {
     */
     loadAsyncData () {
       this.loading = true
-      this.queryParam = `?page=${this.page}&publicSearch=${this.searchValue}&orderBy=${this.sortField}&orderType=${this.sortOrder}`
+      this.queryParam = `?page=${this.page}&publicSearch=${this.searchValue}&orderBy=${this.sortField}&orderType=${this.sortOrder}&is_detailed=true`
 
       this.$ProductService.getProducts(this.queryParam)
         .then((response) => {

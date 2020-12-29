@@ -3,7 +3,7 @@
     <title-bar :title-stack="titleStack" />
     <section class="section is-main-section">
       <card-component :title="titleBar" icon="ballot">
-        <v-form @submit.prevent="submit" @reset="handleReset()" lazy-validation>
+        <v-form @submit.prevent="submit" @reset="handleReset()">
           <v-row>
             <v-col
               cols="12"
@@ -16,8 +16,7 @@
                 :label="$t('admin.name')"
                 name="name"
                 :class="{ 'is-invalid': errors.has('name') }"
-              >
-              </v-text-field>
+              />
               <span v-show="errors.has('name')" class="text-error text-sm">
                 {{ errors.first("name") }}
               </span>
@@ -35,7 +34,7 @@
                 :label="$t('admin.email')"
                 name="email"
                 :class="{ 'is-invalid': errors.has('email') }"
-              ></v-text-field>
+              />
               <span v-show="errors.has('email')" class="text-error text-sm">
                 {{ errors.first("email") }}
               </span>
@@ -54,7 +53,7 @@
                 name="phone"
                 expanded
                 :class="{ 'is-invalid': errors.has('phone') }"
-              ></v-text-field>
+              />
               <span v-show="errors.has('phone')" class="text-error text-sm">
                 {{ errors.first("phone") }}
               </span>
@@ -114,7 +113,7 @@
                 name="password"
                 :class="{ 'is-invalid': errors.has('password') }"
                 password-reveal
-              ></v-text-field>
+              />
               <span v-show="errors.has('password')" class="text-error text-sm">
                 {{ errors.first("password") }}
               </span>
@@ -132,7 +131,7 @@
                 name="password_confirmation"
                 :class="{ 'is-invalid': errors.has('password_confirmation') }"
                 password-reveal
-              ></v-text-field>
+              />
               <span v-show="errors.has('password_confirmation')" class="text-error text-sm">
                 {{ errors.first("password_confirmation") }}
               </span>
@@ -144,14 +143,14 @@
             >
               <v-file-input
                 v-model="profile_image"
+                v-validate="{ required: true }"
                 accept="image/*"
                 :label="$t('admin.profile_image')"
-                v-validate="{ required: true }"
                 name="profile_image"
-                @change="handleUploadFile"
                 :class="{ 'is-invalid': errors.has('profile_image') }"
                 small-chips
-              ></v-file-input>
+                @change="handleUploadFile"
+              />
 
               <a v-if="form.avatar" :href="form.avatar" target="_blank">
                 <v-img
@@ -203,7 +202,6 @@
                 </b-field>
               </b-field>
             </v-col>
-
           </v-row>
         </v-form>
       </card-component>

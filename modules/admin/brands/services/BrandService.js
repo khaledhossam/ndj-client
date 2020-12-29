@@ -1,22 +1,18 @@
 import ApplicationService from '@/services/ApplicationService'
 
-export default class PropertyService extends ApplicationService {
-  resource = '/admin/properties'
+export default class BrandService extends ApplicationService {
+  resource = '/admin/brands'
 
   //* **************************************************** *//
-  async getProperties (queryParam = {}) {
+  async getBrands (queryParam = {}) {
     return await this.get(`${this.resource}${queryParam}`)
   }
 
-  async getPropertyTypes (queryParam = {}) {
-    return await this.get(`/admin/property-types${queryParam}`)
-  }
-
-  async createProperty (data) {
+  async createBrand (data) {
     return await this.post(`${this.resource}`, data)
   }
 
-  async updateProperty (data, id) {
+  async updateBrand (data, id) {
     return await this.put(`${this.resource}/${id}`, data)
   }
 
@@ -24,11 +20,11 @@ export default class PropertyService extends ApplicationService {
     return await this.put(`${this.resource}/${id}/toggle-status`, data)
   }
 
-  async propertyDetails (id) {
+  async brandDetails (id) {
     return await this.get(`${this.resource}/${id}`)
   }
 
-  async deleteProperty (id) {
+  async deleteBrand (id) {
     return await this.delete(`${this.resource}/${id}`)
   }
   //* **************************************************** *//

@@ -9,6 +9,7 @@ import PropertyService from '@/modules/admin/properties/services/PropertyService
 import ProductService from '@/modules/admin/products/services/ProductService'
 import CategoryService from '@/modules/admin/categories/services/CategoryService'
 import SubcategoryService from '@/modules/admin/subcategories/services/SubcategoryService'
+import BrandService from '@/modules/admin/brands/services/BrandService'
 
 export default (ctx, inject) => {
   inject('AuthService', new AuthService(ctx))
@@ -19,6 +20,7 @@ export default (ctx, inject) => {
   inject('ProductService', new ProductService(ctx))
   inject('CategoryService', new CategoryService(ctx))
   inject('SubcategoryService', new SubcategoryService(ctx))
+  inject('BrandService', new BrandService(ctx))
 }
 
 // we can call AuthService

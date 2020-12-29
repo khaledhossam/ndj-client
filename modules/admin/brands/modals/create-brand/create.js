@@ -11,28 +11,25 @@ export default {
     }
     return true
   },
-  name: 'Categories',
+  name: 'Brands',
   components: {
     FilePicker,
     CardComponent,
     TitleBar
   },
   async asyncData (context) {
-    const categories = await context.$CategoryService.getCategories('?is_active=1&is_paginated=false&is_detailed=true')
     if (context.params.id) {
-      const subcategoryDetail = await context.$CategoryService.categoryDetails(context.params.id)
-      return { categories, subcategoryDetail }
+      const brandDetail = await context.$BrandService.brandDetails(context.params.id)
+      return { brandDetail }
     }
-    return { categories }
   },
   // fetchOnServer: false,
   data () {
     return {
-      titlePage: this.$t('admin.subcategories'),
+      titlePage: this.$t('admin.brands'),
       image: null,
-      uploaderFolder: 'categories',
+      uploaderFolder: 'brands',
       enableSubmit: true,
-      orders: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
       form: {
         en: {
           name: ''
@@ -40,10 +37,7 @@ export default {
         ar: {
           name: ''
         },
-        parent_id: null,
         image: null,
-        order: '',
-        tax_percentage: 0,
         is_active: true
       },
       param_id: this.$route.params.id,
@@ -55,7 +49,7 @@ export default {
       return this.form.id ? this.$t('admin.edit') : this.$t('admin.create')
     },
     titleStack () {
-      return [this.$t('admin.subcategories'), this.$t('admin.create')]
+      return [this.$t('admin.brands'), this.$t('admin.create')]
     },
     ...mapState({
       currentLocale: state => state.localization.currentLocale
@@ -68,7 +62,7 @@ export default {
     }.bind(this))
   },
   mounted () {
-    this.subcategoryDetails()
+    this.brandDetails()
   },
   beforeDestroy () {
     this.customEvents.forEach(function (customEvent) {
@@ -77,9 +71,9 @@ export default {
     }.bind(this))
   },
   methods: {
-    subcategoryDetails () {
-      if (this.subcategoryDetail) {
-        this.reAssignForm(this.subcategoryDetail)
+    brandDetails () {
+      if (this.brandDetail) {
+        this.reAssignForm(this.brandDetail)
       }
     },
     reAssignForm (data) {
@@ -89,11 +83,10 @@ export default {
         },
         ar: {
           name: data.ar.name
-        },
-        order: Number(data.order)
+        }
       }
       // override of form data
-      this.form = { ...data, ...obj }
+      this.form = { ...this.form, ...obj }
     },
     handleUploadFile (file) {
       this.enableSubmit = false
@@ -116,23 +109,23 @@ export default {
 
       if (validData) {
         if (this.param_id) {
-          this.updateSubcategory()
+          this.updateBrand()
         } else {
-          this.createSubcategory()
+          this.createBrand()
         }
       }
     },
-    createSubcategory () {
-      this.$CategoryService.createCategory(this.form)
+    createBrand () {
+      this.$BrandService.createBrand(this.form)
         .then(() => {
-          this.$router.push({ name: 'admin.subcategories' })
+          this.$router.push({ name: 'admin.brands' })
           this.buefyBar(this.$t('admin.created_successfully'))
         })
     },
-    updateSubcategory () {
-      this.$CategoryService.updateCategory(this.form, this.param_id)
+    updateBrand () {
+      this.$BrandService.updateBrand(this.form, this.param_id)
         .then(() => {
-          this.$router.push({ name: 'admin.subcategories' })
+          this.$router.push({ name: 'admin.brands' })
           this.buefyBar(this.$t('admin.updated_successfully'))
         })
     },

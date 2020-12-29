@@ -22,9 +22,9 @@ export default {
   async asyncData (context) {
     const [categories, brands] = await Promise.all([
 
-      context.$PropertyService.getCategories('?is_paginated=false'),
+      context.$CategoryService.getCategories('?is_paginated=false&is_detailed=true'),
 
-      context.$ProductService.getBrands('?is_active=1&is_paginated=false')
+      context.$BrandService.getBrands('?is_active=1&is_paginated=false&is_detailed=true')
     ])
     if (context.params.id) {
       const productDetail = await context.$ProductService.productDetails(context.params.id)
@@ -76,7 +76,7 @@ export default {
       syncArTags: '', // sync search
       param_id: this.$route.params.id,
       icon: 'mdi-checkbox-blank-outline',
-      queryParam: '?is_active=1&is_paginated=false',
+      queryParam: '?is_active=1&is_paginated=false&is_detailed=true',
       customEvents: [
         { eventName: 'update-properties', callback: this.updateProperties },
         { eventName: 'handle-uploader', callback: this.handleUploadFile }
@@ -149,9 +149,9 @@ export default {
       // this.form.properties = []
 
       const response = await Promise.all([
-        this.$ProductService.getSubcategories(value, this.queryParam),
+        this.$CategoryService.getCategorySubcategories(value, this.queryParam),
 
-        this.$ProductService.getProperties(value, this.queryParam)
+        this.$CategoryService.getCategoryProperties(value, this.queryParam)
       ])
       this.subcategories = response[0]
 
@@ -225,7 +225,6 @@ export default {
           //* remove index from array */
           this.form.attachments.splice(index, 1)
           this.enableSubmit = true
-          console.log('attach', this.form.attachments)
         })
     },
     productDetails () {
@@ -257,7 +256,6 @@ export default {
     },
     async firstStep () {
       const validData = await this.$validator.validateAll('firstStep')
-      console.log('test', this.$validator)
       if (validData) {
         this.stepper = 2
       }

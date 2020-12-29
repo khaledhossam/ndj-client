@@ -5,7 +5,7 @@ import ModalBox from '@/components/admin/ModalBox'
 import QuickSearch from '@/modules/admin/global/search/quick-search.vue'
 
 export default {
-  name: 'Subcategories',
+  name: 'Brands',
   components: {
     TitleBar,
     CardComponent,
@@ -24,7 +24,7 @@ export default {
   },
   data () {
     return {
-      titlePage: this.$t('admin.subcategories'),
+      titlePage: this.$t('admin.brands'),
       collection: [],
       isPaginated: true,
       searchValue: '',
@@ -38,7 +38,7 @@ export default {
       queryParam: '',
       customEvents: [
         { eventName: 'handle-quick-search', callback: this.handleSearch },
-        { eventName: 'event-delete-subcategory', callback: this.handleDeleteSubcategory }
+        { eventName: 'event-delete-brand', callback: this.handleDeleteBrand }
       ]
     }
   },
@@ -50,7 +50,7 @@ export default {
   },
   computed: {
     titleStack () {
-      return [this.$t('admin.subcategories')]
+      return [this.$t('admin.brands')]
     },
     ...mapState({
       currentLocale: state => state.localization.currentLocale
@@ -88,7 +88,7 @@ export default {
       this.loading = true
       this.queryParam = `?page=${this.page}&publicSearch=${this.searchValue}&orderBy=${this.sortField}&orderType=${this.sortOrder}&is_detailed=true`
 
-      this.$SubcategoryService.getSubcategories(this.queryParam)
+      this.$BrandService.getBrands(this.queryParam)
         .then((response) => {
           this.collection = response.data
 
@@ -123,8 +123,8 @@ export default {
       this.sortOrder = order
       this.loadAsyncData()
     },
-    handleDeleteSubcategory (id) {
-      this.$CategoryService.deleteCategory(id)
+    handleDeleteCategory (id) {
+      this.$BrandService.deleteBrand(id)
         .then(() => {
           //* update list to remove this row *//
           this.collection = this.collection.filter((obj) => {
@@ -133,7 +133,7 @@ export default {
         })
     },
     handleToggleStatus (id) {
-      this.$CategoryService.toggleStatus(id)
+      this.$BrandService.toggleStatus(id)
         .then((response) => {
           //* update list to remove this row *//
           this.collection.forEach((element, index) => {

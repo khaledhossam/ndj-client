@@ -58,7 +58,6 @@ export default {
   watch: {
     categoryProperties: {
       handler (val, oldVal) {
-        console.log('data', this.categoryProperties)
         this.$EventBus.$emit('update-properties', this.categoryProperties)
       },
       deep: true

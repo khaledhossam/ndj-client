@@ -14,6 +14,9 @@ import createCategory from '~/modules/admin/categories/modals/create-category/cr
 import subcategories from '~/modules/admin/subcategories/components/list-subcategories/subcategories.vue'
 import createSubcategory from '~/modules/admin/subcategories/modals/create-subcategory/create.vue'
 
+import brands from '~/modules/admin/brands/components/list-brands/brands.vue'
+import createBrand from '~/modules/admin/brands/modals/create-brand/create.vue'
+
 import roles from '~/modules/admin/roles/components/list-roles/roles.vue'
 import createRole from '~/modules/admin/roles/modals/create-role/create.vue'
 
@@ -105,6 +108,24 @@ export default [
     name: 'updateSubcategory',
     path: 'subcategories/:id/edit',
     component: createSubcategory,
+    props: true
+  },
+  {
+    name: 'admin.brands',
+    path: 'brands',
+    component: brands,
+    props: true
+  },
+  {
+    name: 'createBrand',
+    path: 'brands/create',
+    component: createBrand,
+    props: true
+  },
+  {
+    name: 'updateBrand',
+    path: 'brands/:id/edit',
+    component: createBrand,
     props: true
   },
   {

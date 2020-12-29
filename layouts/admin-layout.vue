@@ -38,6 +38,16 @@ export default {
             to: { name: 'admin.categories' },
             icon: 'view-list',
             label: this.$t('admin.categories')
+          },
+          {
+            to: { name: 'admin.subcategories' },
+            icon: 'view-list',
+            label: this.$t('admin.subcategories')
+          },
+          {
+            to: { name: 'admin.brands' },
+            icon: 'view-list',
+            label: this.$t('admin.brands')
           }
         ],
         this.$t('admin.admin_roles'),

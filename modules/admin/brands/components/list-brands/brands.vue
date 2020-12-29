@@ -2,14 +2,14 @@
   <div>
     <modal-box
       :is-active="isModalActive"
-      @confirm="trashConfirm('event-delete-subcategory')"
+      @confirm="trashConfirm('event-delete-category')"
       @cancel="trashCancel"
     />
     <title-bar :title-stack="titleStack" />
     <section class="section is-main-section">
       <card-component
         class="has-table has-mobile-sort-spaced"
-        :title="$t('admin.subcategories')"
+        :title="$t('admin.categories')"
         icon="account-multiple"
       >
         <section class="hero is-hero-bar">
@@ -20,7 +20,7 @@
               </div>
               <div class="level-right">
                 <div class="level-item">
-                  <nuxt-link :to="{ name: 'createSubcategory' }" class="btn btn-success">
+                  <nuxt-link :to="{ name: 'createBrand' }" class="btn btn-success">
                     {{ $t('admin.create') }}
                   </nuxt-link>
                 </div>
@@ -67,12 +67,6 @@
               </span>
             </b-table-column>
 
-            <!-- <b-table-column field="category" :label="$t('admin.category')" sortable>
-              <span class="tag">
-                {{ props.row.category[currentLocale].name }}
-              </span>
-            </b-table-column> -->
-
             <b-table-column field="is_active" :label="$t('admin.status')">
               <span :class="`custom-alert alert ${type(props.row.is_active)}`">
                 {{ props.row.is_active ? $t('admin.active') : $t('admin.inactive') }}
@@ -82,7 +76,7 @@
             <b-table-column :label="$t('admin.action')" custom-key="actions" class="is-actions-cell">
               <div class="buttons">
                 <nuxt-link
-                  :to="{ name: 'updateSubcategory', params: { id: props.row.id } }"
+                  :to="{ name: 'updateBrand', params: { id: props.row.id } }"
                   class="button is-small is-primary"
                 >
                   <b-icon icon="account-edit" size="is-small" />
@@ -111,4 +105,4 @@
   </div>
 </template>
 
-<script src="./subcategories.js"></script>
+<script src="./brands.js"></script>

@@ -16,8 +16,7 @@
                 :label="$t('admin[\'en.name\']')"
                 name="en.name"
                 :class="{ 'is-invalid': errors.has('en.name') }"
-              >
-              </v-text-field>
+              />
               <span v-show="errors.has('en.name')" class="text-error text-sm">
                 {{ errors.first("en.name") }}
               </span>
@@ -34,8 +33,7 @@
                 :label="$t('admin[\'ar.name\']')"
                 name="ar.name"
                 :class="{ 'is-invalid': errors.has('ar.name') }"
-              >
-              </v-text-field>
+              />
               <span v-show="errors.has('ar.name')" class="text-error text-sm">
                 {{ errors.first("ar.name") }}
               </span>
@@ -104,9 +102,7 @@
                 </b-field>
               </b-field>
             </v-col>
-
           </v-row>
-
         </v-form>
       </card-component>
     </section>

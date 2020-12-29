@@ -12,7 +12,7 @@
               Name of step 1
             </v-stepper-step>
 
-            <v-divider></v-divider>
+            <v-divider />
 
             <v-stepper-step
               :complete="stepper > 2"
@@ -21,7 +21,7 @@
               Name of step 2
             </v-stepper-step>
 
-            <v-divider></v-divider>
+            <v-divider />
 
             <v-stepper-step step="3">
               Name of step 3
@@ -30,8 +30,7 @@
 
           <v-stepper-items>
             <v-stepper-content step="1">
-
-              <v-form @submit.prevent="firstStep" data-vv-scope="firstStep">
+              <v-form data-vv-scope="firstStep" @submit.prevent="firstStep">
                 <v-row>
                   <v-col
                     cols="12"
@@ -44,8 +43,7 @@
                       :label="$t('admin[\'en.name\']')"
                       name="en.name"
                       :class="{ 'is-invalid': errors.has('en.name') }"
-                    >
-                    </v-text-field>
+                    />
                     <span v-show="errors.has('en.name')" class="text-error text-sm">
                       {{ errors.first("en.name") }}
                     </span>
@@ -61,7 +59,7 @@
                       :label="$t('admin[\'en.description\']')"
                       name="en.description"
                       :class="{ 'is-invalid': errors.has('en.description') }"
-                    ></v-textarea>
+                    />
                     <span v-show="errors.has('en.description')" class="text-error text-sm">
                       {{ errors.first("en.description") }}
                     </span>
@@ -101,8 +99,7 @@
                       :label="$t('admin[\'ar.name\']')"
                       name="ar.name"
                       :class="{ 'is-invalid': errors.has('ar.name') }"
-                    >
-                    </v-text-field>
+                    />
                     <span v-show="errors.has('ar.name')" class="text-error text-sm">
                       {{ errors.first("ar.name") }}
                     </span>
@@ -118,7 +115,7 @@
                       :label="$t('admin[\'ar.description\']')"
                       name="ar.description"
                       :class="{ 'is-invalid': errors.has('en.description') }"
-                    ></v-textarea>
+                    />
                     <span v-show="errors.has('ar.description')" class="text-error text-sm">
                       {{ errors.first("ar.description") }}
                     </span>
@@ -157,8 +154,7 @@
                       :label="$t('admin.price')"
                       name="price"
                       :class="{ 'is-invalid': errors.has('price') }"
-                    >
-                    </v-text-field>
+                    />
                     <span v-show="errors.has('price')" class="text-error text-sm">
                       {{ errors.first("price") }}
                     </span>
@@ -174,8 +170,7 @@
                       :label="$t('admin.quantity')"
                       name="quantity"
                       :class="{ 'is-invalid': errors.has('quantity') }"
-                    >
-                    </v-text-field>
+                    />
                     <span v-show="errors.has('quantity')" class="text-error text-sm">
                       {{ errors.first("quantity") }}
                     </span>
@@ -191,8 +186,7 @@
                       :label="$t('admin.max_purchase_quantity')"
                       name="max_purchase_quantity"
                       :class="{ 'is-invalid': errors.has('max_purchase_quantity') }"
-                    >
-                    </v-text-field>
+                    />
                     <span v-show="errors.has('max_purchase_quantity')" class="text-error text-sm">
                       {{ errors.first("max_purchase_quantity") }}
                     </span>
@@ -208,13 +202,11 @@
                       :label="$t('admin.barcode')"
                       name="barcode"
                       :class="{ 'is-invalid': errors.has('barcode') }"
-                    >
-                    </v-text-field>
+                    />
                     <span v-show="errors.has('barcode')" class="text-error text-sm">
                       {{ errors.first("barcode") }}
                     </span>
                   </v-col>
-
                 </v-row>
 
                 <v-col
@@ -233,13 +225,11 @@
                   </b-field>
                 </v-col>
               </v-form>
-
             </v-stepper-content>
 
             <v-stepper-content step="2">
-              <v-form @submit.prevent="secondStep" data-vv-scope="secondStep">
+              <v-form data-vv-scope="secondStep" @submit.prevent="secondStep">
                 <v-row>
-
                   <v-col
                     cols="12"
                     md="9"
@@ -295,8 +285,8 @@
                       persistent-hint
                       chips
                       small-chips
-                      @change="changeCategory"
                       :class="{ 'is-invalid': errors.has('category_id') }"
+                      @change="changeCategory"
                     >
                       <template v-slot:selection="data">
                         <v-chip
@@ -362,7 +352,6 @@
                   >
                     <category-properties v-if="properties.length" :properties="properties" />
                   </v-col>
-
                 </v-row>
 
                 <v-col
@@ -392,8 +381,7 @@
             </v-stepper-content>
 
             <v-stepper-content step="3">
-
-              <v-form @submit.prevent="submit" @reset="handleReset()" lazy-validation>
+              <v-form @submit.prevent="submit" @reset="handleReset()">
                 <v-row>
                   <v-col
                     cols="12"
@@ -480,14 +468,14 @@
                   >
                     <v-file-input
                       v-model="primary_attachment"
+                      v-validate="{ required: true }"
                       accept="image/*"
                       :label="$t('admin.primary_attachment')"
-                      v-validate="{ required: true }"
                       name="primary_attachment"
-                      @change="handleUploadFile"
-                      small-chips
                       :class="{ 'is-invalid': errors.has('primary_attachment') }"
-                    ></v-file-input>
+                      small-chips
+                      @change="handleUploadFile"
+                    />
                     <a v-if="form.primary_attachment.file" :href="form.primary_attachment.file" target="_blank">
                       <v-img
                         :lazy-src="form.primary_attachment.file"
@@ -512,12 +500,12 @@
                       :label="$t('admin.secondary_attachments')"
                       name="secondary_attachments"
                       multiple
-                      @change="handleUploadFile"
                       small-chips
                       :class="{ 'is-invalid': errors.has('secondary_attachments') }"
-                    ></v-file-input>
+                      @change="handleUploadFile"
+                    />
                     <v-row>
-                      <v-col cols="12" md="4" v-for="(attachment, index) in form.attachments" :key="index" class="img-wrap">
+                      <v-col v-for="(attachment, index) in form.attachments" :key="index" cols="12" md="4" class="img-wrap">
                         <span class="mdi mdi-trash-can-outline text-danger mdi-24px cursor delete-file" @click="deleteFile(index)" />
                         <a :href="attachment.file" target="_blank">
                           <v-img
@@ -528,13 +516,12 @@
                             class="img-thumbnail img-fluid"
                           />
                         </a>
-                    </v-col>
+                      </v-col>
                     </v-row>
                     <span v-show="errors.has('secondary_attachments')" class="text-error text-sm">
                       {{ errors.first("secondary_attachments") }}
                     </span>
                   </v-col>
-
                 </v-row>
 
                 <v-col
@@ -562,7 +549,6 @@
                   </b-field>
                 </v-col>
               </v-form>
-
             </v-stepper-content>
           </v-stepper-items>
         </v-stepper>

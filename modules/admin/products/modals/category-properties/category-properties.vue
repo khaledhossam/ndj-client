@@ -3,9 +3,9 @@
     <v-row v-for="(property, key) in categoryProperties" :key="key">
       <!-- start text property -->
       <v-col
+        v-if="property.property_type.key == 'text'"
         cols="12"
         md="12"
-        v-if="property.property_type.key == 'text'"
         :label="property[currentLocale].name"
       >
         <v-text-field
@@ -23,9 +23,9 @@
 
       <!-- start number property -->
       <v-col
+        v-else-if="property.property_type.key == 'number'"
         cols="12"
         md="12"
-        v-else-if="property.property_type.key == 'number'"
         :label="property[currentLocale].name"
       >
         <v-text-field
@@ -43,9 +43,9 @@
 
       <!-- start textarea property -->
       <v-col
+        v-else-if="property.property_type.key == 'textarea'"
         cols="12"
         md="12"
-        v-else-if="property.property_type.key == 'textarea'"
         :label="property[currentLocale].name"
       >
         <v-textarea
@@ -62,9 +62,9 @@
 
       <!-- start date property -->
       <v-col
+        v-else-if="property.property_type.key == 'date'"
         cols="12"
         md="12"
-        v-else-if="property.property_type.key == 'date'"
         :label="property[currentLocale].name"
       >
         <v-menu
@@ -80,15 +80,15 @@
               :label="property[currentLocale].name"
               readonly
               v-bind="attrs"
-              v-on="on"
               prepend-icon="mdi-calendar"
+              v-on="on"
               @click:clear="property.value = null"
-            ></v-text-field>
+            />
           </template>
           <v-date-picker
             v-model="property.value"
             @change="menu1 = false"
-          ></v-date-picker>
+          />
         </v-menu>
         <span v-show="errors.has(`property.${key}`)" class="text-danger text-sm">
           {{ errors.first(`property.${key}`) }}
@@ -98,9 +98,9 @@
 
       <!-- start checkbox property -->
       <v-col
+        v-else-if="property.property_type.key == 'checkbox'"
         cols="12"
         md="12"
-        v-else-if="property.property_type.key == 'checkbox'"
         :label="property[currentLocale].name"
         class="has-check"
       >
@@ -123,9 +123,9 @@
 
       <!-- start radio property -->
       <v-col
+        v-else-if="property.property_type.key == 'radio'"
         cols="12"
         md="12"
-        v-else-if="property.property_type.key == 'radio'"
         :label="property[currentLocale].name"
         class="has-check"
       >
@@ -148,9 +148,9 @@
 
       <!-- start multi select property -->
       <v-col
+        v-else-if="property.property_type.key == 'multiple_select'"
         cols="12"
         md="12"
-        v-else-if="property.property_type.key == 'multiple_select'"
         :label="property[currentLocale].name"
       >
         <v-autocomplete
@@ -212,9 +212,9 @@
 
       <!-- start select property -->
       <v-col
+        v-else
         cols="12"
         md="12"
-        v-else
         :label="property[currentLocale].name"
       >
         <b-form-select
