@@ -6,10 +6,12 @@ import RoleService from '@/modules/admin/roles/services/RoleService'
 import UploadService from '@/modules/admin/uploaders/services/UploadService'
 import PropertyService from '@/modules/admin/properties/services/PropertyService'
 
-import ProductService from '@/modules/admin/products/services/ProductService'
 import CategoryService from '@/modules/admin/categories/services/CategoryService'
 import SubcategoryService from '@/modules/admin/subcategories/services/SubcategoryService'
 import BrandService from '@/modules/admin/brands/services/BrandService'
+
+import ProductService from '@/modules/admin/products/services/ProductService'
+import OfferService from '@/modules/admin/offers/services/OfferService'
 
 export default (ctx, inject) => {
   inject('AuthService', new AuthService(ctx))
@@ -21,6 +23,7 @@ export default (ctx, inject) => {
   inject('CategoryService', new CategoryService(ctx))
   inject('SubcategoryService', new SubcategoryService(ctx))
   inject('BrandService', new BrandService(ctx))
+  inject('OfferService', new OfferService(ctx))
 }
 
 // we can call AuthService

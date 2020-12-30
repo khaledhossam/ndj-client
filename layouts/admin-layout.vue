@@ -86,6 +86,11 @@ export default {
                 to: { name: 'admin.products' },
                 icon: 'account-circle',
                 label: this.$t('admin.products')
+              },
+              {
+                to: { name: 'admin.offers' },
+                icon: 'account-circle',
+                label: this.$t('admin.offers')
               }
             ]
           }

@@ -35,7 +35,7 @@
           :name="`property.${key}`"
           :class="{ 'is-invalid': errors.has(`property.${key}`) }"
         />
-        <span v-show="errors.has(`property.${key}`)" class="text-danger text-sm">
+        <span v-show="errors.has(`property.${key}`)" class="text-error text-sm">
           {{ errors.first(`property.${key}`) }}
         </span>
       </v-col>
@@ -54,7 +54,7 @@
           :name="`property.${key}`"
           :label="property[currentLocale].name"
         />
-        <span v-show="errors.has(`property.${key}`)" class="text-danger text-sm">
+        <span v-show="errors.has(`property.${key}`)" class="text-error text-sm">
           {{ errors.first(`property.${key}`) }}
         </span>
       </v-col>
@@ -90,7 +90,7 @@
             @change="menu1 = false"
           />
         </v-menu>
-        <span v-show="errors.has(`property.${key}`)" class="text-danger text-sm">
+        <span v-show="errors.has(`property.${key}`)" class="text-error text-sm">
           {{ errors.first(`property.${key}`) }}
         </span>
       </v-col>
@@ -104,20 +104,22 @@
         :label="property[currentLocale].name"
         class="has-check"
       >
-        <b-checkbox
-          v-for="(option, index) in property.options"
-          :key="`pro_ch_${index}`"
-          v-model.lazy="property.value"
-          v-validate="property.is_required ? 'required' : ''"
-          :native-value="option.id"
-          type="checkbox"
-          :name="`property.${key}`"
-        >
-          {{ option[currentLocale].name }}
-        </b-checkbox>
-        <span v-show="errors.has(`property.${key}`)" class="text-danger text-sm">
-          {{ errors.first(`property.${key}`) }}
-        </span>
+        <b-field :label="property[currentLocale].name" horizontal>
+          <b-checkbox
+            v-for="(option, index) in property.options"
+            :key="`pro_ch_${index}`"
+            v-model.lazy="property.value"
+            v-validate="property.is_required ? 'required' : ''"
+            :native-value="option.id"
+            type="checkbox"
+            :name="`property.${key}`"
+          >
+            {{ option[currentLocale].name }}
+          </b-checkbox>
+          <span v-show="errors.has(`property.${key}`)" class="text-error text-sm">
+            {{ errors.first(`property.${key}`) }}
+          </span>
+        </b-field>
       </v-col>
       <!-- end checkbox property -->
 
@@ -129,20 +131,22 @@
         :label="property[currentLocale].name"
         class="has-check"
       >
-        <b-radio
-          v-for="(option, index) in property.options"
-          :key="`pro_rad_${index}`"
-          v-model="property.value"
-          v-validate="property.is_required ? 'required' : ''"
-          :native-value="option.id"
-          type="radio"
-          :name="`property.${key}`"
-        >
-          {{ option[currentLocale].name }}
-        </b-radio>
-        <span v-show="errors.has(`property.${key}`)" class="text-danger text-sm">
-          {{ errors.first(`property.${key}`) }}
-        </span>
+        <b-field :label="property[currentLocale].name" horizontal>
+          <b-radio
+            v-for="(option, index) in property.options"
+            :key="`pro_rad_${index}`"
+            v-model="property.value"
+            v-validate="property.is_required ? 'required' : ''"
+            :native-value="option.id"
+            type="radio"
+            :name="`property.${key}`"
+          >
+            {{ option[currentLocale].name }}
+          </b-radio>
+          <span v-show="errors.has(`property.${key}`)" class="text-error text-sm">
+            {{ errors.first(`property.${key}`) }}
+          </span>
+        </b-field>
       </v-col>
       <!-- end radio property -->
 
@@ -159,7 +163,7 @@
           :placeholder="property[currentLocale].name"
           :items="property.options"
           :menu-props="{ maxHeight: '400' }"
-          :label="$t('admin.select')"
+          :label="property[currentLocale].name"
           multiple
           item-text="name"
           :item-value="'id'"
@@ -204,7 +208,7 @@
             </v-list-item-content>
           </template>
         </v-autocomplete>
-        <span v-show="errors.has(`property.${key}`)" class="text-danger text-sm">
+        <span v-show="errors.has(`property.${key}`)" class="text-error text-sm">
           {{ errors.first(`property.${key}`) }}
         </span>
       </v-col>
@@ -217,22 +221,32 @@
         md="12"
         :label="property[currentLocale].name"
       >
-        <b-form-select
+        <v-select
           v-model="property.value"
           v-validate="property.is_required ? 'required' : ''"
-          :placeholder="property[currentLocale].name"
+          :label="property[currentLocale].name"
           :name="`property.${key}`"
+          :items="property.options"
+          item-text="name"
+          :item-value="'id'"
+          :class="{ 'is-invalid': errors.has(`property.${key}`) }"
         >
-          <option
-            v-for="(option, index) in property.options"
-            :key="index"
-            :value="option.id"
-            :placeholder="property[currentLocale].name"
-          >
-            {{ option[currentLocale].name }}
-          </option>
-        </b-form-select>
-        <span v-show="errors.has(`property.${key}`)" class="text-danger text-sm">
+          <template v-slot:selection="data">
+            <v-chip
+              v-bind="data.attrs"
+              :input-value="data.selected"
+              @click="data.select"
+            >
+              {{ data.item[currentLocale].name }}
+            </v-chip>
+          </template>
+          <template v-slot:item="data">
+            <v-list-item-content>
+              <v-list-item-title v-text="data.item[currentLocale].name" />
+            </v-list-item-content>
+          </template>
+        </v-select>
+        <span v-show="errors.has(`property.${key}`)" class="text-error text-sm">
           {{ errors.first(`property.${key}`) }}
         </span>
       </v-col>

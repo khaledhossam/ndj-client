@@ -26,6 +26,9 @@ import createProperty from '~/modules/admin/properties/modals/create-property/cr
 import products from '~/modules/admin/products/components/list-products/products.vue'
 import createProduct from '~/modules/admin/products/modals/create-product/create.vue'
 
+import offers from '~/modules/admin/offers/components/list-offers/offers.vue'
+import createOffer from '~/modules/admin/offers/modals/create-offer/create.vue'
+
 export default [
   {
     name: 'statistics',
@@ -180,6 +183,24 @@ export default [
     name: 'updateProduct',
     path: 'products/:id/edit',
     component: createProduct,
+    props: true
+  },
+  {
+    name: 'admin.offers',
+    path: 'offers',
+    component: offers,
+    props: true
+  },
+  {
+    name: 'createOffer',
+    path: 'offers/create',
+    component: createOffer,
+    props: true
+  },
+  {
+    name: 'updateOffer',
+    path: 'offers/:id/edit',
+    component: createOffer,
     props: true
   }
 ]

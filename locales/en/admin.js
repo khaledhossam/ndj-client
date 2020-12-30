@@ -74,5 +74,18 @@ export default {
   next: 'Next',
   image: 'Image',
   orderSort: 'Order',
-  tax_percentage: 'Tax Percentage'
+  tax_percentage: 'Tax Percentage',
+  offers: 'Offers',
+  offerDetail: 'Offer',
+  offerType: 'Offer Type',
+  offerTypes: 'Offer Types',
+  offerValue: 'Offer Value',
+  start_date: 'Start Date',
+  end_date: 'End Date',
+  value: 'Value',
+  offer: {
+    percentage: 'Percentage',
+    value: 'Value',
+    free_product: 'Free Product'
+  }
 }

@@ -43,7 +43,8 @@ export default {
   'ar.name': 'الاسم بالعربى',
   properties: 'الخصائص الاضافية',
   property_type_id: 'نوع الخاصية',
-  categories: 'الأقسام',
+  categories: 'الأقسام الرئيسية',
+  subcategories: 'الأقسام الفرعية',
   properties_products: 'الخصائص والمنتجات',
   products: 'المنتجات',
   required: 'مطلوب',
@@ -59,6 +60,7 @@ export default {
   'en.description': 'الوصف بالانجليزى',
   'ar.description': 'الوصف بالعربى',
   brand: 'العلامة التجارية',
+  brands: 'العلامات التجارية',
   max_purchase_quantity: 'أكثر كمية يمكن شراؤها',
   stores: 'المتاجر',
   is_unique: 'يظهر فى هذا المتجر فقط',
@@ -70,5 +72,20 @@ export default {
   profile_image: 'الصورة الشخصية',
   previous: 'السابق',
   next: 'التالى',
-  image: 'الصورة'
+  image: 'الصورة',
+  orderSort: 'الترتيب',
+  offers: 'العروض',
+  offerDetail: 'العرض',
+  tax_percentage: 'قيمة الضريبة',
+  offerType: 'نوع العرض',
+  offerTypes: 'أنواع العروض',
+  offerValue: 'قيمة العرض',
+  start_date: 'بداية التاريخ',
+  end_date: 'نهاية التاريخ',
+  value: 'القيمة',
+  offer: {
+    percentage: 'نسبة مئوية',
+    value: 'قيمة ثابتة',
+    free_product: 'منتج هدية مجانى'
+  }
 }
