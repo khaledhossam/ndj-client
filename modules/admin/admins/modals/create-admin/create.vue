@@ -143,7 +143,7 @@
             >
               <v-file-input
                 v-model="profile_image"
-                v-validate="{ required: true }"
+                v-validate="param_id ? '' : { required: true }"
                 accept="image/*"
                 :label="$t('admin.profile_image')"
                 name="profile_image"

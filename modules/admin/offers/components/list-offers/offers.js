@@ -133,7 +133,7 @@ export default {
         })
     },
     handleToggleStatus (id) {
-      this.$CategoryService.toggleStatus(id)
+      this.$OfferService.toggleStatus(id)
         .then((response) => {
           //* update list to remove this row *//
           this.collection.forEach((element, index) => {

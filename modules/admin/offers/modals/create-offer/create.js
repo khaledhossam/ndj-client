@@ -4,6 +4,7 @@ import CardComponent from '@/components/admin/CardComponent'
 import FilePicker from '@/components/admin/FilePicker'
 import { mapState } from 'vuex'
 import moment from 'moment'
+import offerProducts from '@/modules/admin/offers/modals/offer-products/offer-products.vue'
 
 export default {
   validate ({ params, query, store }) {
@@ -16,7 +17,8 @@ export default {
   components: {
     FilePicker,
     CardComponent,
-    TitleBar
+    TitleBar,
+    offerProducts
   },
   async asyncData (context) {
     const products = await context.$ProductService.getProductNames('?is_active=1&is_paginated=true&is_detailed=false')
@@ -44,7 +46,7 @@ export default {
         end_date: null,
         type: null,
         products: [],
-        free_product_id: null, //* if type: free product */
+        free_product_id: 22, //* if type: free product */
         is_active: true
       },
       param_id: this.$route.params.id,
@@ -65,7 +67,9 @@ export default {
           ar: { name: 'منتج مجانى هدية' }
         }
       ],
-      customEvents: []
+      customEvents: [
+        { eventName: 'update-offer-products', callback: this.updateOfferProducts }
+      ]
     }
   },
   computed: {
@@ -101,6 +105,12 @@ export default {
     changeOfferType (type) {
       this.form.value = ''
     },
+    openModalOfferProducts () {
+      this.$EventBus.$emit('open-products-modal', {
+        products: this.products,
+        offerProducts: this.form.products
+      })
+    },
     offerDetails () {
       if (this.offerDetail) {
         this.reAssignForm(this.offerDetail)
@@ -117,6 +127,9 @@ export default {
       }
       // override of form data
       this.form = { ...data, ...obj }
+    },
+    updateOfferProducts (data) {
+      this.form.products = data
     },
     async submit () {
       const validData = await this.$validator.validateAll()

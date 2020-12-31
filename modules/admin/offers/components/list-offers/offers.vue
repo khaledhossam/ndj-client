@@ -57,25 +57,25 @@
               </span>
             </b-table-column>
 
-            <b-table-column field="type" :label="$t('admin.offerType')" sortable>
+            <b-table-column field="type" :label="$t('admin.offerType')">
               <span class="tag">
                 {{ $t(`admin.offer.${props.row.type}`) }}
               </span>
             </b-table-column>
 
-            <b-table-column field="value" :label="$t('admin.offerValue')" sortable>
+            <b-table-column field="value" :label="$t('admin.offerValue')">
               <span>
                 {{ props.row.value }}
               </span>
             </b-table-column>
 
-            <b-table-column field="start_date" :label="$t('admin.start_date')" sortable>
+            <b-table-column field="start_date" :label="$t('admin.start_date')">
               <span>
                 {{ props.row.start_date }}
               </span>
             </b-table-column>
 
-            <b-table-column field="end_date" :label="$t('admin.end_date')" sortable>
+            <b-table-column field="end_date" :label="$t('admin.end_date')">
               <span>
                 {{ props.row.end_date }}
               </span>

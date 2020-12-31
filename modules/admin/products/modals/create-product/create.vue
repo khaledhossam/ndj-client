@@ -468,7 +468,7 @@
                   >
                     <v-file-input
                       v-model="primary_attachment"
-                      v-validate="{ required: true }"
+                      v-validate="param_id ? '' : { required: true }"
                       accept="image/*"
                       :label="$t('admin.primary_attachment')"
                       name="primary_attachment"

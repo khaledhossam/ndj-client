@@ -90,7 +90,8 @@ export default {
         ar: {
           name: data.ar.name
         },
-        order: Number(data.order)
+        order: Number(data.order),
+        parent_id: data.category.id
       }
       // override of form data
       this.form = { ...data, ...obj }

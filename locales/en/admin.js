@@ -87,5 +87,8 @@ export default {
     percentage: 'Percentage',
     value: 'Value',
     free_product: 'Free Product'
-  }
+  },
+  save: 'Save',
+  cancel: 'Cancel',
+  no_products: 'There Are No Products Added Yet!'
 }

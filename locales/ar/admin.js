@@ -87,5 +87,8 @@ export default {
     percentage: 'نسبة مئوية',
     value: 'قيمة ثابتة',
     free_product: 'منتج هدية مجانى'
-  }
+  },
+  save: 'حفظ',
+  cancel: 'الغاء',
+  no_products: 'لا يوجد منتجات'
 }

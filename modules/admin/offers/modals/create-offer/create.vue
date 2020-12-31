@@ -82,7 +82,7 @@
             >
               <v-text-field
                 v-model="form.value"
-                v-validate="{ required: true, numeric: true, max_value: 100, min_value: 0 }"
+                v-validate="{ required: true, decimal: 2, max_value: 100, min_value: 0 }"
                 :label="$t('admin.value')"
                 name="value"
                 suffix="%"
@@ -94,19 +94,39 @@
             </v-col>
 
             <v-col
-              v-else
+              v-else-if="form.type == 'value'"
               cols="12"
               md="9"
             >
               <v-text-field
                 v-model="form.value"
-                v-validate="{ required: true, numeric: true, min_value: 0 }"
+                v-validate="{ required: true, decimal: 2, min_value: 0 }"
                 :label="$t('admin.value')"
                 name="value"
                 :class="{ 'is-invalid': errors.has('value') }"
               />
               <span v-show="errors.has('value')" class="text-error text-sm">
                 {{ errors.first("value") }}
+              </span>
+            </v-col>
+
+            <v-col
+              cols="12"
+              md="9"
+            >
+              <div class="control">
+                <b-button
+                  v-model="form.products"
+                  type="is-primary"
+                  icon-left="plus"
+                  name="products"
+                  @click="openModalOfferProducts"
+                >
+                  {{ $t('admin.products') }}
+                </b-button>
+              </div>
+              <span v-show="errors.has('products')" class="text-error text-sm">
+                {{ errors.first("products") }}
               </span>
             </v-col>
 
@@ -124,14 +144,14 @@
                     v-model="form.start_date"
                     v-validate="'required'"
                     :value="computedDateFormattedMomentjs"
+                    name="start_date"
+                    :class="{ 'is-invalid': errors.has('start_date') }"
                     clearable
                     :label="$t('admin.start_date')"
                     readonly
                     v-bind="attrs"
                     prepend-icon="mdi-calendar"
                     v-on="on"
-                    name="start_date"
-                    :class="{ 'is-invalid': errors.has('start_date') }"
                     @click:clear="form.start_date = null"
                   />
                 </template>
@@ -160,13 +180,13 @@
                     v-validate="'required'"
                     :value="computedDateFormattedMomentjs"
                     name="end_date"
+                    :class="{ 'is-invalid': errors.has('end_date') }"
                     clearable
                     :label="$t('admin.end_date')"
                     readonly
                     v-bind="attrs"
                     prepend-icon="mdi-calendar"
                     v-on="on"
-                    :class="{ 'is-invalid': errors.has('end_date') }"
                     @click:clear="form.end_date = null"
                   />
                 </template>
@@ -216,6 +236,7 @@
             </v-col>
           </v-row>
         </v-form>
+        <offer-products />
       </card-component>
     </section>
   </div>

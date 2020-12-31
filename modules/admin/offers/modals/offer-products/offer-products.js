@@ -1,14 +1,20 @@
 import { mapState } from 'vuex'
 
 export default {
-  props: ['products'],
   data () {
     return {
-      offerProducts: this.products || [],
+      modalName: 'offerProductsModal',
+      products: [],
+      selectedProducts: [],
+      modalProps: {
+        width: '600px',
+        height: 'auto',
+        minHeight: 500,
+        scrollable: true
+      },
       icon: 'mdi-checkbox-blank-outline',
-      menu1: false,
       customEvents: [
-        { eventName: 'reset-products', callback: this.resetProducts }
+        { eventName: 'open-products-modal', callback: this.showModal }
       ]
     }
   },
@@ -30,16 +36,18 @@ export default {
     }.bind(this))
   },
   methods: {
-    resetProperties (data) {
-      this.offerProducts = data
-    }
-  },
-  watch: {
-    categoryProperties: {
-      handler (val, oldVal) {
-        this.$EventBus.$emit('update-products', this.offerProducts)
-      },
-      deep: true
+    showModal (data) {
+      this.products = data.products.data
+      this.selectedProducts = data.offerProducts
+      //* show modal */
+      this.$modal.show(this.modalName)
+    },
+    hideModal () {
+      this.$modal.hide(this.modalName)
+    },
+    saveProducts () {
+      this.$EventBus.$emit('update-offer-products', this.selectedProducts)
+      this.hideModal()
     }
   }
 }

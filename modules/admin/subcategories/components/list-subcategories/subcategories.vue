@@ -67,11 +67,11 @@
               </span>
             </b-table-column>
 
-            <!-- <b-table-column field="category" :label="$t('admin.category')" sortable>
+            <b-table-column field="category" :label="$t('admin.category')" sortable>
               <span class="tag">
                 {{ props.row.category[currentLocale].name }}
               </span>
-            </b-table-column> -->
+            </b-table-column>
 
             <b-table-column field="is_active" :label="$t('admin.status')">
               <span :class="`custom-alert alert ${type(props.row.is_active)}`">

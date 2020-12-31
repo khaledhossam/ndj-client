@@ -27,7 +27,7 @@ export default {
       context.$BrandService.getBrands('?is_active=1&is_paginated=false&is_detailed=true')
     ])
     if (context.params.id) {
-      const productDetail = await context.$ProductService.productDetails(context.params.id)
+      const productDetail = await context.$ProductService.productDetails(`${context.params.id}?is_detailed=1`)
 
       return { categories, brands, productDetail }
     } else {
