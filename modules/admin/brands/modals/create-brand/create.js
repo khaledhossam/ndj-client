@@ -72,7 +72,7 @@ export default {
   },
   methods: {
     brandDetails () {
-      if (this.brandDetail) {
+      if (this.param_id) {
         this.reAssignForm(this.brandDetail)
       }
     },

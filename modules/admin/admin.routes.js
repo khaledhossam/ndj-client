@@ -1,12 +1,14 @@
 import statistics from '~/modules/admin/statistics.vue'
 import tables from '~/modules/admin/tables.vue'
 import forms from '~/modules/admin/forms.vue'
-import profile from '~/modules/admin/profile.vue'
+// import profile from '~/modules/admin/profile.vue'
 import client from '~/modules/admin/client/_id.vue'
 
 //* admin routes of each store *//
 import admins from '~/modules/admin/admins/components/list-admins/admins.vue'
 import createAdmin from '~/modules/admin/admins/modals/create-admin/create.vue'
+
+import profileAdmin from '~/modules/admin/profile/components/profile-admin/profile.vue'
 
 import categories from '~/modules/admin/categories/components/list-categories/categories.vue'
 import createCategory from '~/modules/admin/categories/modals/create-category/create.vue'
@@ -50,7 +52,7 @@ export default [
   {
     name: 'profile',
     path: 'profile',
-    component: profile,
+    component: profileAdmin,
     props: true
   },
   {

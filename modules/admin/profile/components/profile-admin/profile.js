@@ -3,41 +3,24 @@ import TitleBar from '@/components/admin/TitleBar'
 import CardComponent from '@/components/admin/CardComponent'
 import FilePicker from '@/components/admin/FilePicker'
 import { mapState } from 'vuex'
+import passwordUpdateForm from '@/modules/admin/profile/modals/update-password/update-password.vue'
 
 export default {
-  validate ({ params, query, store }) {
-    if (params.id) {
-      return !isNaN(params.id)
-    }
-    return true
-  },
-  name: 'Admins',
+  name: 'Profile',
   components: {
     FilePicker,
     CardComponent,
-    TitleBar
-  },
-  async asyncData (context) {
-    const roles = await context.$RoleService.getRoles('?is_paginated=false')
-
-    if (context.params.id) {
-      const adminDetail = await context.$AdminService.adminDetails(context.params.id)
-      return { roles, adminDetail }
-    }
-    return { roles }
+    TitleBar,
+    passwordUpdateForm
   },
   data () {
     return {
-      titlePage: this.$t('admin.admins'),
+      titlePage: this.$t('admin.profile'),
       form: {
         name: null,
         email: null,
         phone: null,
-        roles: [],
-        is_active: true,
-        avatar: null,
-        password: null,
-        password_confirmation: null
+        avatar: null
       },
       profile_image: [],
       enableSubmit: true,
@@ -53,13 +36,14 @@ export default {
   },
   computed: {
     titleBar () {
-      return this.form.id ? this.$t('admin.edit') : this.$t('admin.create')
+      return this.$t('admin.profile')
     },
     titleStack () {
-      return [this.$t('admin.admins'), this.$t('admin.create')]
+      return [this.$t('admin.profile')]
     },
     ...mapState({
-      currentLocale: state => state.localization.currentLocale
+      currentLocale: state => state.localization.currentLocale,
+      authUser: state => state.auth.admin.authUser
     })
   },
   created () {
@@ -68,9 +52,6 @@ export default {
       this.$EventBus.$on(customEvent.eventName, customEvent.callback)
     }.bind(this))
   },
-  mounted () {
-    this.adminDetails()
-  },
   beforeDestroy () {
     this.customEvents.forEach(function (customEvent) {
       // eslint-disable-next-line no-undef
@@ -78,27 +59,6 @@ export default {
     }.bind(this))
   },
   methods: {
-    removeSelect (arr, item) {
-      const index = arr.indexOf(item.id)
-      arr.splice(index, 1)
-    },
-    adminDetails () {
-      if (this.param_id) {
-        this.reAssignForm(this.adminDetail)
-      }
-    },
-    reAssignForm (data) {
-      const obj = {
-        name: data.name,
-        email: data.email,
-        phone: data.phone,
-        is_active: data.is_active,
-        roles: data.roles.map(role => role.id),
-        avatar: data.avatar
-      }
-      // overrite of form data
-      this.form = { ...this.form, ...obj }
-    },
     handleUploadFile (file) {
       this.enableSubmit = false
 
@@ -117,24 +77,12 @@ export default {
       const validData = await this.$validator.validateAll()
 
       if (validData) {
-        if (this.param_id) {
-          this.updateAdmin()
-        } else {
-          this.createAdmin()
-        }
+        this.updateProfileAdmin()
       }
     },
-    createAdmin () {
-      this.$AdminService.createAdmin(this.form)
+    updateProfileAdmin () {
+      this.$AdminProfileService.updateProfileAdmin(this.form)
         .then(() => {
-          this.$router.push({ name: 'admins' })
-          this.buefyBar(this.$t('admin.created_successfully'))
-        })
-    },
-    updateAdmin () {
-      this.$AdminService.updateAdmin(this.form, this.param_id)
-        .then(() => {
-          this.$router.push({ name: 'admins' })
           this.buefyBar(this.$t('admin.updated_successfully'))
         })
     },

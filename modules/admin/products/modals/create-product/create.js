@@ -228,7 +228,7 @@ export default {
         })
     },
     productDetails () {
-      if (this.productDetail) {
+      if (this.param_id) {
         this.reAssignForm(this.productDetail)
       }
     },

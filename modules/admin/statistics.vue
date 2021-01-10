@@ -47,12 +47,6 @@
           />
         </div>
       </card-component>
-
-      <card-component title="Clients" class="has-table has-mobile-sort-spaced">
-        <clients-table-sample
-          data-url="http://localhost:3000/data-sources/clients.json"
-        />
-      </card-component>
     </section>
   </div>
 </template>
@@ -66,12 +60,10 @@ import Tiles from '@/components/admin/Tiles'
 import CardWidget from '@/components/admin/CardWidget'
 import CardComponent from '@/components/admin/CardComponent'
 import LineChart from '@/components/admin/Charts/LineChart'
-import ClientsTableSample from '@/components/admin/ClientsTableSample'
 
 export default {
   name: 'Home',
   components: {
-    ClientsTableSample,
     LineChart,
     CardComponent,
     CardWidget,

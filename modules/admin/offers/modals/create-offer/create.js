@@ -21,12 +21,11 @@ export default {
     offerProducts
   },
   async asyncData (context) {
-    const products = await context.$ProductService.getProductNames('?is_active=1&is_paginated=true&is_detailed=false')
+    // const products = await context.$ProductService.getProductNames('?is_active=1&is_paginated=true&is_detailed=false')
     if (context.params.id) {
       const offerDetail = await context.$OfferService.offerDetails(context.params.id)
-      return { products, offerDetail }
+      return { offerDetail }
     }
-    return { products }
   },
   // fetchOnServer: false,
   data () {
@@ -46,9 +45,11 @@ export default {
         end_date: null,
         type: null,
         products: [],
-        free_product_id: 22, //* if type: free product */
+        free_product_id: null, //* if type: free product */
         is_active: true
       },
+      productDetails: [],
+      freeProduct: null,
       param_id: this.$route.params.id,
       offerTypes: [
         {
@@ -103,16 +104,37 @@ export default {
   },
   methods: {
     changeOfferType (type) {
+      if (type !== 'free_product') {
+        //* reset free product */
+        this.form.free_product_id = null
+      }
       this.form.value = ''
     },
-    openModalOfferProducts () {
+    openModalOfferProducts (bindProp) {
+      let inputType = ''
+      let selectedProducts = []
+
+      if (this.form.type === 'free_product') {
+        //* for free product type, choose one product & one free product */
+        inputType = 'radio'
+
+        selectedProducts = bindProp === 'products'
+          ? (this.form.products.length ? this.form.products[0] : '')
+          : this.form.free_product_id
+      } else {
+        //* for percentage | value type */
+        inputType = 'checkbox'
+        selectedProducts = this.form.products
+      }
       this.$EventBus.$emit('open-products-modal', {
-        products: this.products,
-        offerProducts: this.form.products
+        bindProp,
+        inputType,
+        selectedProducts
+        // productDetails: this.productDetails
       })
     },
     offerDetails () {
-      if (this.offerDetail) {
+      if (this.param_id) {
         this.reAssignForm(this.offerDetail)
       }
     },
@@ -123,13 +145,29 @@ export default {
         },
         ar: {
           name: data.ar.name
-        }
+        },
+        products: data.products.map(product => product.id)
       }
+      // this.productDetails = data.products
+      this.freeProduct = data.free_product
       // override of form data
       this.form = { ...data, ...obj }
     },
     updateOfferProducts (data) {
-      this.form.products = data
+      if (this.form.type === 'free_product') {
+        //* for free product type, choose one product & one free product */
+        if (data.bindProp === 'products') {
+          this.form.products = [data.selectedProducts]
+          // this.productDetails = data.productDetails
+        } else {
+          this.form.free_product_id = data.selectedProducts
+          // this.freeProduct = data.productDetails.length ? data.productDetails[0] : null
+        }
+      } else {
+        //* for percentage | value type */
+        this.form.products = data.selectedProducts
+        // this.productDetails = data.productDetails
+      }
     },
     async submit () {
       const validData = await this.$validator.validateAll()

@@ -13,7 +13,7 @@
               >
                 <v-text-field
                   v-model="form.email"
-                  v-validate="{ required: true, max: 150, email: true }"
+                  v-validate="{ required: true, email: true }"
                   icon="email"
                   type="email"
                   :label="$t('admin.email')"

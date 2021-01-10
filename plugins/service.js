@@ -1,6 +1,7 @@
 
 import AuthService from '@/modules/core/services/AuthService'
 import AdminService from '@/modules/admin/admins/services/AdminService'
+import AdminProfileService from '@/modules/admin/profile/services/AdminProfileService'
 
 import RoleService from '@/modules/admin/roles/services/RoleService'
 import UploadService from '@/modules/admin/uploaders/services/UploadService'
@@ -16,6 +17,7 @@ import OfferService from '@/modules/admin/offers/services/OfferService'
 export default (ctx, inject) => {
   inject('AuthService', new AuthService(ctx))
   inject('AdminService', new AdminService(ctx))
+  inject('AdminProfileService', new AdminProfileService(ctx))
   inject('RoleService', new RoleService(ctx))
   inject('UploadService', new UploadService(ctx))
   inject('PropertyService', new PropertyService(ctx))

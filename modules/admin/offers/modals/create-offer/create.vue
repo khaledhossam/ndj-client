@@ -111,16 +111,44 @@
             </v-col>
 
             <v-col
+              v-else-if="form.type == 'free_product'"
               cols="12"
               md="9"
             >
               <div class="control">
                 <b-button
-                  v-model="form.products"
+                  type="is-success"
+                  icon-left="plus"
+                  @click="openModalOfferProducts('free_products')"
+                >
+                  {{ $t('admin.offer.free_product') }}
+                </b-button>
+              </div>
+              <span v-show="errors.has('free_product_id')" class="text-error text-sm">
+                {{ errors.first("free_product_id") }}
+              </span>
+            </v-col>
+
+            <!-- <v-col
+              v-if="freeProduct"
+              cols="12"
+              md="9"
+            >
+              <span class="tag m-2">
+                {{ freeProduct[currentLocale].name }}
+              </span>
+            </v-col> -->
+
+            <v-col
+              v-if="form.type"
+              cols="12"
+              md="9"
+            >
+              <div class="control">
+                <b-button
                   type="is-primary"
                   icon-left="plus"
-                  name="products"
-                  @click="openModalOfferProducts"
+                  @click="openModalOfferProducts('products')"
                 >
                   {{ $t('admin.products') }}
                 </b-button>
@@ -129,6 +157,16 @@
                 {{ errors.first("products") }}
               </span>
             </v-col>
+
+            <!-- <v-col
+              v-if="productDetails.length"
+              cols="12"
+              md="9"
+            >
+              <span v-for="(product, index) in productDetails" :key="index" class="tag m-2">
+                {{ product[currentLocale].name }}
+              </span>
+            </v-col> -->
 
             <v-col
               cols="12"

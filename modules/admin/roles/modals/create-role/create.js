@@ -73,7 +73,7 @@ export default {
   },
   methods: {
     roleDetails () {
-      if (this.roleDetail) {
+      if (this.param_id) {
         this.reAssignForm(this.roleDetail)
       }
     },

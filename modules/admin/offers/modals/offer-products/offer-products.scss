@@ -1,0 +1,29 @@
+.modal-body {
+  max-height: 75vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.section, .tile.is-child{
+  padding: 0px;
+  height: 100%;
+}
+.pagination{
+  margin: auto;
+}
+.section img{
+  max-height: 130px;
+}
+.img-container{
+  height: 130px;
+}
+.b-checkbox.checkbox:not(.button){
+  margin: 0;
+}
+// .group{
+//   display: flex;
+//   width: 100%;
+// }
+// .item-product{
+//   flex: 1;
+// }
+

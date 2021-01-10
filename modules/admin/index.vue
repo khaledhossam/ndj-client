@@ -7,7 +7,7 @@
 <script>
 
 export default {
-  layout: 'admin-layout',
+  layout: 'admin/layout',
   Name: 'index',
   components: {},
   data () {

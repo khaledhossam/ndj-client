@@ -16,7 +16,7 @@ export default {
     // ValidationObserver,
     // Validator
   },
-  layout: 'empty-layout',
+  layout: 'empty/layout',
   data () {
     return {
       submitted: false,

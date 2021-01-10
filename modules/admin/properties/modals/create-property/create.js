@@ -121,7 +121,7 @@ export default {
       this.form.options.splice(key, 1)
     },
     propertyDetails () {
-      if (this.propertyDetail) {
+      if (this.param_id) {
         this.reAssignForm(this.propertyDetail)
       }
     },

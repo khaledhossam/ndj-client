@@ -73,7 +73,7 @@ export default {
   },
   methods: {
     categoryDetails () {
-      if (this.categoryDetail) {
+      if (this.param_id) {
         this.reAssignForm(this.categoryDetail)
       }
     },

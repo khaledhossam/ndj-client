@@ -90,5 +90,8 @@ export default {
   },
   save: 'Save',
   cancel: 'Cancel',
-  no_products: 'There Are No Products Added Yet!'
+  no_products: 'There Are No Products Added Yet!',
+  profile: 'Profile',
+  current_password: 'Current Password',
+  password_confirmation: 'Password Confirm'
 }

@@ -22,40 +22,65 @@
 
       <!--Modal Body-->
       <div class="modal-body">
-        <v-row v-if="products.length" class="group">
-          <v-col
-            v-for="(product, key) in products"
-            :key="key"
-            cols="12"
-            md="4"
-            class="item-product"
-          >
-            <section class="section is-main-section">
-              <tiles>
+        <div v-if="products.length">
+          <v-row>
+            <v-text-field v-model="searchValue" prepend-icon="mdi-database-search" :placeholder="$t('admin.quick_search')" @input="debouncedNormalSearch" />
+          </v-row>
+          <v-row class="group">
+            <v-col
+              v-for="(product, key) in products"
+              :key="key"
+              cols="12"
+              sm="4"
+              class="item-product"
+            >
+              <section class="section is-main-section">
                 <card-component class="tile is-child">
-                  <img :src="product.primary_attachment.file" :alt="product[currentLocale].name">
+                  <div class="img-container">
+                    <img :src="product.primary_attachment.file" :alt="product[currentLocale].name">
+                  </div>
                   <hr>
                   <b-field>
                     <b-checkbox
-                      v-model="selectedProducts"
+                      v-if="inputType == 'checkbox'"
+                      v-model="product_ids"
                       v-validate="{ required: true }"
                       :native-value="product.id"
                       type="checkbox"
-                      name="products"
-                      :checked="selectedProducts.includes(product.id)"
+                      :name="bindProp"
+                      :checked="product_ids.includes(product.id)"
+                      @input="toggleProducts(product)"
+                    />
+                    <b-radio
+                      v-else
+                      v-model="product_ids"
+                      v-validate="{ required: true }"
+                      :native-value="product.id"
+                      type="radio"
+                      :checked="product_ids == product.id"
+                      @change="toggleProducts"
                     />
                     <b-input :value="product[currentLocale].name" custom-class="is-static" readonly />
                   </b-field>
                 </card-component>
-              </tiles>
-            </section>
-          </v-col>
-        </v-row>
-        <v-row v-else>
+              </section>
+            </v-col>
+          </v-row>
+          <v-row>
+            <b-pagination
+              :total="total"
+              :current="page"
+              :simple="false"
+              :per-page="perPage"
+              @change="onPageChange"
+            />
+          </v-row>
+        </div>
+        <div v-else class="alert alert-info">
           <span class="text-center">
             {{ $t('admin.no_products') }}
           </span>
-        </v-row>
+        </div>
       </div>
 
       <!--Modal Footer-->

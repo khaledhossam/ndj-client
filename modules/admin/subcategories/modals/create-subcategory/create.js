@@ -78,7 +78,7 @@ export default {
   },
   methods: {
     subcategoryDetails () {
-      if (this.subcategoryDetail) {
+      if (this.param_id) {
         this.reAssignForm(this.subcategoryDetail)
       }
     },
