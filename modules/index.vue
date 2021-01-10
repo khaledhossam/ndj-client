@@ -47,9 +47,9 @@
         >
           GitHub
         </a>
-        <nuxt-link :to="{ name: 'posts' }" class="button--green">
-          categories
-        </nuxt-link>
+<!--        <nuxt-link :to="{ name: 'posts' }" class="button&#45;&#45;green">-->
+<!--          categories-->
+<!--        </nuxt-link>-->
       </div>
     </div>
     <meta-tag :title="title" />

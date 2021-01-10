@@ -90,5 +90,8 @@ export default {
   },
   save: 'حفظ',
   cancel: 'الغاء',
-  no_products: 'لا يوجد منتجات'
+  no_products: 'لا يوجد منتجات',
+  profile: 'الملف الشخصى',
+  current_password: 'كلمة المرور الحالية',
+  password_confirmation: 'تأكيد كلمة المرور'
 }
