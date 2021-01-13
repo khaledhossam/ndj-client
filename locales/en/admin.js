@@ -59,6 +59,10 @@ export default {
   'ar.tags': 'Arabic Tags',
   'en.description': 'English Description',
   'ar.description': 'Arabic Description',
+  'en.body': 'English Body',
+  'ar.body': 'Arabic Body',
+  'en.title': 'ِEnglish Title',
+  'ar.title': 'Arabic Title',
   brand: 'Brand',
   brands: 'Brands',
   max_purchase_quantity: 'Max Purchase Quantity',
@@ -93,5 +97,10 @@ export default {
   no_products: 'There Are No Products Added Yet!',
   profile: 'Profile',
   current_password: 'Current Password',
-  password_confirmation: 'Password Confirm'
+  password_confirmation: 'Password Confirm',
+  advertisements: 'Advertisements',
+  app_content: 'App Content',
+  about_us: 'About Us',
+  terms_and_conditions: 'Terms & Conditions'
+
 }

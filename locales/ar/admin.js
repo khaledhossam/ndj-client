@@ -59,6 +59,10 @@ export default {
   'ar.tags': 'التاجات بالعربى',
   'en.description': 'الوصف بالانجليزى',
   'ar.description': 'الوصف بالعربى',
+  'en.body': 'المحتوي بالانجليزي',
+  'ar.body': 'المحتوي بالعربي',
+  'en.title': 'العنوان بالانجليزى',
+  'ar.title': 'العنوان بالعربى',
   brand: 'العلامة التجارية',
   brands: 'العلامات التجارية',
   max_purchase_quantity: 'أكثر كمية يمكن شراؤها',
@@ -93,5 +97,6 @@ export default {
   no_products: 'لا يوجد منتجات',
   profile: 'الملف الشخصى',
   current_password: 'كلمة المرور الحالية',
-  password_confirmation: 'تأكيد كلمة المرور'
+  password_confirmation: 'تأكيد كلمة المرور',
+  advertisements: 'الإعلانات'
 }

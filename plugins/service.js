@@ -13,6 +13,8 @@ import BrandService from '@/modules/admin/brands/services/BrandService'
 
 import ProductService from '@/modules/admin/products/services/ProductService'
 import OfferService from '@/modules/admin/offers/services/OfferService'
+import AdvertisementService from '@/modules/admin/advertisements/services/AdvertisementService'
+import AppContentService from '@/modules/admin/appcontent/services/AppContentService'
 
 export default (ctx, inject) => {
   inject('AuthService', new AuthService(ctx))
@@ -26,6 +28,8 @@ export default (ctx, inject) => {
   inject('SubcategoryService', new SubcategoryService(ctx))
   inject('BrandService', new BrandService(ctx))
   inject('OfferService', new OfferService(ctx))
+  inject('AdvertisementService', new AdvertisementService(ctx))
+  inject('AppContentService', new AppContentService(ctx))
 }
 
 // we can call AuthService

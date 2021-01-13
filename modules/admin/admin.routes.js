@@ -14,6 +14,10 @@ import categories from '~/modules/admin/categories/components/list-categories/ca
 import createCategory from '~/modules/admin/categories/modals/create-category/create.vue'
 
 import subcategories from '~/modules/admin/subcategories/components/list-subcategories/subcategories.vue'
+
+import advertisements from '~/modules/admin/advertisements/components/list-advertisements/advertisements.vue'
+import createAdvertisement from '~/modules/admin/advertisements/modals/create-advertisements/create.vue'
+
 import createSubcategory from '~/modules/admin/subcategories/modals/create-subcategory/create.vue'
 
 import brands from '~/modules/admin/brands/components/list-brands/brands.vue'
@@ -29,7 +33,11 @@ import products from '~/modules/admin/products/components/list-products/products
 import createProduct from '~/modules/admin/products/modals/create-product/create.vue'
 
 import offers from '~/modules/admin/offers/components/list-offers/offers.vue'
+
 import createOffer from '~/modules/admin/offers/modals/create-offer/create.vue'
+
+import aboutus from '~/modules/admin/appcontent/modals/aboutus/update.vue'
+import termsandconditions from '~/modules/admin/appcontent/modals/termsandconditions/update.vue'
 
 export default [
   {
@@ -203,6 +211,36 @@ export default [
     name: 'updateOffer',
     path: 'offers/:id/edit',
     component: createOffer,
+    props: true
+  },
+  {
+    name: 'admin.advertisements',
+    path: 'advertisements',
+    component: advertisements,
+    props: true
+  },
+  {
+    name: 'create.advertisements',
+    path: 'advertisements/create',
+    component: createAdvertisement,
+    props: true
+  },
+  {
+    name: 'update.advertisements',
+    path: 'advertisements/:id/edit',
+    component: createAdvertisement,
+    props: true
+  },
+  {
+    name: 'admin.appcontent.aboutus',
+    path: 'appcontent/aboutus',
+    component: aboutus,
+    props: true
+  },
+  {
+    name: 'admin.appcontent.termsandconditions',
+    path: 'appcontent/terms-and-conditions',
+    component: termsandconditions,
     props: true
   }
 ]

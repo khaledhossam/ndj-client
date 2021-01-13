@@ -1,7 +1,7 @@
 import mapValues from 'lodash/mapValues'
-import TitleBar from '@/components/admin/TitleBar'
-import CardComponent from '@/components/admin/CardComponent'
-import FilePicker from '@/components/admin/FilePicker'
+import TitleBar from './node_modules/@/components/admin/TitleBar'
+import CardComponent from './node_modules/@/components/admin/CardComponent'
+import FilePicker from './node_modules/@/components/admin/FilePicker'
 import { mapState } from 'vuex'
 
 export default {
@@ -22,6 +22,7 @@ export default {
 
     if (context.params.id) {
       const subcategoryDetail = await context.$CategoryService.categoryDetails(context.params.id)
+      console.log('😂' + categories)
       return { categories, subcategoryDetail }
     }
     return { categories }
