@@ -50,6 +50,30 @@ export default {
             to: { name: 'admin.brands' },
             icon: 'view-list',
             label: this.$t('admin.brands')
+          },
+          {
+            to: { name: 'admin.advertisements' },
+            icon: 'view-list',
+            label: this.$t('admin.advertisements')
+          }
+        ],
+        this.$t('admin.app_content'),
+        [
+          {
+            label: this.$t('admin.app_content'),
+            icon: 'view-list',
+            menu: [
+              {
+                to: { name: 'admin.appcontent.aboutus' },
+                icon: 'square-edit-outline',
+                label: this.$t('admin.about_us')
+              },
+              {
+                to: { name: 'admin.appcontent.termsandconditions' },
+                icon: 'square-edit-outline',
+                label: this.$t('admin.terms_and_conditions')
+              }
+            ]
           }
         ],
         this.$t('admin.admin_roles'),
@@ -163,16 +187,16 @@ export default {
 }
 </script>
 <style scoped>
-  .is-invalid{
-    border: 1px solid #dc3545;
-    border-radius: 5px;
-  }
-  p.text-danger{
-    background: #ffe2e2;
-    padding: 5px;
-    border-radius: 5px;
-  }
-  .b-table .table-wrapper.has-sticky-header{
-    height: 480px;
-  }
+.is-invalid {
+  border: 1px solid #dc3545;
+  border-radius: 5px;
+}
+p.text-danger {
+  background: #ffe2e2;
+  padding: 5px;
+  border-radius: 5px;
+}
+.b-table .table-wrapper.has-sticky-header {
+  height: 480px;
+}
 </style>
