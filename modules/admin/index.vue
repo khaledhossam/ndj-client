@@ -5,10 +5,9 @@
 </template>
 
 <script>
-
 export default {
   layout: 'admin/layout',
-  Name: 'index',
+  Name: 'adminIndex',
   components: {},
   data () {
     return {}

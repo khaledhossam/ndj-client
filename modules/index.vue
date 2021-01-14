@@ -2,9 +2,9 @@
   <div class="container">
     <div>
       <Logo />
-      <h2>
+      <!-- <h2>
         {{ $t('website.welcomeMessage', ['Preetish HS', 'contact@preetish.in']) }}
-      </h2>
+      </h2> -->
       <div class="lang-dropdown text-muted">
         <select
           v-model="$store.state.localization.currentLocale"
@@ -47,9 +47,18 @@
         >
           GitHub
         </a>
-<!--        <nuxt-link :to="{ name: 'posts' }" class="button&#45;&#45;green">-->
-<!--          categories-->
-<!--        </nuxt-link>-->
+        <nuxt-link v-if="!isAuthenticated" :to="{ name: 'login' }" class="button--green">
+          Login
+        </nuxt-link>
+        <a
+          v-else
+          class="navbar-item is-desktop-icon-only button--green"
+          title="Log out"
+          @click="logout"
+        >
+          <b-icon icon="logout" custom-size="default" />
+          <span>Log out</span>
+        </a>
       </div>
     </div>
     <meta-tag :title="title" />
@@ -72,8 +81,9 @@ export default {
   },
   computed: {
     ...mapState({
-      // currentLocale: state => state.localization.currentLocale
-      currentLocale: 'localization.currentLocale'
+      currentLocale: state => state.localization.currentLocale,
+      isAuthenticated: state => state.auth.front.isAuthenticated
+      // currentLocale: 'localization.currentLocale'
     })
   },
   created () {},
@@ -89,6 +99,15 @@ export default {
       this.$forceUpdate()
       // window.location.reload(`/${event}/${this.$router.currentRoute.path}`)
       // this.$router.replace({ path: `/${event}/${this.$router.currentRoute.path}` })
+    },
+    logout () {
+      this.$store.dispatch('clearAllFront')
+      this.$router.replace({ name: 'login' })
+
+      this.$buefy.snackbar.open({
+        message: this.$t('front.logged_out_successfully'),
+        queue: false
+      })
     }
   }
 }

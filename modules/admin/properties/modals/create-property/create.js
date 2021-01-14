@@ -20,7 +20,7 @@ export default {
   async asyncData (context) {
     const [categories, propertyTypes] = await Promise.all([
 
-      context.$PropertyService.getCategories('?is_paginated=false'),
+      context.$CategoryService.getCategories('?is_paginated=false'),
 
       context.$PropertyService.getPropertyTypes('?is_paginated=false')
     ])

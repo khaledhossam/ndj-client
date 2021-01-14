@@ -7,6 +7,8 @@
   </div>
 </template>
 
+<style lang="scss" src="@/assets/admin/scss/main.scss"></style>
+
 <script>
 // @ is an alias to /src
 import Vue from 'vue'

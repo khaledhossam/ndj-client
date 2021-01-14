@@ -30,8 +30,6 @@ const mutations = {
   },
 
   reset (state) {
-    // acquire initial state
-    // https://github.com/vuejs/vuex/issues/1118
     const states = initialState()
     Object.keys(states).forEach((key) => {
       state[key] = states[key]

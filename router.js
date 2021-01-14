@@ -1,13 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-//* * basic routes */
-import custom from '~/modules/blog.vue'
-import home from '~/modules/index.vue'
-
 //* ** module website routes** */
-import blogIndex from '~/modules/blog/index.vue'
-import blogRoutes from '~/modules/blog/blog.routes'
+import frontIndex from '~/modules/front/index.vue'
+import frontRoutes from '~/modules/front/front.routes.js'
 
 //* ** module admin routes** */
 import adminIndex from '~/modules/admin/index.vue'
@@ -25,27 +21,6 @@ const router = new Router({
   },
   routes: [
     {
-      name: 'home',
-      path: '/',
-      component: home,
-      meta: {
-        noAuthentication: true
-      }
-    },
-    {
-      name: 'custom',
-      path: '/custom',
-      component: custom
-    },
-    {
-      path: '/categories',
-      component: blogIndex,
-      children: blogRoutes,
-      meta: {
-        noAuthentication: true
-      }
-    },
-    {
       path: '/admin',
       component: adminIndex,
       children: adminRoutes
@@ -57,6 +32,11 @@ const router = new Router({
       meta: {
         noAuthentication: true
       }
+    },
+    {
+      path: '/',
+      component: frontIndex,
+      children: frontRoutes
     }
   ]
 })

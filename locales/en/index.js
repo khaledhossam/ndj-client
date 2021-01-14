@@ -1,7 +1,7 @@
 import admin from './admin'
-import website from './website'
+import front from './front'
 
 export default {
   admin,
-  website
+  front
 }
