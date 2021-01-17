@@ -98,5 +98,9 @@ export default {
   profile: 'الملف الشخصى',
   current_password: 'كلمة المرور الحالية',
   password_confirmation: 'تأكيد كلمة المرور',
-  advertisements: 'الإعلانات'
+  advertisements: 'الإعلانات',
+  contactus: 'اتصل بنا',
+  gender: 'الجنس',
+  male: 'ذكر',
+  female: 'انثي',
 }

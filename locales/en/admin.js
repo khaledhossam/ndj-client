@@ -101,6 +101,9 @@ export default {
   advertisements: 'Advertisements',
   app_content: 'App Content',
   about_us: 'About Us',
-  terms_and_conditions: 'Terms & Conditions'
-
+  terms_and_conditions: 'Terms & Conditions',
+  contactus: 'Contact us',
+  gender: 'Gender',
+  male: 'Male',
+  female: 'Female',
 }

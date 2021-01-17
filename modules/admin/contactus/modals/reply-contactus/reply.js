@@ -1,7 +1,7 @@
 import mapValues from 'lodash/mapValues'
-import TitleBar from './node_modules/@/components/admin/TitleBar'
-import CardComponent from './node_modules/@/components/admin/CardComponent'
-import FilePicker from './node_modules/@/components/admin/FilePicker'
+import TitleBar from '@/components/admin/TitleBar'
+import CardComponent from '@/components/admin/CardComponent'
+import FilePicker from '@/components/admin/FilePicker'
 import { mapState } from 'vuex'
 
 export default {
@@ -11,7 +11,7 @@ export default {
     }
     return true
   },
-  name: 'Categories',
+  name: 'Advertisements',
   components: {
     FilePicker,
     CardComponent,
@@ -21,28 +21,29 @@ export default {
     const categories = await context.$CategoryService.getCategories('?is_active=1&is_paginated=false&is_detailed=true')
 
     if (context.params.id) {
-      const subcategoryDetail = await context.$CategoryService.categoryDetails(context.params.id)
-      console.log('😂' + categories)
-      return { categories, subcategoryDetail }
+      const advertisementDetail = await context.$AdvertisementService.advertisementDetails(context.params.id)
+      return { categories, advertisementDetail }
     }
     return { categories }
   },
   // fetchOnServer: false,
   data () {
     return {
-      titlePage: this.$t('admin.subcategories'),
+      titlePage: this.$t('admin.advertisements'),
       image: null,
-      uploaderFolder: 'categories',
+      uploaderFolder: 'ads',
       enableSubmit: true,
       orders: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
       form: {
         en: {
-          name: ''
+          title: '',
+          description: ''
         },
         ar: {
-          name: ''
+          title: '',
+          description: ''
         },
-        parent_id: null,
+        category_id: null,
         image: null,
         order: '',
         tax_percentage: 0,
@@ -54,10 +55,10 @@ export default {
   },
   computed: {
     titleBar () {
-      return this.form.id ? this.$t('admin.edit') : this.$t('admin.create')
+      return this.$route.params.id ? this.$t('admin.edit') : this.$t('admin.create')
     },
     titleStack () {
-      return [this.$t('admin.subcategories'), this.$t('admin.create')]
+      return [this.$t('admin.advertisements'), this.$route.params.id ? this.$t('admin.edit') : this.$t('admin.create')]
     },
     ...mapState({
       currentLocale: state => state.localization.currentLocale
@@ -70,7 +71,7 @@ export default {
     }.bind(this))
   },
   mounted () {
-    this.subcategoryDetails()
+    this.advertisementDetails()
   },
   beforeDestroy () {
     this.customEvents.forEach(function (customEvent) {
@@ -79,21 +80,22 @@ export default {
     }.bind(this))
   },
   methods: {
-    subcategoryDetails () {
+    advertisementDetails () {
       if (this.param_id) {
-        this.reAssignForm(this.subcategoryDetail)
+        this.reAssignForm(this.advertisementDetail)
       }
     },
     reAssignForm (data) {
       const obj = {
         en: {
-          name: data?.en?.name
+          title: data?.en?.title,
+          description: data?.en?.description
         },
         ar: {
-          name: data?.ar?.name
+          title: data?.ar?.title,
+          description: data?.ar?.description
         },
-        order: Number(data?.order),
-        parent_id: data?.category?.id
+        category_id: data?.category?.id
       }
       // override of form data
       this.form = { ...data, ...obj }
@@ -119,23 +121,24 @@ export default {
 
       if (validData) {
         if (this.param_id) {
-          this.updateSubcategory()
+          this.updateAdvertisement()
         } else {
-          this.createSubcategory()
+          this.createAdvertisement()
         }
       }
     },
-    createSubcategory () {
-      this.$CategoryService.createCategory(this.form)
+    createAdvertisement () {
+      console.log(this.form)
+      this.$AdvertisementService.createAdvertisement(this.form)
         .then(() => {
-          this.$router.push({ name: 'admin.subcategories' })
+          this.$router.push({ name: 'admin.advertisements' })
           this.buefyBar(this.$t('admin.created_successfully'))
         })
     },
-    updateSubcategory () {
-      this.$CategoryService.updateCategory(this.form, this.param_id)
+    updateAdvertisement () {
+      this.$AdvertisementService.updateAdvertisement(this.form, this.param_id)
         .then(() => {
-          this.$router.push({ name: 'admin.subcategories' })
+          this.$router.push({ name: 'admin.advertisements' })
           this.buefyBar(this.$t('admin.updated_successfully'))
         })
     },

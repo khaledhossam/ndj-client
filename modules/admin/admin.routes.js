@@ -38,6 +38,9 @@ import createOffer from '~/modules/admin/offers/modals/create-offer/create.vue'
 
 import aboutus from '~/modules/admin/appcontent/modals/aboutus/update.vue'
 import termsandconditions from '~/modules/admin/appcontent/modals/termsandconditions/update.vue'
+import contactus from '~/modules/admin/contactus/components/list-contactus/contactus.vue'
+import contactView from '~/modules/admin/contactus/components/view-contactus/view.vue'
+import clientsIndex from '~/modules/admin/clients/components/list/index.vue'
 
 export default [
   {
@@ -241,6 +244,24 @@ export default [
     name: 'admin.appcontent.termsandconditions',
     path: 'appcontent/terms-and-conditions',
     component: termsandconditions,
+    props: true
+  },
+  {
+    name: 'admin.contactus',
+    path: 'contactus',
+    component: contactus,
+    props: true
+  },
+  {
+    name: 'admin.contactus.view',
+    path: 'contactus/:id/view',
+    component: contactView,
+    props: true
+  },
+  {
+    name: 'admin.clients',
+    path: 'app/clients',
+    component: clientsIndex,
     props: true
   }
 ]
