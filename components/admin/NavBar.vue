@@ -149,7 +149,7 @@ export default {
       this.isMenuNavBarActive = !this.isMenuNavBarActive
     },
     logout () {
-      this.$store.dispatch('clearAll')
+      this.$store.dispatch('clearAllAdmin')
       this.$router.replace({ name: 'admin-login' })
 
       this.$buefy.snackbar.open({

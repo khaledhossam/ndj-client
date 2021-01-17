@@ -8,8 +8,11 @@
 export const state = () => ({})
 export const mutations = {}
 export const actions = {
-  clearAll ({ commit }) {
+  clearAllAdmin ({ commit }) {
     commit('auth/admin/reset')
+  },
+  clearAllFront ({ commit }) {
+    commit('auth/front/reset')
   }
 }
 export const getters = {}

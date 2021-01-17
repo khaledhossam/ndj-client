@@ -1,23 +1,21 @@
 <template>
-  <div :key="reRenderKey">
-    <app-header />
+  <div>
+    <!-- <app-header /> -->
     <Nuxt />
-    <app-footer />
+    <!-- <app-footer /> -->
   </div>
 </template>
+
 <script>
-import AppHeader from '@/components/layout/front/header'
-import AppFooter from '@/components/layout/front/footer'
+// import AppHeader from '@/components/layout/front/header'
+// import AppFooter from '@/components/layout/front/footer'
 
 export default {
   component: {
-    AppHeader,
-    AppFooter
+    // AppHeader,
+    // AppFooter
   },
   data () {
-    return {
-      reRenderKey: Math.random().toString(36).substr(2, 9)
-    }
   },
   methods: {
   }

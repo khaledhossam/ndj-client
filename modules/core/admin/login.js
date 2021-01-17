@@ -1,22 +1,7 @@
-// import { ValidationProvider, ValidationObserver } from 'vee-validate'
 import { mapState } from 'vuex'
-// import { Validator } from 'vee-validate'
-// import { extend } from 'vee-validate'
-// import { required, email } from 'vee-validate/dist/rules'
-// extend('required', required)
-// extend('email', email)
-
-// extend('required', {
-//   ...required
-// })
 
 export default {
-  components: {
-    // ValidationProvider,
-    // ValidationObserver,
-    // Validator
-  },
-  layout: 'empty/layout',
+  layout: 'admin/empty',
   data () {
     return {
       submitted: false,

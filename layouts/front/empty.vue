@@ -1,9 +1,9 @@
 <template>
   <Nuxt />
 </template>
-<script>
 
+<script>
 export default {
-  Name: 'empty-layout'
+  Name: 'front-layout'
 }
 </script>
