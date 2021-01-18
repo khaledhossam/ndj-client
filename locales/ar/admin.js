@@ -101,8 +101,7 @@ export default {
   advertisements: 'الإعلانات',
   basic_data: 'البيانات الأساسية',
   dynamic_properties: 'الخصائص الاضافية',
-  attachments: 'المرفقات'
-  advertisements: 'الإعلانات',
+  attachments: 'المرفقات',
   contactus: 'اتصل بنا',
   gender: 'الجنس',
   male: 'ذكر',

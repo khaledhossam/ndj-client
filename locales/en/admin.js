@@ -104,7 +104,7 @@ export default {
   terms_and_conditions: 'Terms & Conditions',
   basic_data: 'Basic Data',
   dynamic_properties: 'Dynamic Properties',
-  attachments: 'Attachments'
+  attachments: 'Attachments',
   contactus: 'Contact us',
   gender: 'Gender',
   male: 'Male',
