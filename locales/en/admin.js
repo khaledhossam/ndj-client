@@ -108,5 +108,5 @@ export default {
   contactus: 'Contact us',
   gender: 'Gender',
   male: 'Male',
-  female: 'Female',
+  female: 'Female'
 }

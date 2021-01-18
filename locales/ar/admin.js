@@ -105,5 +105,5 @@ export default {
   contactus: 'اتصل بنا',
   gender: 'الجنس',
   male: 'ذكر',
-  female: 'انثي',
+  female: 'انثي'
 }
