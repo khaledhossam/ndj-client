@@ -98,6 +98,9 @@ export default {
   profile: 'الملف الشخصى',
   current_password: 'كلمة المرور الحالية',
   password_confirmation: 'تأكيد كلمة المرور',
+  app_content: 'محتوى التطبيق',
+  about_us: 'عن التطبيق',
+  terms_and_conditions: 'الشروط والأحكام',
   advertisements: 'الإعلانات',
   basic_data: 'البيانات الأساسية',
   dynamic_properties: 'الخصائص الاضافية',
@@ -105,5 +108,12 @@ export default {
   contactus: 'اتصل بنا',
   gender: 'الجنس',
   male: 'ذكر',
-  female: 'انثي'
+  female: 'انثي',
+  reason: 'السبب',
+  clients: 'العملاء',
+  reply: 'الرد',
+  title: 'العنوان',
+  body: 'المحتوى',
+  replies: 'الردود',
+  read_at: 'قرأ فى'
 }

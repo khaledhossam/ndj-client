@@ -114,7 +114,7 @@
         </a>
     </section>
     <!-- section -->
-    <section class="bg-color2">
+    <!-- <section class="bg-color2">
         <div class="container">
             <div class="row">
                 <div class="col head-sec">
@@ -123,9 +123,7 @@
                     </div>
                 </div>
             </div>
-            <!-- cat items -->
             <div class="row">
-                <!-- item -->
                 <div class="col-lg-6">
                     <div class="cat-item">
                         <div class="img"><img src="~/assets/front/images/cat-img1.png" alt=""></div>
@@ -134,7 +132,6 @@
                         </h4>
                     </div>
                 </div>
-                <!-- item -->
                 <div class="col-lg-6">
                     <div class="cat-item">
                         <div class="img"><img src="~/assets/front/images/cat-img2.png" alt=""></div>
@@ -145,7 +142,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- section -->
     <section v-if="thirdCatProducts.length" class="bg-color">
         <div class="container">

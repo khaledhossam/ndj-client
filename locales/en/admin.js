@@ -108,5 +108,12 @@ export default {
   contactus: 'Contact us',
   gender: 'Gender',
   male: 'Male',
-  female: 'Female'
+  female: 'Female',
+  reason: 'reason',
+  clients: 'Clients',
+  reply: 'Reply',
+  title: 'Title',
+  body: 'Body',
+  replies: 'Replies',
+  read_at: 'Read At'
 }

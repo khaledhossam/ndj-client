@@ -77,16 +77,8 @@ export default {
       }
     },
     reAssignForm (data) {
-      const obj = {
-        en: {
-          name: data.en.name
-        },
-        ar: {
-          name: data.ar.name
-        }
-      }
       // override of form data
-      this.form = { ...this.form, ...obj }
+      this.form = data
     },
     handleUploadFile (file) {
       this.enableSubmit = false

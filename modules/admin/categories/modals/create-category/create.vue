@@ -43,6 +43,23 @@
               cols="12"
               md="9"
             >
+              <v-select
+                v-model="form.order"
+                v-validate="'required'"
+                :items="orders"
+                :label="$t('admin.orderSort')"
+                name="orderSort"
+                :class="{ 'is-invalid': errors.has('orderSort') }"
+              />
+              <span v-show="errors.has('orderSort')" class="text-error text-sm">
+                {{ errors.first("orderSort") }}
+              </span>
+            </v-col>
+
+            <v-col
+              cols="12"
+              md="9"
+            >
               <v-file-input
                 v-model="image"
                 v-validate="param_id ? '' : { required: true }"
