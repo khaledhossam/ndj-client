@@ -102,4 +102,9 @@ export default {
   basic_data: 'البيانات الأساسية',
   dynamic_properties: 'الخصائص الاضافية',
   attachments: 'المرفقات'
+  advertisements: 'الإعلانات',
+  contactus: 'اتصل بنا',
+  gender: 'الجنس',
+  male: 'ذكر',
+  female: 'انثي',
 }

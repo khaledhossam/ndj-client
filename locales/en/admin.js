@@ -105,5 +105,8 @@ export default {
   basic_data: 'Basic Data',
   dynamic_properties: 'Dynamic Properties',
   attachments: 'Attachments'
-
+  contactus: 'Contact us',
+  gender: 'Gender',
+  male: 'Male',
+  female: 'Female',
 }

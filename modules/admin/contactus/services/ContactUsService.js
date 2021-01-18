@@ -1,10 +1,10 @@
-import ApplicationService from './node_modules/@/services/ApplicationService'
+import ApplicationService from '@/services/ApplicationService'
 
-export default class AdvertisementService extends ApplicationService {
-  resource = '/admin/ads'
+export default class ContactUsService extends ApplicationService {
+  resource = '/admin/contact-us'
 
   //* **************************************************** *//
-  async getAdvertisements (queryParam = {}) {
+  async getAllMessages (queryParam = {}) {
     return await this.get(`${this.resource}${queryParam}`)
   }
 
@@ -20,11 +20,15 @@ export default class AdvertisementService extends ApplicationService {
     return await this.put(`${this.resource}/${id}`, data)
   }
 
-  async advertisementDetails (id) {
+  async reply (data, id) {
+    return await this.put(`${this.resource}/${id}`, data)
+  }
+
+  async show (id) {
     return await this.get(`${this.resource}/${id}`)
   }
 
-  async deleteAdvertisement (id) {
+  async deleteMsg (id) {
     return await this.delete(`${this.resource}/${id}`)
   }
   //* **************************************************** *//

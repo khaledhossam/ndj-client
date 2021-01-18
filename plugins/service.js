@@ -15,6 +15,8 @@ import ProductService from '@/modules/admin/products/services/ProductService'
 import OfferService from '@/modules/admin/offers/services/OfferService'
 import AdvertisementService from '@/modules/admin/advertisements/services/AdvertisementService'
 import AppContentService from '@/modules/admin/appcontent/services/AppContentService'
+import ContactUsService from  '@/modules/admin/contactus/services/ContactUsService'
+import ClientService from  '@/modules/admin/clients/services/ClientService'
 
 //* front services */
 import HomeService from '@/modules/front/home/services/HomeService'
@@ -33,6 +35,8 @@ export default (ctx, inject) => {
   inject('OfferService', new OfferService(ctx))
   inject('AdvertisementService', new AdvertisementService(ctx))
   inject('AppContentService', new AppContentService(ctx))
+  inject('ContactUsService', new ContactUsService(ctx))
+  inject('ClientService', new ClientService(ctx))
 
   //* front services */
   inject('HomeService', new HomeService(ctx))
