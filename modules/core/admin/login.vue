@@ -1,6 +1,7 @@
 <template>
-  <div class="container h-100">
-    <div class="row h-100 justify-content-center align-items-center">
+  <div class="container">
+    <section class="section is-main-section">
+    <div class="row justify-content-center align-items-center">
       <div class="card">
         <h4 class="card-header text-center">
           {{ $t('admin.login') }}
@@ -64,6 +65,7 @@
         </div>
       </div>
     </div>
+    </section>
   </div>
 </template>
 

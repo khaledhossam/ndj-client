@@ -7,7 +7,7 @@
   </div>
 </template>
 
-<style lang="scss" src="@/assets/admin/scss/main.scss"></style>
+<!--<style lang="scss" src="@/assets/admin/scss/main.scss"></style> -->
 
 <script>
 // @ is an alias to /src
@@ -183,6 +183,13 @@ export default {
     document.documentElement.classList.add('has-aside-mobile-transition')
     document.documentElement.classList.add('has-navbar-fixed-top')
     document.documentElement.classList.add('has-aside-expanded')
+  },
+  head () {
+    return {
+      link: [
+        { rel: 'stylesheet', href: require('~/assets/admin/scss/main.scss') }
+      ]
+    }
   }
 }
 </script>

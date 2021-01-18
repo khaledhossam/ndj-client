@@ -4,6 +4,13 @@
 
 <script>
 export default {
-  Name: 'admin-layout'
+  Name: 'admin-layout',
+  head () {
+    return {
+      link: [
+        { rel: 'stylesheet', href: require('~/assets/admin/scss/main.scss') }
+      ]
+    }
+  }
 }
 </script>

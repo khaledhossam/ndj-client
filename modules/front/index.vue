@@ -1,18 +1,39 @@
 <template>
   <div>
+    <app-header
+      :categories="categories"
+      :brands="brands"
+      :offers="offers"
+    />
     <Nuxt />
+    <app-footer />
   </div>
 </template>
 
-<style src="@/assets/front/css/slick.css"></style>
-<style src="@/assets/front/css/style.css"></style>
-
 <script>
 
+import AppHeader from '@/components/layout/front/header/header.vue'
+import AppFooter from '@/components/layout/front/footer/footer.vue'
+
 export default {
-  layout: 'front/empty',
-  Name: 'index',
-  components: {},
+  layout: 'front/layout',
+  Name: 'frontIndex',
+  components: {
+    AppHeader,
+    AppFooter
+  },
+  async asyncData (context) {
+    const [offers, categories, brands] = await Promise.all([
+      context.$HomeService.getOffers('?per_page=2').then(res => res.data),
+      context.$HomeService.getCategories('?is_paginated=false'),
+      context.$HomeService.getBrands('?is_paginated=false')
+    ])
+    //* store categories in front store to be used in home page content */
+    context.store.commit('frontStore/setCategories', categories)
+    context.store.commit('frontStore/setBrands', brands)
+
+    return { offers, categories, brands }
+  },
   data () {
     return {}
   },

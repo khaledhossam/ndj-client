@@ -1,7 +1,7 @@
 // import axios from 'axios'
 function initialState () {
   return {
-    authUser: {},
+    authUser: null,
     isAuthenticated: false,
     accessToken: null,
     refreshtoken: null

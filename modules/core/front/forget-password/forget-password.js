@@ -5,7 +5,7 @@ export default {
   components: {
     activationCode
   },
-  layout: 'front/empty',
+  layout: 'front/layout',
   data () {
     return {
       form: {

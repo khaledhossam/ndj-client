@@ -101,6 +101,9 @@ export default {
   advertisements: 'Advertisements',
   app_content: 'App Content',
   about_us: 'About Us',
-  terms_and_conditions: 'Terms & Conditions'
+  terms_and_conditions: 'Terms & Conditions',
+  basic_data: 'Basic Data',
+  dynamic_properties: 'Dynamic Properties',
+  attachments: 'Attachments'
 
 }

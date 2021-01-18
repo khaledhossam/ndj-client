@@ -44,5 +44,21 @@ export default {
   send: 'إرسال',
   back: 'رجوع',
   activation_code: 'كود التحقق',
-  send_code_hint: 'تم إرسال رساله تأكيد على الرقم'
+  send_code_hint: 'تم إرسال رساله تأكيد على الرقم',
+  login_or_register: 'تسجيل دخول او الأشتراك',
+  profile: 'الملف الشخصى',
+  nafaes_client: 'عملاء نفائس الألماس',
+  categories: 'الفئات',
+  all_categories: 'جميع الفئات',
+  favourite_brands: 'أفضل الماركات',
+  home: 'الرئيسية',
+  offers: 'العروض',
+  suggested: 'مُقترحة لك',
+  display_all: 'عرض الكل',
+  off: 'خصم',
+  left_qty: 'باقى',
+  riyal: 'ريال',
+  most_seller: 'الآكثر مبيعا',
+  famous_brands: 'آشهر الماركات',
+  shop_now: 'تسوق الآن'
 }

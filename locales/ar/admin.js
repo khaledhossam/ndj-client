@@ -98,5 +98,8 @@ export default {
   profile: 'الملف الشخصى',
   current_password: 'كلمة المرور الحالية',
   password_confirmation: 'تأكيد كلمة المرور',
-  advertisements: 'الإعلانات'
+  advertisements: 'الإعلانات',
+  basic_data: 'البيانات الأساسية',
+  dynamic_properties: 'الخصائص الاضافية',
+  attachments: 'المرفقات'
 }

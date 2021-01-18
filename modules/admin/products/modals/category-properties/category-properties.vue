@@ -15,9 +15,9 @@
           :name="`property.${key}`"
           :class="{ 'is-invalid': errors.has(`property.${key}`) }"
         />
-        <span v-show="errors.has(`property.${key}`)" class="text-error text-sm">
+        <!-- <span v-show="errors.has(`property.${key}`)" class="text-error text-sm">
           {{ errors.first(`property.${key}`) }}
-        </span>
+        </span> -->
       </v-col>
       <!-- end text property -->
 
@@ -35,9 +35,9 @@
           :name="`property.${key}`"
           :class="{ 'is-invalid': errors.has(`property.${key}`) }"
         />
-        <span v-show="errors.has(`property.${key}`)" class="text-error text-sm">
+        <!-- <span v-show="errors.has(`property.${key}`)" class="text-error text-sm">
           {{ errors.first(`property.${key}`) }}
-        </span>
+        </span> -->
       </v-col>
       <!-- end number property -->
 
@@ -54,9 +54,9 @@
           :name="`property.${key}`"
           :label="property[currentLocale].name"
         />
-        <span v-show="errors.has(`property.${key}`)" class="text-error text-sm">
+        <!-- <span v-show="errors.has(`property.${key}`)" class="text-error text-sm">
           {{ errors.first(`property.${key}`) }}
-        </span>
+        </span> -->
       </v-col>
       <!-- end textarea property -->
 
@@ -90,9 +90,9 @@
             @change="menu1 = false"
           />
         </v-menu>
-        <span v-show="errors.has(`property.${key}`)" class="text-error text-sm">
+        <!-- <span v-show="errors.has(`property.${key}`)" class="text-error text-sm">
           {{ errors.first(`property.${key}`) }}
-        </span>
+        </span> -->
       </v-col>
       <!-- end date property -->
 
@@ -116,9 +116,9 @@
           >
             {{ option[currentLocale].name }}
           </b-checkbox>
-          <span v-show="errors.has(`property.${key}`)" class="text-error text-sm">
+          <!-- <span v-show="errors.has(`property.${key}`)" class="text-error text-sm">
             {{ errors.first(`property.${key}`) }}
-          </span>
+          </span> -->
         </b-field>
       </v-col>
       <!-- end checkbox property -->
@@ -143,9 +143,9 @@
           >
             {{ option[currentLocale].name }}
           </b-radio>
-          <span v-show="errors.has(`property.${key}`)" class="text-error text-sm">
+          <!-- <span v-show="errors.has(`property.${key}`)" class="text-error text-sm">
             {{ errors.first(`property.${key}`) }}
-          </span>
+          </span> -->
         </b-field>
       </v-col>
       <!-- end radio property -->
@@ -208,9 +208,9 @@
             </v-list-item-content>
           </template>
         </v-autocomplete>
-        <span v-show="errors.has(`property.${key}`)" class="text-error text-sm">
+        <!-- <span v-show="errors.has(`property.${key}`)" class="text-error text-sm">
           {{ errors.first(`property.${key}`) }}
-        </span>
+        </span> -->
       </v-col>
       <!-- start multi select property -->
 
@@ -246,9 +246,9 @@
             </v-list-item-content>
           </template>
         </v-select>
-        <span v-show="errors.has(`property.${key}`)" class="text-error text-sm">
+        <!-- <span v-show="errors.has(`property.${key}`)" class="text-error text-sm">
           {{ errors.first(`property.${key}`) }}
-        </span>
+        </span> -->
       </v-col>
       <!-- start select property -->
     </v-row>

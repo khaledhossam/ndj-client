@@ -2,8 +2,7 @@
 // import Vue from 'vue'
 // import Vuex from 'vuex'
 
-// import admin from './admin'
-// import localization from './localization'
+import frontStore from '@/modules/front/front-store'
 
 export const state = () => ({})
 export const mutations = {}
@@ -17,89 +16,35 @@ export const actions = {
 }
 export const getters = {}
 
+export const modules = {
+  frontStore
+}
+
 // Vue.use(Vuex)
 
 // export const store = new Vuex.Store({
 
 //   state: () => ({
-//     currentLocale: '',
+//     currentLocale: 'ar',
 //     locales: ['ar', 'en']
 //   }),
 //   mutations: {},
-//   actions: {},
+//   actions: {
+//     clearAllAdmin ({ commit }) {
+//       commit('auth/admin/reset')
+//     },
+//     clearAllFront ({ commit }) {
+//       commit('auth/front/reset')
+//     }
+//   },
 //   getters: {},
 //   modules: {
 //     admin,
-//     localization
+//     localization,
+//     frontStore
 //   },
 //   strict: false
 // })
-
-// export default {
-//   state: () => ({
-//     posts: [],
-//     selectedPost: {},
-//     /* User */
-//     userName: null,
-//     userEmail: null,
-//     userAvatar: null,
-
-//     /* NavBar */
-//     isNavBarVisible: true,
-
-//     /* FooterBar */
-//     isFooterBarVisible: true,
-
-//     /* Aside */
-//     isAsideVisible: true,
-//     isAsideMobileExpanded: false
-//   }),
-//   mutations: {
-//     updatePosts (state, posts) {
-//       state.posts = posts
-//     },
-//     selectedPost (state, post) {
-//       state.selectedPost = post
-//     },
-//     /* A fit-them-all commit */
-//     basic (state, payload) {
-//       state[payload.key] = payload.value
-//     },
-
-//     /* User */
-//     user (state, payload) {
-//       if (payload.name) {
-//         state.userName = payload.name
-//       }
-//       if (payload.email) {
-//         state.userEmail = payload.email
-//       }
-//       if (payload.avatar) {
-//         state.userAvatar = payload.avatar
-//       }
-//     },
-
-//     /* Aside Mobile */
-//     asideMobileStateToggle (state, payload = null) {
-//       const htmlClassName = 'has-aside-mobile-expanded'
-
-//       let isShow
-
-//       if (payload !== null) {
-//         isShow = payload
-//       } else {
-//         isShow = !state.isAsideMobileExpanded
-//       }
-
-//       if (isShow) {
-//         document.documentElement.classList.add(htmlClassName)
-//       } else {
-//         document.documentElement.classList.remove(htmlClassName)
-//       }
-
-//       state.isAsideMobileExpanded = isShow
-//     }
-//   },
 
 //   actions: {
 //     nuxtServerInit ({ commit }, { req }) {

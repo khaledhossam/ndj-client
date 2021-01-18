@@ -16,6 +16,9 @@ import OfferService from '@/modules/admin/offers/services/OfferService'
 import AdvertisementService from '@/modules/admin/advertisements/services/AdvertisementService'
 import AppContentService from '@/modules/admin/appcontent/services/AppContentService'
 
+//* front services */
+import HomeService from '@/modules/front/home/services/HomeService'
+
 export default (ctx, inject) => {
   inject('AuthService', new AuthService(ctx))
   inject('AdminService', new AdminService(ctx))
@@ -30,6 +33,9 @@ export default (ctx, inject) => {
   inject('OfferService', new OfferService(ctx))
   inject('AdvertisementService', new AdvertisementService(ctx))
   inject('AppContentService', new AppContentService(ctx))
+
+  //* front services */
+  inject('HomeService', new HomeService(ctx))
 }
 
 // we can call AuthService

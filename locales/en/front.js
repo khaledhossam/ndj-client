@@ -44,5 +44,21 @@ export default {
   send: 'Send',
   back: 'back',
   activation_code: 'Activation Code',
-  send_code_hint: 'A confirmation message has been sent to number'
+  send_code_hint: 'A confirmation message has been sent to number',
+  login_or_register: 'Login or Register',
+  profile: 'Profile',
+  nafaes_client: 'Nafaes Clients',
+  categories: 'Categories',
+  all_categories: 'جميع الفئات',
+  favourite_brands: 'أفضل الماركات',
+  home: 'Home',
+  offers: 'Offers',
+  suggested: 'Suggested For You',
+  display_all: 'display all',
+  off: 'off',
+  left_qty: 'left',
+  riyal: 'Riyal',
+  most_seller: 'Most Sellers',
+  famous_brands: 'Most Famous Brands',
+  shop_now: 'Shop Now'
 }

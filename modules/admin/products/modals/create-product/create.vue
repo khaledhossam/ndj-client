@@ -9,7 +9,7 @@
               :complete="stepper > 1"
               step="1"
             >
-              Name of step 1
+              {{ $t('admin.basic_data') }}
             </v-stepper-step>
 
             <v-divider />
@@ -18,13 +18,13 @@
               :complete="stepper > 2"
               step="2"
             >
-              Name of step 2
+              {{ $t('admin.dynamic_properties') }}
             </v-stepper-step>
 
             <v-divider />
 
             <v-stepper-step step="3">
-              Name of step 3
+              {{ $t('admin.attachments') }}
             </v-stepper-step>
           </v-stepper-header>
 
@@ -150,14 +150,14 @@
                   >
                     <v-text-field
                       v-model="form.price"
-                      v-validate="{ required: true, decimal:3 }"
+                      v-validate="{ required: true, decimal: 2 }"
                       :label="$t('admin.price')"
                       name="price"
-                      :class="{ 'is-invalid': errors.has('price') }"
+                      :class="{ 'is-invalid': errors.has('price', 'firstStep') }"
                     />
-                    <span v-show="errors.has('price')" class="text-error text-sm">
-                      {{ errors.first("price") }}
-                    </span>
+                      <span v-show="errors.has('price', 'firstStep')" class="text-error text-sm">
+                        {{ errors.first("price", 'firstStep') }}
+                      </span>
                   </v-col>
 
                   <v-col
@@ -169,10 +169,10 @@
                       v-validate="{ required: true, numeric:true }"
                       :label="$t('admin.quantity')"
                       name="quantity"
-                      :class="{ 'is-invalid': errors.has('quantity') }"
+                      :class="{ 'is-invalid': errors.has('quantity', 'firstStep') }"
                     />
-                    <span v-show="errors.has('quantity')" class="text-error text-sm">
-                      {{ errors.first("quantity") }}
+                    <span v-show="errors.has('quantity', 'firstStep')" class="text-error text-sm">
+                      {{ errors.first("quantity", 'firstStep') }}
                     </span>
                   </v-col>
 
@@ -185,10 +185,10 @@
                       v-validate="'required|numeric|max_value:' + form.quantity"
                       :label="$t('admin.max_purchase_quantity')"
                       name="max_purchase_quantity"
-                      :class="{ 'is-invalid': errors.has('max_purchase_quantity') }"
+                      :class="{ 'is-invalid': errors.has('max_purchase_quantity', 'firstStep') }"
                     />
-                    <span v-show="errors.has('max_purchase_quantity')" class="text-error text-sm">
-                      {{ errors.first("max_purchase_quantity") }}
+                    <span v-show="errors.has('max_purchase_quantity', 'firstStep')" class="text-error text-sm">
+                      {{ errors.first("max_purchase_quantity", 'firstStep') }}
                     </span>
                   </v-col>
 
@@ -201,10 +201,10 @@
                       v-validate="{ required: true, numeric:true }"
                       :label="$t('admin.barcode')"
                       name="barcode"
-                      :class="{ 'is-invalid': errors.has('barcode') }"
+                      :class="{ 'is-invalid': errors.has('barcode', 'firstStep') }"
                     />
-                    <span v-show="errors.has('barcode')" class="text-error text-sm">
-                      {{ errors.first("barcode") }}
+                    <span v-show="errors.has('barcode', 'firstStep')" class="text-error text-sm">
+                      {{ errors.first("barcode", 'firstStep') }}
                     </span>
                   </v-col>
                 </v-row>
@@ -246,7 +246,7 @@
                       persistent-hint
                       chips
                       small-chips
-                      :class="{ 'is-invalid': errors.has('brand_id') }"
+                      :class="{ 'is-invalid': errors.has('brand_id', 'secondStep') }"
                     >
                       <template v-slot:selection="data">
                         <v-chip
@@ -264,8 +264,8 @@
                         </v-list-item-content>
                       </template>
                     </v-autocomplete>
-                    <span v-show="errors.has('brand_id')" class="text-error text-sm">
-                      {{ errors.first("brand_id") }}
+                    <span v-show="errors.has('brand_id', 'secondStep')" class="text-error text-sm">
+                      {{ errors.first("brand_id", 'secondStep') }}
                     </span>
                   </v-col>
 
@@ -285,7 +285,7 @@
                       persistent-hint
                       chips
                       small-chips
-                      :class="{ 'is-invalid': errors.has('category_id') }"
+                      :class="{ 'is-invalid': errors.has('category_id', 'secondStep') }"
                       @change="changeCategory"
                     >
                       <template v-slot:selection="data">
@@ -303,8 +303,8 @@
                         </v-list-item-content>
                       </template>
                     </v-autocomplete>
-                    <span v-show="errors.has('category_id')" class="text-error text-sm">
-                      {{ errors.first("category_id") }}
+                    <span v-show="errors.has('category_id', 'secondStep')" class="text-error text-sm">
+                      {{ errors.first("category_id", 'secondStep') }}
                     </span>
                   </v-col>
 
@@ -324,7 +324,7 @@
                       persistent-hint
                       chips
                       small-chips
-                      :class="{ 'is-invalid': errors.has('subcategory_id') }"
+                      :class="{ 'is-invalid': errors.has('subcategory_id', 'secondStep') }"
                     >
                       <template v-slot:selection="data">
                         <v-chip
@@ -341,8 +341,8 @@
                         </v-list-item-content>
                       </template>
                     </v-autocomplete>
-                    <span v-show="errors.has('subcategory_id')" class="text-error text-sm">
-                      {{ errors.first("subcategory_id") }}
+                    <span v-show="errors.has('subcategory_id', 'secondStep')" class="text-error text-sm">
+                      {{ errors.first("subcategory_id", 'secondStep') }}
                     </span>
                   </v-col>
 

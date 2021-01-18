@@ -3,7 +3,7 @@ import { mapState } from 'vuex'
 export default {
   components: {
   },
-  layout: 'front/empty',
+  layout: 'front/layout',
   data () {
     return {
       form: {

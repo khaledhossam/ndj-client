@@ -4,6 +4,7 @@ import CardComponent from '@/components/admin/CardComponent'
 import FilePicker from '@/components/admin/FilePicker'
 import categoryProperties from '@/modules/admin/products/modals/category-properties/category-properties.vue'
 import { mapState } from 'vuex'
+import { property } from 'lodash'
 
 export default {
   validate ({ params }) {
@@ -144,10 +145,6 @@ export default {
       }
     },
     async changeCategory (value) {
-      //* reset subcategory value before load new data */
-      // this.form.subcategory_id = ''
-      // this.form.properties = []
-
       const response = await Promise.all([
         this.$CategoryService.getCategorySubcategories(value, this.queryParam),
 
@@ -256,15 +253,28 @@ export default {
     },
     async firstStep () {
       const validData = await this.$validator.validateAll('firstStep')
+
       if (validData) {
         this.stepper = 2
       }
     },
     async secondStep () {
       const validData = await this.$validator.validateAll('secondStep')
-
+      let dynamicValidate = true
       if (validData) {
-        this.stepper = 3
+        //** check on dynamic properties required fields */
+        for (let property of this.properties) {
+          if (property.is_required) {
+            if ( (Array.isArray(property.value) && !property.value.length) || property.value === '') {
+              dynamicValidate = false
+              this.buefyBar(`${property[this.currentLocale].name} ${this.$t('admin.required')}`)
+              break
+            }
+          }
+        }
+        if (dynamicValidate) {
+          this.stepper = 3
+        }
       }
     },
     async submit () {

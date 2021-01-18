@@ -1,4 +1,5 @@
 import i18n from './locales/i18n'
+
 // https://cdn.materialdesignicons.com/2.6.95/
 // https://www.toptal.com/vue-js/server-side-rendered-vue-js-using-nuxt-js
 //** to fix out of heap memory */
@@ -70,7 +71,7 @@ export default {
         vueI18nLoader: true,
         strategy: 'no_prefix',
         // seo: true,
-        defaultLocale: 'en',
+        defaultLocale: 'ar',
         locales: [
           {
             code: 'ar',
