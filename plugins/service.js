@@ -20,6 +20,7 @@ import ClientService from  '@/modules/admin/clients/services/ClientService'
 
 //* front services */
 import HomeService from '@/modules/front/home/services/HomeService'
+import ProductFrontService from '@/modules/front/products/services/ProductFrontService'
 
 export default (ctx, inject) => {
   inject('AuthService', new AuthService(ctx))
@@ -40,6 +41,7 @@ export default (ctx, inject) => {
 
   //* front services */
   inject('HomeService', new HomeService(ctx))
+  inject('ProductFrontService', new ProductFrontService(ctx))
 }
 
 // we can call AuthService

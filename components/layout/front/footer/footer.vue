@@ -131,13 +131,15 @@
                         v-for="(subcategory, key) in thirdSubCats"
                         :key="key"
                       >
-                        <a href="#">{{ subcategory.name }}</a>
+                        <a href="#">
+                          {{ subcategory.name }}
+                        </a>
                       </li>
                   </ul>
               </div>
               <!-- coulmn -->
               <div class="col-lg-4">
-                  <h4 class="fo-logo"><a href="index.html"><img src="~/assets/front/images/logo2.png" alt=""></a></h4>
+                  <h4 class="fo-logo"><nuxt-link :to="{ name: 'home' }"><img src="~/assets/front/images/logo2.png" alt=""></nuxt-link></h4>
                   <div class="fo-social">
                       <ul>
                           <li>

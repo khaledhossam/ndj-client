@@ -7,10 +7,10 @@
                 <!-- logo -->
                 <div class="col-6 col-lg-2">
                     <h1 id="logo">
-                        <a href="index.html">
+                        <nuxt-link :to="{ name: 'home' }">
                             <img src="~/assets/front/images/logo.png" alt="نفائس الألماس">
                             <img class="logo-ms" src="~/assets/front/images/logo-ms.png" alt="نفائس الألماس">
-                        </a>
+                        </nuxt-link>
                     </h1>
                 </div>
                 <div class="col-6 col-lg-10">

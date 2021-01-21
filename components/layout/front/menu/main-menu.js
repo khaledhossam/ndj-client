@@ -1,5 +1,5 @@
 import { mapState } from 'vuex'
-import ProductItem from '@/modules/front/product-item/product-item.vue'
+import ProductBlock from '@/modules/front/products/product-block/product-block.vue'
 
 export default {
   props: {
@@ -20,7 +20,7 @@ export default {
     }
   },
   components: {
-    ProductItem
+    ProductBlock
   },
   computed: {
     ...mapState({

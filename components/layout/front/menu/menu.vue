@@ -22,7 +22,8 @@
                                           {{ $t('front.categories') }}
                                         </h5>
                                         <div class="dropdown-menu-cats-links">
-                                            <nuxt-link v-for="(category, key) in categories" :key="key" class="dropdown-item" :to="{ name: 'test' }">
+                                            <nuxt-link v-for="(category, key) in categories" :key="key" class="dropdown-item"
+                                            :to="{ name: 'category.products', params: { id: category.id } }">
                                               {{ category.name}}
                                             </nuxt-link>
                                         </div>
@@ -34,9 +35,9 @@
                                         <div class="row brands nowrap">
                                             <!-- item -->
                                             <div v-for="(brand, key) in brands.slice(0, 9)" :key="key" class="col-6 col-lg-4">
-                                                <a href="#">
+                                                <nuxt-link :to="{ name: 'brand.products', params: { id: brand.id } }">
                                                     <img :src="brand.image" :alt="brand.name">
-                                                </a>
+                                                </nuxt-link>
                                             </div>
                                             <!-- item -->
                                         </div>
@@ -47,7 +48,7 @@
                                         </h5>
                                         <div class="row products small">
                                             <!-- item -->
-                                            <product-item
+                                            <product-block
                                               v-for="(offer, key) in offers"
                                               :key="key"
                                               :product="offer"
@@ -60,7 +61,7 @@
                             </div>
                         </li>
                         <li v-for="(category, key) in categories.slice(0, 5)" :key="key" class="nav-item">
-                            <nuxt-link class="nav-link" :to="{ name: 'test' }">
+                            <nuxt-link class="nav-link" :to="{ name: 'category.products', params: { id: category.id } }">
                               {{ category.name}}
                             </nuxt-link>
                         </li>
