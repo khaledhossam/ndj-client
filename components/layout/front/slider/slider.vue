@@ -5,9 +5,10 @@
         <div class="row">
           <div class="col-12 slideshow">
             <VueSlickCarousel v-bind="settings">
-              <a v-for="(ad, key) in ads" :key="key" href="#">
+              <nuxt-link v-for="(ad, key) in ads" :key="key"
+                :to="{ name: 'category.products', params: { id: ad.category.id } }">
                   <img :src="ad.image" :alt="ad.title">
-              </a>
+              </nuxt-link>
             </VueSlickCarousel>
           </div>
         </div>

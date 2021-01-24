@@ -108,6 +108,8 @@ export default {
       }
       this.$UploadService.uploadSingleFile({
         file,
+        width: 1100,
+        height: 340,
         path: this.uploaderFolder
       })
         .then((response) => {

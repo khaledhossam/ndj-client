@@ -3,6 +3,7 @@ import TitleBar from '@/components/admin/TitleBar'
 import CardComponent from '@/components/admin/CardComponent'
 import FilePicker from '@/components/admin/FilePicker'
 import { mapState } from 'vuex'
+import _ from 'lodash'
 
 export default {
   validate ({ params, query, store }) {
@@ -33,7 +34,7 @@ export default {
       image: null,
       uploaderFolder: 'categories',
       enableSubmit: true,
-      orders: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      orders: _.range(1, 11),
       form: {
         en: {
           name: ''

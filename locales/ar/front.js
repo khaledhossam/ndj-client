@@ -60,5 +60,17 @@ export default {
   riyal: 'ريال',
   most_seller: 'الآكثر مبيعا',
   famous_brands: 'آشهر الماركات',
-  shop_now: 'تسوق الآن'
+  shop_now: 'تسوق الآن',
+  products: 'المنتجات',
+  results: 'نتيجة',
+  per_page: 'بالصفحة',
+  most_selling: 'الأكثر رواجا',
+  least_selling: 'الأقل رواجا',
+  lowest_price: 'الأقل سعرا',
+  highest_price: 'الأعلى سعرا',
+  brands: 'الماركات',
+  subcategories: 'الأقسام الفرعية',
+  from: 'من',
+  to: 'الى',
+  price: 'السعر'
 }

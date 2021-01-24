@@ -92,56 +92,54 @@
       <div class="container">
           <div class="row">
               <!-- coulmn -->
-              <div class="col-lg-2">
-                  <h5 class="fo-co-title">الماس</h5>
+              <div v-if="firstSubCats.length" class="col-lg-2">
+                  <h5 class="fo-co-title">
+                    {{ firstCategory.name }}
+                  </h5>
                   <ul class="fo-menu">
-                      <li><a href="#">القسم الفرعى</a></li>
-                      <li><a href="#">القسم الفرعى</a></li>
-                      <li><a href="#">القسم الفرعى</a></li>
-                      <li><a href="#">القسم الفرعى</a></li>
-                      <li><a href="#">القسم الفرعى</a></li>
-                      <li><a href="#">القسم الفرعى</a></li>
+                      <li
+                        v-for="(subcategory, key) in firstSubCats"
+                        :key="key"
+                      >
+                        <a href="#">{{ subcategory.name }}</a>
+                      </li>
                   </ul>
               </div>
               <!-- coulmn -->
-              <div class="col-lg-2">
-                  <h5 class="fo-co-title">الذهب</h5>
+               <!-- coulmn -->
+              <div v-if="secondSubCats.length" class="col-lg-2">
+                  <h5 class="fo-co-title">
+                    {{ secondCategory.name }}
+                  </h5>
                   <ul class="fo-menu">
-                      <li><a href="#">القسم الفرعى</a></li>
-                      <li><a href="#">القسم الفرعى</a></li>
-                      <li><a href="#">القسم الفرعى</a></li>
-                      <li><a href="#">القسم الفرعى</a></li>
-                      <li><a href="#">القسم الفرعى</a></li>
-                      <li><a href="#">القسم الفرعى</a></li>
+                      <li
+                        v-for="(subcategory, key) in secondSubCats"
+                        :key="key"
+                      >
+                        <a href="#">{{ subcategory.name }}</a>
+                      </li>
                   </ul>
               </div>
               <!-- coulmn -->
-              <div class="col-lg-2">
-                  <h5 class="fo-co-title">الساعات</h5>
+               <!-- coulmn -->
+              <div v-if="thirdSubCats.length" class="col-lg-2">
+                  <h5 class="fo-co-title">
+                    {{ thirdCategory.name }}
+                  </h5>
                   <ul class="fo-menu">
-                      <li><a href="#">القسم الفرعى</a></li>
-                      <li><a href="#">القسم الفرعى</a></li>
-                      <li><a href="#">القسم الفرعى</a></li>
-                      <li><a href="#">القسم الفرعى</a></li>
-                      <li><a href="#">القسم الفرعى</a></li>
-                      <li><a href="#">القسم الفرعى</a></li>
-                  </ul>
-              </div>
-              <!-- coulmn -->
-              <div class="col-lg-2">
-                  <h5 class="fo-co-title">الأحجار الكريمة</h5>
-                  <ul class="fo-menu">
-                      <li><a href="#">القسم الفرعى</a></li>
-                      <li><a href="#">القسم الفرعى</a></li>
-                      <li><a href="#">القسم الفرعى</a></li>
-                      <li><a href="#">القسم الفرعى</a></li>
-                      <li><a href="#">القسم الفرعى</a></li>
-                      <li><a href="#">القسم الفرعى</a></li>
+                      <li
+                        v-for="(subcategory, key) in thirdSubCats"
+                        :key="key"
+                      >
+                        <a href="#">
+                          {{ subcategory.name }}
+                        </a>
+                      </li>
                   </ul>
               </div>
               <!-- coulmn -->
               <div class="col-lg-4">
-                  <h4 class="fo-logo"><a href="index.html"><img src="~/assets/front/images/logo2.png" alt=""></a></h4>
+                  <h4 class="fo-logo"><nuxt-link :to="{ name: 'home' }"><img src="~/assets/front/images/logo2.png" alt=""></nuxt-link></h4>
                   <div class="fo-social">
                       <ul>
                           <li>

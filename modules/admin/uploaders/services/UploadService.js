@@ -8,7 +8,10 @@ export default class UploadService extends ApplicationService {
     const formData = new FormData()
     formData.append('path', data.path)
     formData.append('file', data.file)
-
+    if (data.width) {
+      formData.append('width', data.width)
+      formData.append('height', data.height)
+    }
     return await this.post(`${this.resource}/uploader`, formData)
   }
 

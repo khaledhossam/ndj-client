@@ -60,5 +60,17 @@ export default {
   riyal: 'Riyal',
   most_seller: 'Most Sellers',
   famous_brands: 'Most Famous Brands',
-  shop_now: 'Shop Now'
+  shop_now: 'Shop Now',
+  products: 'Products',
+  results: 'Results',
+  per_page: 'Per Page',
+  most_selling: 'Most Selling',
+  least_selling: 'Least Selling',
+  lowest_price: 'Lowest Price',
+  highest_price: 'Highest Price',
+  brands: 'brands',
+  subcategories: 'subcategories',
+  from: 'From',
+  to: 'To',
+  price: 'Price'
 }

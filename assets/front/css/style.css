@@ -911,7 +911,7 @@ section .container {
 .page-link:hover {
   background-color: inherit
 }
-.page-item.active .page-link {
+.page-item.active .page-link{
   background-color: #651836
 }
 .contactus-wrapper {

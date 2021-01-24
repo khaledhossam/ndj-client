@@ -4,7 +4,7 @@ import CardComponent from '@/components/admin/CardComponent'
 import FilePicker from '@/components/admin/FilePicker'
 import categoryProperties from '@/modules/admin/products/modals/category-properties/category-properties.vue'
 import { mapState } from 'vuex'
-import { property } from 'lodash'
+import { _ } from 'lodash'
 
 export default {
   validate ({ params }) {

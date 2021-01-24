@@ -45,4 +45,4 @@
     </div>
 </template>
 
-<script src="./product-item.js" ></script>
+<script src="./product-block.js" ></script>

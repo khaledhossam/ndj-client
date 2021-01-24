@@ -10,9 +10,9 @@
                 <div class="img">
                     <img :src="category.image" :alt="category.name">
                 </div>
-                <a href="#">
+                <nuxt-link :to="{ name: 'category.products', params: { id: category.id } }">
                   {{ category.name }}
-                </a>
+                </nuxt-link>
             </div>
           </VueSlickCarousel>
         </div>
@@ -27,15 +27,15 @@
                           {{ $t('front.suggested') }}
                         </h2>
                     </div>
-                    <a class="btn more" href="#">
+                    <nuxt-link class="btn more" :to="{ name: 'products' }">
                       {{ $t('front.display_all') }}
-                    </a>
+                    </nuxt-link>
                 </div>
             </div>
             <!-- products -->
             <div class="row products nowrap">
                 <!-- item -->
-                <product-item
+                <product-block
                   v-for="(suggestion, key) in suggestions"
                   :key="key"
                   :product="suggestion"
@@ -52,7 +52,7 @@
         </a>
     </section>
     <!-- section -->
-    <section v-if="firstCatProducts.length" class="bg-color">
+    <section v-if="firstCatProducts.length && firstCategory" class="bg-color">
         <div class="container">
             <div class="row">
                 <div class="col head-sec">
@@ -61,15 +61,15 @@
                           {{ firstCategory.name}}
                         </h2>
                     </div>
-                    <a class="btn more" href="#">
+                    <nuxt-link class="btn more" :to="{ name: 'category.products', params: { id: firstCategory.id } }">
                       {{ $t('front.display_all') }}
-                    </a>
+                    </nuxt-link>
                 </div>
             </div>
             <!-- products -->
             <div class="row products nowrap">
                 <!-- item -->
-                <product-item
+                <product-block
                   v-for="(product, key) in firstCatProducts"
                   :key="key"
                   :product="product"
@@ -80,7 +80,7 @@
         </div>
     </section>
     <!-- section -->
-    <section v-if="secondCatProducts.length" class="bg-color">
+    <section v-if="secondCatProducts.length && secondCategory" class="bg-color">
         <div class="container">
             <div class="row">
                 <div class="col head-sec">
@@ -89,15 +89,15 @@
                           {{ secondCategory.name}}
                         </h2>
                     </div>
-                    <a class="btn more" href="#">
+                    <nuxt-link class="btn more" :to="{ name: 'category.products', params: { id: secondCategory.id } }">
                       {{ $t('front.display_all') }}
-                    </a>
+                    </nuxt-link>
                 </div>
             </div>
             <!-- products -->
             <div class="row products nowrap">
                 <!-- item -->
-                <product-item
+                <product-block
                   v-for="(product, key) in secondCatProducts"
                   :key="key"
                   :product="product"
@@ -114,7 +114,7 @@
         </a>
     </section>
     <!-- section -->
-    <section class="bg-color2">
+    <!-- <section class="bg-color2">
         <div class="container">
             <div class="row">
                 <div class="col head-sec">
@@ -123,9 +123,7 @@
                     </div>
                 </div>
             </div>
-            <!-- cat items -->
             <div class="row">
-                <!-- item -->
                 <div class="col-lg-6">
                     <div class="cat-item">
                         <div class="img"><img src="~/assets/front/images/cat-img1.png" alt=""></div>
@@ -134,7 +132,6 @@
                         </h4>
                     </div>
                 </div>
-                <!-- item -->
                 <div class="col-lg-6">
                     <div class="cat-item">
                         <div class="img"><img src="~/assets/front/images/cat-img2.png" alt=""></div>
@@ -145,9 +142,9 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- section -->
-    <section v-if="thirdCatProducts.length" class="bg-color">
+    <section v-if="thirdCategory" class="bg-color">
         <div class="container">
             <div class="row">
                 <div class="col head-sec">
@@ -156,15 +153,15 @@
                           {{ thirdCategory.name}}
                         </h2>
                     </div>
-                    <a class="btn more" href="#">
+                    <nuxt-link class="btn more" :to="{ name: 'category.products', params: { id: thirdCategory.id } }">
                       {{ $t('front.display_all') }}
-                    </a>
+                    </nuxt-link>
                 </div>
             </div>
             <!-- products -->
             <div class="row products nowrap">
                 <!-- item -->
-                <product-item
+                <product-block
                   v-for="(product, key) in thirdCatProducts"
                   :key="key"
                   :product="product"
@@ -198,7 +195,7 @@
             <!-- products -->
             <div class="row products nowrap">
                 <!-- item -->
-                <product-item
+                <product-block
                   v-for="(product, key) in mostSellerProducts"
                   :key="key"
                   :product="product"
@@ -218,18 +215,18 @@
                           {{ $t('front.famous_brands') }}
                         </h2>
                     </div>
-                    <a class="btn more" href="#">
+                    <nuxt-link class="btn more" :to="{ name: 'products' }">
                       {{ $t('front.shop_now') }}
-                    </a>
+                    </nuxt-link>
                 </div>
             </div>
             <!-- brands -->
             <div class="row brands nowrap">
                 <!-- item -->
                 <div v-for="(brand, key) in brands" :key="key" class="col-6 col-lg-2">
-                    <a href="#">
+                    <nuxt-link :to="{ name: 'brand.products', params: { id: brand.id } }">
                         <img :src="brand.image" :alt="brand.name">
-                    </a>
+                    </nuxt-link>
                 </div>
                 <!-- item -->
             </div>

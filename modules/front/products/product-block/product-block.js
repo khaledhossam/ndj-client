@@ -17,8 +17,5 @@ export default {
     }
   },
   computed: {
-    price () {
-      return product.discount ? product.price_after_discount : product.price_after_tax
-    }
   }
 }

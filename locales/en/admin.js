@@ -109,4 +109,11 @@ export default {
   gender: 'Gender',
   male: 'Male',
   female: 'Female',
+  reason: 'reason',
+  clients: 'Clients',
+  reply: 'Reply',
+  title: 'Title',
+  body: 'Body',
+  replies: 'Replies',
+  read_at: 'Read At'
 }

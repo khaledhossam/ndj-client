@@ -3,8 +3,12 @@ import ApplicationService from '@/services/ApplicationService'
 export default class HomeService extends ApplicationService {
 
   //* **************************************************** *//
-  async getCategories (queryParam = {}) {
-    return await this.get(`/categories${queryParam}`)
+  async getAllCategories () {
+    return await this.get(`/categories/all`)
+  }
+
+  async getAllSubCategories (id) {
+    return await this.get(`/categories/${id}/sub-categories/all`)
   }
 
   async getBrands (queryParam = {}) {

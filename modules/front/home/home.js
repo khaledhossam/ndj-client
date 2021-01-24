@@ -1,7 +1,7 @@
 import MetaTag from '@/components/head-meta-tags'
 import { mapState } from 'vuex'
 import AppSlider from '@/components/layout/front/slider/slider.vue'
-import ProductItem from '@/modules/front/product-item/product-item.vue'
+import ProductBlock from '@/modules/front/products/product-block/product-block.vue'
 import VueSlickCarousel from 'vue-slick-carousel'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 
@@ -10,7 +10,7 @@ export default {
   components: {
     MetaTag,
     AppSlider,
-    ProductItem,
+    ProductBlock,
     VueSlickCarousel
   },
   async asyncData (context) {

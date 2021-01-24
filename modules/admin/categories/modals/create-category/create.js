@@ -3,6 +3,7 @@ import TitleBar from '@/components/admin/TitleBar'
 import CardComponent from '@/components/admin/CardComponent'
 import FilePicker from '@/components/admin/FilePicker'
 import { mapState } from 'vuex'
+import _ from 'lodash'
 
 export default {
   validate ({ params, query, store }) {
@@ -38,9 +39,10 @@ export default {
           name: ''
         },
         image: null,
-        order: 1,
+        order: '',
         is_active: true
       },
+      orders: _.range(1, 11),
       param_id: this.$route.params.id,
       customEvents: []
     }
@@ -79,7 +81,11 @@ export default {
     },
     reAssignForm (data) {
       // override of form data
-      this.form = data
+      const obj = {
+        order: Number(data?.order),
+      }
+      // override of form data
+      this.form = { ...data, ...obj }
     },
     handleUploadFile (file) {
       this.enableSubmit = false
