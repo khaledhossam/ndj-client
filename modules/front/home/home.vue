@@ -52,7 +52,7 @@
         </a>
     </section>
     <!-- section -->
-    <section v-if="firstCatProducts.length" class="bg-color">
+    <section v-if="firstCatProducts.length && firstCategory" class="bg-color">
         <div class="container">
             <div class="row">
                 <div class="col head-sec">
@@ -80,7 +80,7 @@
         </div>
     </section>
     <!-- section -->
-    <section v-if="secondCatProducts.length" class="bg-color">
+    <section v-if="secondCatProducts.length && secondCategory" class="bg-color">
         <div class="container">
             <div class="row">
                 <div class="col head-sec">
@@ -144,7 +144,7 @@
         </div>
     </section> -->
     <!-- section -->
-    <section v-if="thirdCatProducts.length" class="bg-color">
+    <section v-if="thirdCategory" class="bg-color">
         <div class="container">
             <div class="row">
                 <div class="col head-sec">

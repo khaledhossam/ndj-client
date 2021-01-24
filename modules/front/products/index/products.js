@@ -2,7 +2,6 @@ import MetaTag from '@/components/head-meta-tags'
 import { mapState } from 'vuex'
 import ProductBlock from '@/modules/front/products/product-block/product-block.vue'
 import _ from 'lodash'
-import { de } from 'vuetify/lib/locale'
 
 export default {
   validate ({ params, query, store }) {
