@@ -83,7 +83,6 @@ export default {
         this.queryParam.brands.push(this.param_id)
       }
     }
-    debugger
     this.handlePaginatedData()
   },
   // call fetch only on client-side
@@ -96,19 +95,40 @@ export default {
   created () {
   },
   methods: {
+    handleServiceParams () {
+      let queryParam = `?page=${this.queryParam.current_page}&
+      per_page=${this.queryParam.per_page}&`
+
+      if (this.queryParam.orderType != '') {
+        queryParam = `${queryParam}&orderType=${this.queryParam.orderType}`
+      }
+      if (this.queryParam.orderBy != '') {
+        queryParam = `${queryParam}&orderBy=${this.queryParam.orderBy}`
+      }
+      if (this.queryParam.category != '') {
+        queryParam = `${queryParam}&category=${this.queryParam.category}`
+      }
+      if (this.queryParam.publicSearch != '') {
+        queryParam = `${queryParam}&publicSearch=${this.queryParam.publicSearch}`
+      }
+      if (this.queryParam.sub_categories.length) {
+        queryParam = `${queryParam}&sub_categories=${JSON.stringify(this.queryParam.sub_categories)}`
+      }
+      if (this.queryParam.brands.length) {
+        queryParam = `${queryParam}&brands=${JSON.stringify(this.queryParam.brands)}`
+      }
+      if (this.queryParam.price_from != '') {
+        queryParam = `${queryParam}&price_from=${this.queryParam.price_from}`
+      }
+      if (this.queryParam.price_to != '') {
+        queryParam = `${queryParam}&price_to=${this.queryParam.price_to}`
+      }
+      return queryParam
+    },
     async handlePaginatedData () {
       this.loading = true
-      const queryParam = `?page=${this.queryParam.current_page}&
-      orderBy=${this.queryParam.orderBy}&
-      orderType=${this.queryParam.orderType}&
-      publicSearch=${this.queryParam.publicSearch}&
-      per_page=${this.queryParam.per_page}&
-      category=${this.queryParam.category}&
-      sub_categories=${this.queryParam.sub_categories}&
-      brands=${this.queryParam.brands}&
-      price_from=${this.queryParam.price_from}&
-      price_to=${this.queryParam.price_to}
-      `
+      const queryParam = this.handleServiceParams()
+
       await this.$ProductFrontService.getFilterProducts(queryParam)
         .then((response) => {
           this.products = response.data
@@ -164,8 +184,8 @@ export default {
     },
     toggleSubCategories (id) {
       //** check if exist */
-      const index = this.queryParam.sub_categories.findIndex((sub) => sub.id === id)
-      if (index > 0) {
+      const index = this.queryParam.sub_categories.findIndex((sub) => sub === id)
+      if (index >= 0) {
         this.queryParam.sub_categories.splice(index, 1)
       } else {
         this.queryParam.sub_categories.push(id)
@@ -175,14 +195,12 @@ export default {
     },
     toggleBrands (id) {
       //** check if exist */
-      const index = this.queryParam.brands.findIndex((brand) => brand.id === id)
-      if (index > 0) {
+      const index = this.queryParam.brands.findIndex((brand) => brand === id)
+      if (index >= 0) {
         this.queryParam.brands.splice(index, 1)
       } else {
         this.queryParam.brands.push(id)
-        debugger
       }
-      debugger
       this.handlePaginatedData()
     }
   },

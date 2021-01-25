@@ -23,3 +23,6 @@ b-pagination.active {
   background-color: #651836 !important
 }
 
+.vs-modal{
+  position: absolute;
+}

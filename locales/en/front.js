@@ -72,5 +72,21 @@ export default {
   subcategories: 'subcategories',
   from: 'From',
   to: 'To',
-  price: 'Price'
+  price: 'Price',
+  before: 'Before',
+  now: 'Now',
+  saved: 'Saved',
+  include_tax: 'Include Tax',
+  category: 'Category',
+  subcategory: 'Subcategory',
+  quantity: 'Quantity',
+  add_to_cart: 'Add To Cart',
+  share_by: 'Share By',
+  be_liked: 'Suggested For You',
+  description: 'Description',
+  dynamic_properties: 'Dynamic Properties',
+  ratings: 'Ratings',
+  rating: 'Rating',
+  general_classification: 'General Classification',
+  load_more: 'Load More'
 }

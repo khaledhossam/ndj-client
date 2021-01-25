@@ -98,7 +98,7 @@
   position: absolute
 }
 .video-playbutton-layer {
-  background: transparent url(../css-img/video.png) no-repeat center center
+  /* background: transparent url(../css-img/video.png) no-repeat center center */
 }
 #ninja-slider div.stopVideoIcon {
   position: absolute;
