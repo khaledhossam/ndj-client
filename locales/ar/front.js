@@ -72,5 +72,21 @@ export default {
   subcategories: 'الأقسام الفرعية',
   from: 'من',
   to: 'الى',
-  price: 'السعر'
+  price: 'السعر',
+  before: 'قبل',
+  now: 'الأن',
+  saved: 'وفرت',
+  include_tax: 'شامل الضريبة',
+  category: 'الفئة',
+  subcategory: 'القسم الفرعى',
+  quantity: 'الكمية',
+  add_to_cart: 'أضف لسلة الشراء',
+  share_by: 'مشاركة عن طريق',
+  be_liked: 'قد يعجبك أيضا',
+  description: 'المواصفات',
+  dynamic_properties: 'الخصائص الاضافية',
+  ratings: 'التقييمات',
+  rating: 'تقييم',
+  general_classification: 'التصنيف العام',
+  load_more: 'مشاهدة المزيد'
 }
