@@ -31,6 +31,7 @@ export default {
   logout: 'Logout',
   created_successfully: 'Created Successfully',
   updated_successfully: 'Updated Successfully',
+  added_successfully: 'Added Successfully',
   reset_successfully: 'Data Reset Successfully',
   active: 'active',
   inactive: 'inactive',

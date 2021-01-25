@@ -120,7 +120,7 @@
                           <h5 v-for="(option, key) in dynamicOptions" :key="key" class="prod-info-item">
                               <span>: {{ option.property.name }}</span>
                               <span>
-                                  <select class="form-control">
+                                  <select class="form-control" @change="selectedDynamicProps($event.target.value, key)">
                                       <option
                                         v-for="(obj, index) in option.value"
                                         :key="`${key}opt${index}`"
@@ -138,7 +138,7 @@
                               </span>
                           </h5>
                       </div>
-                      <div><a class="btn defualt" href="#">
+                      <div><a class="btn defualt" @click="addToCart">
                               <span>{{$t('front.add_to_cart')}}</span>
                               <svg xmlns="http://www.w3.org/2000/svg" width="21.616" height="19.824"
                                   viewBox="0 0 21.616 19.824">
@@ -248,22 +248,22 @@
                           </div>
                       </div>
                       <!-- comments -->
-                        <div class="comments">
-                          <div class="comment" v-for="(rating, key) in ratings" :key="key">
-                              <div class="img"><img :src="rating.user.avatar" :alt="rating.user.name"></div>
-                              <div class="stars">
-                                  <i v-for="index in rating.rate" :key="index" class="fas fa-star yellow"></i>
-                                  <i v-for="index in 5 - rating.rate" :key="index" class="fas fa-star"></i>
-                                  <span class="percent">{{rating.rate}}</span>
-                              </div>
-                              <h5 class="commentator">{{rating.user.name}}</h5>
-                              <div class="text">
-                                {{ rating.comment }}
-                              </div>
-                          </div>
-                          <b-button class="load-more" v-if="enableLoadMore" @click="loadMoreRatings">
-                            {{ $t('front.load_more') }}
-                          </b-button>
+                      <div class="comments">
+                        <div class="comment" v-for="(rating, key) in ratings" :key="key">
+                            <div class="img"><img :src="rating.user.avatar" :alt="rating.user.name"></div>
+                            <div class="stars">
+                                <i v-for="index in rating.rate" :key="index" class="fas fa-star yellow"></i>
+                                <i v-for="index in 5 - rating.rate" :key="index" class="fas fa-star"></i>
+                                <span class="percent">{{rating.rate}}</span>
+                            </div>
+                            <h5 class="commentator">{{rating.user.name}}</h5>
+                            <div class="text">
+                              {{ rating.comment }}
+                            </div>
+                        </div>
+                        <b-button class="load-more" v-if="enableLoadMore" @click="loadMoreRatings">
+                          {{ $t('front.load_more') }}
+                        </b-button>
                       </div>
                   </div>
               </div>

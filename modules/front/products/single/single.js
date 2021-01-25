@@ -91,7 +91,13 @@ export default {
       return (Number(this.product.rate)).toFixed()
     },
     dynamicOptions () {
-      return this.product.extra_properties.filter((obj) => obj.property.has_options === true)
+      let options =  this.product.extra_properties.filter(function(obj){
+        if (obj.property.has_options) {
+          obj.selected_prop_id = obj.value[0].id || null
+          return obj
+        }
+      })
+      return options
     },
     dynamicFields () {
       return this.product.extra_properties.filter((obj) => obj.property.has_options === false)
@@ -107,6 +113,23 @@ export default {
       this.ratings = rateResponse.data
       this.metaData.total = rateResponse.meta.total
       this.metaData.per_page = rateResponse.meta.per_page
+    },
+    selectedDynamicProps (optionId, index) {
+      this.dynamicOptions[index].selected_prop_id = optionId
+      debugger
+    },
+    async addToCart () {
+      this.cart.extra_properties = this.dynamicOptions.map(function(obj){
+        return {
+          property_id: obj.property.id,
+          property_option_id: obj.selected_prop_id
+        }
+      })
+      debugger
+      await this.$ProductFrontService.addToCart(this.cart)
+      .then(() => {
+        this.buefyBar(this.$t('front.added_successfully'))
+      })
     }
   },
   head () {

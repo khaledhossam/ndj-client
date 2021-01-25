@@ -32,6 +32,7 @@ export default {
   logout: 'تسجيل الخروج',
   created_successfully: 'تم الانشاء بنجاح',
   updated_successfully: 'تم التعديل بنجاح',
+  added_successfully: 'تم الاضافة بنجاح',
   reset_successfully: 'تم اعادة تعيين البيانات',
   active: 'مفعل',
   inactive: 'غير مفعل',
