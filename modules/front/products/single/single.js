@@ -35,7 +35,7 @@ export default {
       },
       param_id: this.$route.params.id,
       cart: {
-        product_id: '',
+        product_id: this.$route.params.id,
         quantity: 1,
         extra_properties: []
       },

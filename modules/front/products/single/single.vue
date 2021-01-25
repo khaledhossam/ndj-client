@@ -117,21 +117,24 @@
                                 </nuxt-link>
                               </span>
                           </h5>
-                          <h5 class="prod-info-item">
-                              <span>: المقاس</span>
+                          <h5 v-for="(option, key) in dynamicOptions" :key="key" class="prod-info-item">
+                              <span>: {{ option.property.name }}</span>
                               <span>
                                   <select class="form-control">
-                                      <option value="4.5">4.5</option>
-                                      <option value="5">5</option>
-                                      <option value="5.5">5.5</option>
-                                      <option value="6">6</option>
+                                      <option
+                                        v-for="(obj, index) in option.value"
+                                        :key="`${key}opt${index}`"
+                                        :value="obj.id"
+                                      >
+                                        {{ obj.name }}
+                                      </option>
                                   </select>
                               </span>
                           </h5>
                           <h5 class="prod-info-item">
                               <span>: {{$t('front.quantity')}}</span>
                               <span>
-                                  <b-numberinput type="is-light" :min="1" :placeholder="1"></b-numberinput>
+                                  <b-numberinput type="is-light" :min="1" :placeholder="1" v-model="cart.quantity"></b-numberinput>
                               </span>
                           </h5>
                       </div>
@@ -203,11 +206,11 @@
                   </h5>
                   <div class="text">
                       <div class="prod-info">
-                        <h5 class="prod-info-item">
-                            <span>: test</span>
+                        <h5 v-for="(option, key) in dynamicFields" :key="key" class="prod-info-item">
+                            <span>: {{ option.property.name }}</span>
                             <span>
                                 <div class="bg-light p-2">
-                                    <span>test</span>
+                                    <span>{{ option.value }}</span>
                                 </div>
                             </span>
                         </h5>
