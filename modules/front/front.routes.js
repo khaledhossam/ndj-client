@@ -3,6 +3,7 @@ import home from '~/modules/front/home/home.vue'
 import products from '~/modules/front/products/index/products.vue'
 import singleProduct from '~/modules/front/products/single/single.vue'
 import carts from '~/modules/front/carts/index/index.vue'
+import favourites from '~/modules/front/products/favourites/index.vue'
 
 export default [
   {
@@ -66,5 +67,11 @@ export default [
     meta: {
       noAuthentication: true
     }
+  },
+  {
+    name: 'favourites',
+    path: 'favourites',
+    component: favourites,
+    props: true
   }
 ]

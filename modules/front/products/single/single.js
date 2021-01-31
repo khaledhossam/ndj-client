@@ -104,11 +104,12 @@ export default {
       return this.product.extra_properties.filter((obj) => obj.property.has_options === false)
     },
     urlLink () {
+      let link = ''
       if (process.client) {
-        let link = `${window.location.origin}${this.$route.path}`
-        debugger
-        return link
+        link = `${window.location.origin}${this.$route.path}`
+        // debugger
       }
+      return link
       // return `http://localhost:3000/products/${this.product.id}`
     }
   },
@@ -141,6 +142,7 @@ export default {
         .then(() => {
           this.buefyBar(this.$t('front.added_successfully'))
         })
+        .catch((err) => console.log(err))
       } else {
         let item = this.cloneItem(this.cart)
         item.product = {

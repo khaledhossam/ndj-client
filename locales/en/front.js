@@ -92,5 +92,6 @@ export default {
   general_classification: 'General Classification',
   load_more: 'Load More',
   carts: 'Carts',
-  discount: 'Discount'
+  discount: 'Discount',
+  fav_unauthenticated: 'Please, Login first! so that you can go to add favourite'
 }

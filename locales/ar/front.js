@@ -92,5 +92,6 @@ export default {
   general_classification: 'التصنيف العام',
   load_more: 'مشاهدة المزيد',
   carts: 'عربة التسوق',
-  discount: 'الخصم'
+  discount: 'الخصم',
+  fav_unauthenticated: 'الرجاء تسجيل الدخول أولا! بحيث يمكنك الذهاب لإضافة المفضلة'
 }

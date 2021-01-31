@@ -1,7 +1,7 @@
 <template>
     <div :class="gridClass">
         <div class="item">
-            <a class="favorite" href="#">
+            <a :class="`favorite ${product.is_favourite ? 'active' : ''}`" @click="toggleFavourite(product)">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25.228" height="24.491"
                     viewBox="0 0 25.228 24.491">
                     <g id="favorite" transform="translate(-0.768 -0.663)">
