@@ -101,7 +101,7 @@
                         v-for="(subcategory, key) in firstSubCats"
                         :key="key"
                       >
-                        <a href="#">{{ subcategory.name }}</a>
+                        <a @click="selectedCat(firstCategory)">{{ subcategory.name }}</a>
                       </li>
                   </ul>
               </div>
@@ -116,7 +116,7 @@
                         v-for="(subcategory, key) in secondSubCats"
                         :key="key"
                       >
-                        <a href="#">{{ subcategory.name }}</a>
+                        <a @click="selectedCat(secondCategory)">{{ subcategory.name }}</a>
                       </li>
                   </ul>
               </div>
@@ -131,7 +131,7 @@
                         v-for="(subcategory, key) in thirdSubCats"
                         :key="key"
                       >
-                        <a href="#">
+                        <a @click="selectedCat(thirdCategory)">
                           {{ subcategory.name }}
                         </a>
                       </li>

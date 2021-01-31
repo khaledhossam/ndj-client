@@ -25,5 +25,11 @@ export default {
       secondCategory: state => state.frontStore.secondCategory,
       thirdCategory: state => state.frontStore.thirdCategory
     })
-  }
+  },
+  methods: {
+    selectedCat (category) {
+      this.$store.commit('frontStore/setSelectedCategory', category)
+      this.$router.push({ name: 'category.products', params: { id: category.id } })
+    }
+  },
 }

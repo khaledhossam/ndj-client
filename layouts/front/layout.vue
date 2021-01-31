@@ -5,6 +5,11 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import mixins from '@/modules/admin/global/mixins'
+
+Vue.mixin(mixins)
+
 export default {
   component: {
   },

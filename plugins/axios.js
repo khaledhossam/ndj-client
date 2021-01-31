@@ -30,8 +30,17 @@ export default function ({ $axios, redirect, store, req, beforeNuxtRender }) {
     return `${apiSubdomain}${baseDomain}`
   }
 
-  function getHeaders () {
-    const accessToken = store.state.auth.admin.accessToken
+  function getHeaders (config) {
+    //** check for admin authentication or front */
+    let accessToken = null
+    const prefix = config.url.split('/')[1] || null
+
+    if (prefix == 'admin') {
+      accessToken = store.state.auth.admin.accessToken
+    } else {
+      accessToken = store.state.auth.front.accessToken
+    }
+
     const headers = {
       // 'Accept': 'application/json',
       'Content-Type': 'application/json',
@@ -47,7 +56,8 @@ export default function ({ $axios, redirect, store, req, beforeNuxtRender }) {
   // Add a request interceptor
   $axios.interceptors.request.use(function (config) {
     // Do something before request is sent
-    config.headers = getHeaders()
+    config.headers = getHeaders(config)
+
     return config
   }, function (error) {
     // Do something with request error

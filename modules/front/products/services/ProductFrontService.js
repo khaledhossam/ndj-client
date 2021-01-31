@@ -7,5 +7,12 @@ export default class ProductFrontService extends ApplicationService {
     return await this.get(`/products${queryParam}`)
   }
 
+  async getProductDetail (id) {
+    return await this.get(`/products/${id}`)
+  }
+
+  async getProductRatings (id, queryParam = {}) {
+    return await this.get(`/products/${id}/ratings${queryParam}`)
+  }
   //* **************************************************** *//
 }

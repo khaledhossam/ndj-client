@@ -108,7 +108,8 @@ export default {
     ['nuxt-buefy', { materialDesignIcons: false }],
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    'vue-social-sharing/nuxt'
   ],
 
   env: {

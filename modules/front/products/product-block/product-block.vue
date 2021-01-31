@@ -16,9 +16,9 @@
             <div class="img"><img :src="product.primary_attachment.file" :alt="product.name"></div>
             <div class="content">
                 <h4 class="title">
-                    <a href="#">
+                    <nuxt-link :to="{ name: 'products.single', params: { id: product.id } }">
                       {{ product.name }}
-                    </a>
+                    </nuxt-link>
                 </h4>
                 <small>
                   {{ product.description }}
