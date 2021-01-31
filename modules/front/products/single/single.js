@@ -104,11 +104,12 @@ export default {
       return this.product.extra_properties.filter((obj) => obj.property.has_options === false)
     },
     urlLink () {
-      // if (process.client) {
-      //   let link = `${window.location.origin}${this.$route.path}`
-      //   // debugger
-      // }
-      return `http://localhost:3000/products/${this.product.id}`
+      if (process.client) {
+        let link = `${window.location.origin}${this.$route.path}`
+        debugger
+        return link
+      }
+      // return `http://localhost:3000/products/${this.product.id}`
     }
   },
   created () {

@@ -8,7 +8,7 @@ export default {
   target: 'server',
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    titleTemplate: '%s - NDJ',
+    titleTemplate: '%s',
     title: process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
@@ -71,7 +71,7 @@ export default {
         vueI18nLoader: true,
         strategy: 'no_prefix',
         // seo: true,
-        defaultLocale: 'ar',
+        defaultLocale: 'en',
         locales: [
           {
             code: 'ar',
