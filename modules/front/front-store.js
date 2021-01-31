@@ -1,11 +1,12 @@
 function initialState () {
   return {
+    carts: [],
     categories: [],
     brands: [],
     firstCategory: null,
     secondCategory: null,
     thirdCategory: null,
-    carts: []
+    selectedCategory: null
   }
 }
 const state = initialState
@@ -22,6 +23,9 @@ const mutations = {
   },
   setCarts (state, payload) {
     state.carts = payload
+  },
+  setSelectedCategory (state, payload) {
+    state.selectedCategory = payload
   },
 
   clearFrontData (state, payload) {
@@ -44,6 +48,9 @@ const actions = {
   },
   changeCarts (context, payload) {
     context.commit('setCarts', payload)
+  },
+  changeSelectedCategory (context, payload) {
+    context.commit('setSelectedCategory', payload)
   }
 }
 const getters = {
@@ -64,7 +71,10 @@ const getters = {
   },
   thirdCategory: (state) => {
     return state.thirdCategory
-  }
+  },
+  changeSelectedCategory: (state) => {
+    return state.selectedCategory
+  },
 }
 
 export default {

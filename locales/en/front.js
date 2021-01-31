@@ -33,6 +33,7 @@ export default {
   updated_successfully: 'Updated Successfully',
   added_successfully: 'Added Successfully',
   reset_successfully: 'Data Reset Successfully',
+  deleted_successfully: 'Deleted Successfully',
   active: 'active',
   inactive: 'inactive',
   activeTitle: 'active',
@@ -89,5 +90,7 @@ export default {
   ratings: 'Ratings',
   rating: 'Rating',
   general_classification: 'General Classification',
-  load_more: 'Load More'
+  load_more: 'Load More',
+  carts: 'Carts',
+  discount: 'Discount'
 }

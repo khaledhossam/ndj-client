@@ -61,9 +61,9 @@
                           {{ firstCategory.name}}
                         </h2>
                     </div>
-                    <nuxt-link class="btn more" :to="{ name: 'category.products', params: { id: firstCategory.id } }">
+                    <a class="btn more" @click="selectedCat(firstCategory)">
                       {{ $t('front.display_all') }}
-                    </nuxt-link>
+                    </a>
                 </div>
             </div>
             <!-- products -->
@@ -89,9 +89,9 @@
                           {{ secondCategory.name}}
                         </h2>
                     </div>
-                    <nuxt-link class="btn more" :to="{ name: 'category.products', params: { id: secondCategory.id } }">
+                    <a class="btn more" @click="selectedCat(secondCategory)">
                       {{ $t('front.display_all') }}
-                    </nuxt-link>
+                    </a>
                 </div>
             </div>
             <!-- products -->
@@ -153,9 +153,9 @@
                           {{ thirdCategory.name}}
                         </h2>
                     </div>
-                    <nuxt-link class="btn more" :to="{ name: 'category.products', params: { id: thirdCategory.id } }">
+                    <a class="btn more" @click="selectedCat(thirdCategory)">
                       {{ $t('front.display_all') }}
-                    </nuxt-link>
+                    </a>
                 </div>
             </div>
             <!-- products -->
@@ -187,9 +187,9 @@
                           {{ $t('front.most_seller') }}
                         </h2>
                     </div>
-                    <a class="btn more" href="#">
+                    <nuxt-link class="btn more" :to="{ name: 'products' }">
                       {{ $t('front.display_all') }}
-                    </a>
+                    </nuxt-link>
                 </div>
             </div>
             <!-- products -->

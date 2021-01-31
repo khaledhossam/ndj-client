@@ -16,37 +16,68 @@ export default {
     ProductBlock
   },
   async asyncData (context) {
+    //* declare default values */
+    let subcategories = []
+    let products = []
+    let metaData = {
+      total: 0,
+      from: 1,
+      to: 6
+    }
+    let queryParam = {
+      current_page: 1,
+      per_page: 6,
+      publicSearch: '',
+      orderBy: '',
+      orderType: '',
+      category: '',
+      sub_categories: [],
+      brands: [],
+      price_from: '',
+      price_to: ''
+    }
+    let query = `?per_page=${queryParam.per_page}`
+    // console.log('params', context.query.search)
     const [categories, brands] = await Promise.all([
       context.$HomeService.getAllCategories(),
       context.$HomeService.getBrands('?is_paginated=false')
     ])
-    return { categories, brands }
+    if (context.query.search) {
+      queryParam.publicSearch = context.query.search
+      query = `${query}&publicSearch=${queryParam.publicSearch}`
+    }
+    if (context.params.id) {
+      //* check on route for categories | brands */
+      if (context.route.name == 'category.products') {
+        queryParam.category = context.params.id
+        query = `${query}&category=${queryParam.category}`
+        subcategories = await context.$HomeService.getAllSubCategories(context.params.id)
+      } else if (context.route.name == 'brand.products'){
+        queryParam.brands.push(context.params.id)
+        query = `${query}&brands=${JSON.stringify(queryParam.brands)}`
+      } else if (context.route.name == 'subcategory.products') {
+        queryParam.sub_categories.push(context.params.id)
+        query = `${query}&sub_categories=${JSON.stringify(queryParam.sub_categories)}`
+      }
+    }
+
+    await context.$ProductFrontService.getFilterProducts(query)
+    .then((response) => {
+      products = response.data
+      let currentTotal = response.meta.total
+      queryParam.per_page = response.meta.per_page
+      queryParam.current_page = response.meta.current_page
+
+      metaData.total = currentTotal
+    })
+    return { categories, brands, products, subcategories, queryParam, metaData }
   },
   data () {
     return {
       title: this.$t('front.products'),
       gridClass: 'col-6 col-lg-4',
       parentClass: 'row products',
-      products: [],
-      subcategories: [],
       loading: false,
-      metaData: {
-        total: 0,
-        from: 1,
-        to: 6
-      },
-      queryParam: {
-        current_page: 1,
-        per_page: 6,
-        publicSearch: '',
-        orderBy: '',
-        orderType: '',
-        category: '',
-        sub_categories: [],
-        brands: [],
-        price_from: '',
-        price_to: ''
-      },
       pages: _.range(6, 16, 3),
       sorts: [
         {
@@ -73,23 +104,10 @@ export default {
       param_id: this.$route.params.id
     }
   },
-  async fetch() {
-    if (this.param_id) {
-      //* check on route for categories | brands */
-      if (this.$route.name == 'category.products') {
-        this.queryParam.category = this.param_id
-        this.subcategories = await this.$HomeService.getAllSubCategories(this.param_id)
-      } else {
-        this.queryParam.brands.push(this.param_id)
-      }
-    }
-    this.handlePaginatedData()
-  },
-  // call fetch only on client-side
-  fetchOnServer: false,
   computed: {
     ...mapState({
-      currentLocale: state => state.localization.currentLocale
+      currentLocale: state => state.localization.currentLocale,
+      selectedCategory: state => state.frontStore.selectedCategory
     })
   },
   created () {
@@ -190,7 +208,6 @@ export default {
       } else {
         this.queryParam.sub_categories.push(id)
       }
-      debugger
       this.handlePaginatedData()
     },
     toggleBrands (id) {
@@ -205,6 +222,10 @@ export default {
     }
   },
   watch: {
-    '$route.query': '$fetch'
+    // '$route.query': '$fetch'
+    '$route.query': function (val, oldVal) {
+      this.handleSearch(val.search)
+    },
+    deep: true
   }
 }

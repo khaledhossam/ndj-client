@@ -159,9 +159,45 @@
                             {{ $t('front.share_by') }}
                           </h5>
                           <div class="share-links">
-                              <a href="#"><i class="fab fa-instagram"></i></a>
-                              <a href="#"><i class="fab fa-twitter"></i></a>
-                              <a href="#"><i class="fab fa-facebook-f"></i></a>
+                              <!-- <a href="#"><i class="fab fa-instagram"></i></a>
+                              <a href="#"><i class="fab fa-twitter"></i></a> -->
+                              <!-- <a href="#"><i class="fab fa-facebook-f"></i></a> -->
+                              <!-- <ShareNetwork
+                                network="whatsapp"
+                                :url="$route.path"
+                                :title="product.name"
+                                :description="product.description"
+                                :hashtags="product.tags.join()"
+                              >
+                                <i class="fab fa-whatsapp"></i>
+                              </ShareNetwork> -->
+                              <ShareNetwork
+                                network="whatsapp"
+                                :url="urlLink"
+                                :title="product.name"
+                                :description="product.description"
+                                :hashtags="product.tags.join()"
+                              >
+                                <i class="fab fa-whatsapp"></i>
+                              </ShareNetwork>
+                              <ShareNetwork
+                                network="twitter"
+                                :url="urlLink"
+                                :title="product.name"
+                                :description="product.description"
+                                :hashtags="product.tags.join()"
+                              >
+                                <i class="fab fa-twitter"></i>
+                              </ShareNetwork>
+                              <ShareNetwork
+                                network="facebook"
+                                :url="urlLink"
+                                :title="product.name"
+                                :description="product.description"
+                                :hashtags="product.tags.join()"
+                              >
+                                <i class="fab fa-facebook-f"></i>
+                              </ShareNetwork>
                           </div>
                       </div>
                   </div>
@@ -274,3 +310,4 @@
 
 <script src="./single.js" ></script>
 <style lang="scss" scoped src="./single.scss"></style>
+

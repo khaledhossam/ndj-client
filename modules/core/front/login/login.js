@@ -14,7 +14,8 @@ export default {
   },
   computed: {
     ...mapState({
-      currentLocale: state => state.localization.currentLocale
+      currentLocale: state => state.localization.currentLocale,
+      carts: state => state.frontStore.carts
     })
   },
   methods: {
@@ -30,10 +31,20 @@ export default {
         .then((response) => {
           this.$store.commit('auth/front/setAccessToken', response.access_token)
           this.$store.commit('auth/front/setAuthUser', response.user)
-
+          //* check for visitor carts */
+          if (this.carts.length) {
+            this.handleLoggedInCarts()
+          }
           this.$router.push({ name: 'home' })
           this.buefyBar(this.$t('front.logged_in_successfully'))
         })
+    },
+    async handleLoggedInCarts () {
+      await this.$CartService.addToCart({ items: this.carts})
+      .then(() => {
+        //* empty store carts */
+        this.$store.commit('frontStore/setCarts', [])
+      })
     }
   }
 }

@@ -6,7 +6,7 @@ import VeeValidate, { Validator } from 'vee-validate'
 Vue.use(VeeValidate)
 
 const state = () => ({
-  currentLocale: 'ar',
+  currentLocale: 'en',
   locales: ['ar', 'en']
 })
 const mutations = {

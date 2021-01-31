@@ -34,6 +34,7 @@ export default {
   updated_successfully: 'تم التعديل بنجاح',
   added_successfully: 'تم الاضافة بنجاح',
   reset_successfully: 'تم اعادة تعيين البيانات',
+  deleted_successfully: 'تم الحذف بنجاح',
   active: 'مفعل',
   inactive: 'غير مفعل',
   not_have_account: 'ليس لديك حساب ؟',
@@ -89,5 +90,7 @@ export default {
   ratings: 'التقييمات',
   rating: 'تقييم',
   general_classification: 'التصنيف العام',
-  load_more: 'مشاهدة المزيد'
+  load_more: 'مشاهدة المزيد',
+  carts: 'عربة التسوق',
+  discount: 'الخصم'
 }

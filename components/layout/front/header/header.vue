@@ -61,10 +61,10 @@
                                         </g>
                                     </svg>
                                 </div>
-                                <form action="#">
+                                <form @submit.prevent="handleSearch">
                                     <div class="form-group group-icon search">
-                                        <input type="text" class="form-control" placeholder="ما الذى تبحث عنه؟">
-                                        <div class="icon">
+                                        <input type="text" v-model="publicSearch" class="form-control" placeholder="ما الذى تبحث عنه؟">
+                                        <div class="icon" @click="handleSearch">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="18.65" height="20.244"
                                                 viewBox="0 0 18.65 20.244">
                                                 <g id="search_icon" data-name="search icon"
@@ -224,8 +224,8 @@
                                         </div>
                                     </li>
                                     <li>
-                                        <a href="cart.html">
-                                            <span>عربة التسوق</span>
+                                        <nuxt-link :to="{ name: 'carts' }">
+                                            <span>{{$t('front.carts')}}</span>
                                             <svg xmlns="http://www.w3.org/2000/svg" id="local_grocery_store-24px"
                                                 width="34.667" height="34.667" viewBox="0 0 34.667 34.667">
                                                 <path id="Path_3746" data-name="Path 3746" d="M0,0H34.667V34.667H0Z"
@@ -234,7 +234,7 @@
                                                     d="M9.667,25.111A2.889,2.889,0,1,0,12.556,28,2.885,2.885,0,0,0,9.667,25.111ZM1,2V4.889H3.889l5.2,10.963-1.95,3.539a2.793,2.793,0,0,0-.361,1.387,2.9,2.9,0,0,0,2.889,2.889H27V20.778H10.273a.358.358,0,0,1-.361-.361l.043-.173,1.3-2.354H22.017A2.875,2.875,0,0,0,24.544,16.4l5.171-9.374a1.411,1.411,0,0,0,.173-.693,1.449,1.449,0,0,0-1.444-1.444H7.081L5.723,2H1ZM24.111,25.111A2.889,2.889,0,1,0,27,28,2.885,2.885,0,0,0,24.111,25.111Z"
                                                     transform="translate(0.444 0.889)" fill="#fafafa" />
                                             </svg>
-                                        </a>
+                                        </nuxt-link>
                                     </li>
                                 </ul>
                             </div>

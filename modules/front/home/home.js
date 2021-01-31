@@ -89,6 +89,9 @@ export default {
   created () {
   },
   methods: {
-
+    selectedCat (category) {
+      this.$store.commit('frontStore/setSelectedCategory', category)
+      this.$router.push({ name: 'category.products', params: { id: category.id } })
+    }
   }
 }

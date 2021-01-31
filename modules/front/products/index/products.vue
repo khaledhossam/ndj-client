@@ -13,7 +13,9 @@
                                 {{ $t('front.home') }}
                               </nuxt-link>
                             </li>
-                            <li class="breadcrumb-item active">الماس</li>
+                            <li v-if="selectedCategory && selectedCategory.id == param_id" class="breadcrumb-item active">
+                              {{ selectedCategory.name }}
+                            </li>
                         </ol>
                     </nav>
                 </div>
@@ -56,7 +58,7 @@
                                 <ul class="block-list">
                                     <li v-for="(brand, key) in brands" :key="key">
                                         <label class="form-check-label">
-                                            <input @click="toggleBrands(brand.id)" type="checkbox">
+                                            <input @click="toggleBrands(brand.id)" type="checkbox" :checked="queryParam.brands.includes(brand.id)">
                                             <span></span>
                                             {{ brand.name }}
                                         </label>
@@ -78,7 +80,8 @@
                                 <ul class="block-list">
                                     <li v-for="(subcategory, key) in subcategories" :key="key">
                                         <label class="form-check-label">
-                                            <input type="checkbox" @click="toggleSubCategories(subcategory.id)">
+                                            <input type="checkbox" @click="toggleSubCategories(subcategory.id)"
+                                             :checked="queryParam.sub_categories.includes(subcategory.id)">
                                             <span></span>
                                             {{ subcategory.name }}
                                         </label>
